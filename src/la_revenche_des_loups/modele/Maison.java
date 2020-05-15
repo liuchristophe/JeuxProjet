@@ -2,7 +2,7 @@ package la_revenche_des_loups.modele;
 
 public class Maison {
 
-	private Terrain map;
+	private Jeu map;
 	private int x, y;
 	private int pv;
 	private int ptsATT;
@@ -42,7 +42,7 @@ public class Maison {
 		return this.perimetreY;
 	}
 
-	public Terrain getMap() {
+	public Jeu getMap() {
 		return this.map;
 	}
 

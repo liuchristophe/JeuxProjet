@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import la_revenche_des_loups.modele.AfficheurTuile;
+import la_revenche_des_loups.modele.Terrain;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
@@ -15,14 +15,13 @@ import javafx.scene.layout.TilePane;
 
 public class Controleur implements Initializable{
 
-	private AfficheurTuile tuileMap;
-    @FXML
-    private TilePane tilePane;
+	private Terrain tuileMap;
+    @FXML private TilePane tilePane;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		this.tuileMap=new AfficheurTuile();
+		this.tuileMap=new Terrain();
 		afficherTerrain(21,12);
 //		testTileSet(21, 12);
 	}

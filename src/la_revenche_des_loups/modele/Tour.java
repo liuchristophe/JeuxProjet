@@ -1,14 +1,14 @@
 package la_revenche_des_loups.modele;
 
 public class Tour {
-	private Terrain map;
+	private Jeu map;
 	private int x;
 	private int y;
 	private int pv;
 	private int perimetre;
 	private int degat;
 
-	public Tour(Terrain map, int pv, int degat, int perimetre, int x, int y) {
+	public Tour(Jeu map, int pv, int degat, int perimetre, int x, int y) {
 		this.map = map;
 		this.pv = pv;
 		this.degat = degat;
@@ -17,7 +17,7 @@ public class Tour {
 		this.y = y;
 	}
 
-	public Tour(Terrain m) {
+	public Tour(Jeu m) {
 		this(m, 10, 2, 10, 50, 26);
 	}
 

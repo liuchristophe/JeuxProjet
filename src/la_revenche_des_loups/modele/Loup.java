@@ -1,10 +1,10 @@
 package la_revenche_des_loups.modele;
 
-import la_revenche_des_loups.modele.Terrain;
+import la_revenche_des_loups.modele.Jeu;
 
 public class Loup {
 
-	private Terrain terrain;
+	private Jeu terrain;
 	private int x, y;
 	private int pv;
 	private int vitesse;
@@ -46,7 +46,7 @@ public class Loup {
 		return this.ptsATT;
 	}
 
-	public Terrain getMap() {
+	public Jeu getMap() {
 		return this.terrain;
 	}
 
