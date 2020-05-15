@@ -39,7 +39,7 @@ public class Controleur implements Initializable{
 			for (int x = 0; x < nbTuile; x++) {
 				ImageView imageview = new ImageView(tileSet);
 		        imageview.setImage(tileSet);
-		        Rectangle2D portVue = new Rectangle2D (x*pixelTuile, y*pixelTuile, pixelTuile, pixelTuile);
+		        Rectangle2D portVue = new Rectangle2D (x*pixelTuile-1, y*pixelTuile, pixelTuile, pixelTuile);
 		        imageview.setViewport(portVue);
 				this.tilePane.getChildren().add(imageview);
 			}
@@ -47,7 +47,6 @@ public class Controleur implements Initializable{
 	}
 	
 	private void afficherTerrain(int nbTuile, int pixelTuile) {
-		//Chargement du tileset
 		Image tileSet = null;
         try {
         	tileSet = new Image(new FileInputStream("src/la_revenche_des_loups/modele/Buch_Tiles.png"));
@@ -61,7 +60,7 @@ public class Controleur implements Initializable{
 		        ImageView imageview = new ImageView(tileSet);
 		        int[] position = new int[2];
 		        positionId(codeTuile, nbTuile, position);
-		        Rectangle2D portVue = new Rectangle2D (position[0]*pixelTuile, position[1]*pixelTuile, pixelTuile, pixelTuile);
+		        Rectangle2D portVue = new Rectangle2D (position[0]*pixelTuile-1, position[1]*pixelTuile, pixelTuile, pixelTuile);
 		        imageview.setViewport(portVue);
 				this.tilePane.getChildren().add(imageview);
 			}
