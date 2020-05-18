@@ -1,16 +1,17 @@
 package la_revenche_des_loups.modele;
 
-import la_revenche_des_loups.modele.Jeu;
+import la_revenche_des_loups.modele.Terrain;
 
 public class Loup {
-
-	private Jeu terrain;
+	private static Jeu jeu;
+	private Terrain terrain;
 	private int x, y;
 	private int pv;
 	private int vitesse;
 	private int ptsATT;
 
-	public Loup() {
+	public Loup(Jeu j) {
+		this.jeu=j;
 		this.x = 99;
 		this.y = (int) (Math.random() * 46) + 2;
 		this.pv = 5;
@@ -46,12 +47,15 @@ public class Loup {
 		return this.ptsATT;
 	}
 
-	public Jeu getMap() {
+	public Terrain getMap() {
 		return this.terrain;
 	}
 
 	public void decrementerPV(int pts) {
 		this.pv -= pts;
+		if (this.pv==0) {
+			this.meurt();
+		}
 	}
 
 	public boolean estVivant() {
@@ -60,6 +64,7 @@ public class Loup {
 
 	public void meurt() {
 		this.pv = 0;
+		this.jeu.retirerLoup(this);
 	}
 
 	public void seDeplace() {
@@ -95,6 +100,11 @@ public class Loup {
 				}
 			}
 		}
+
+
+	public void avance() {
+		this.x--;
+>>>>>>> 0a66881b666b0e0765471d4dd2a982f095d0273e
 	}
 
 	public void monte() {

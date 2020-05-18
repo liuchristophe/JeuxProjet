@@ -3,21 +3,37 @@ package la_revenche_des_loups.modele;
 import java.util.ArrayList;
 
 public class Jeu {
-
 	private Terrain terrain;
-	private ArrayList<Loup> loups;
-	private int nbTours;
+	private ArrayList<Loup>ListeLoups; 
+	
 
-	public Jeu() {
-		this.terrain = new Terrain();
-		this.loups = new ArrayList<Loup>();
-	}
 
-	public ArrayList<Loup> getLoups() {
-		return this.loups;
+	public Jeu(Terrain t){
+		this.terrain=t;
+		this.ListeLoups=new ArrayList<Loup>();
 	}
+	
+	public void ajouterLoup(Loup l){
+		this.ListeLoups.add(l);
+	}
+	
+	public void retirerLoup(Loup l){
+		this.ListeLoups.remove(l);
+	}
+	
+	public Loup Verifie(int x,int y,int peri) {
+		for (int i=0;i<this.ListeLoups.size();i++) {
+			if(((this.ListeLoups.get(i).getX()>x-peri)&&(this.ListeLoups.get(i).getX()<x+peri))&&((this.ListeLoups.get(i).getY()>y-peri)&&(this.ListeLoups.get(i).getY()<y+peri))) {
+				return this.ListeLoups.get(i);
+			}
+		}
+		
+		return null;
+	}
+	
+	
+	
+	
+	
 
-	public void ajouter(Loup newLoup) {
-		this.loups.add(newLoup);
-	}
 }

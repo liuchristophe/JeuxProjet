@@ -1,29 +1,35 @@
 package la_revenche_des_loups.modele;
 
 public class Maison {
-
-	private Jeu map;
-	private int x, y;
+	
+	private Jeu jeu;
+	private Terrain map;
+	private int x, yInf,ySup;
 	private int pv;
 	private int ptsATT;
-	private int perimetreX;
-	private int perimetreY;
+	private int perimetre;
 
-	public Maison() {
-		this.x = 0;
-		this.y = 0;
+
+	public Maison(Jeu j) {
+		this.jeu=j;
+		this.x = 15;
+		this.yInf=11;
+		this.ySup = 38;
 		this.pv = 10;
 		this.ptsATT = 2;
-		this.perimetreX = 3;
-		this.perimetreY = 3;
+		this.perimetre = 3;
 	}
 
 	public int getX() {
 		return this.x;
 	}
 
-	public int getY() {
-		return this.y;
+	public int getYSup() {
+		return this.ySup;
+	}
+	
+	public int getYInf() {
+		return this.yInf;
 	}
 
 	public int getPV() {
@@ -34,15 +40,12 @@ public class Maison {
 		return this.ptsATT;
 	}
 
-	public int getPerimetreX() {
-		return this.perimetreX;
+	public int getPerimetre() {
+		return this.perimetre;
 	}
 
-	public int getPerimetreY() {
-		return this.perimetreY;
-	}
 
-	public Jeu getMap() {
+	public Terrain getMap() {
 		return this.map;
 	}
 
@@ -60,17 +63,18 @@ public class Maison {
 
 	// A VERIFIER
 	public void seDefend() {
-		for (int i = 0; i < this.map.getLoups().size(); i++) {
-			if ((this.map.getLoups().get(i).getX() <= this.perimetreX)
-					&& (this.map.getLoups().get(i).getY() <= this.y - this.perimetreY
-							|| this.map.getLoups().get(i).getY() >= this.y - this.perimetreY)) {
-				this.map.getLoups().get(i).decrementerPV(this.ptsATT);
-			}
-		}
+			
+				if(this.jeu.Verifie(this.x,this.ySup,this.perimetre)!=null) {
+					this.jeu.Verifie(this.x,this.ySup,15).decrementerPV(this.ptsATT);
+				}
+				else if(this.jeu.Verifie(this.x,this.yInf,this.perimetre)!=null) {
+					this.jeu.Verifie(x,yInf,15).decrementerPV(this.ptsATT);
+				}
+					
 	}
 
 	public String toString() {
-		return "Position : (" + this.x + ", " + this.y + "), PV : " + this.pv;
+		return "Position : (" + this.x + ", " + this.yInf + "), PV : " + this.pv;
 	}
 
 }
