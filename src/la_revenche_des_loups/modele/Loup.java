@@ -1,47 +1,47 @@
+
 package la_revenche_des_loups.modele;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import la_revenche_des_loups.modele.Jeu;
 
 public class Loup {
 	private Jeu jeu;
 	private Jeu terrain;
-	private IntegerProperty x, y;
+	private int x, y;
 	private int pv;
 	private int vitesse;
 	private int ptsATT;
+	private String id;
+	private static int num = 0;
 
 	public Loup(Jeu j) {
 		this.jeu=j;
-		this.x = new SimpleIntegerProperty(99);
-		this.y = new SimpleIntegerProperty((int) (Math.random() * 46) + 2);
+		this.x = 99;
+		this.y = (int) (Math.random() * 46) + 2;
 		this.pv = 5;
-		this.vitesse = 1;
+		this.vitesse = 3;
 		this.ptsATT = 3;
+		this.id = "L"+ num;
+		num++;
 	}
-
-	public IntegerProperty getXProperty() {
-		return this.x;
+	
+	public String getId() {
+		return this.id;
 	}
 
 	public int getX() {
-		return this.x.getValue();
+		return this.x;
 	}
-	
+
 	public void setX(int newX) {
-		this.x.setValue(newX);;
-	}
-	
-	public IntegerProperty getYProperty() {
-		return this.y;
+		this.x = newX;
 	}
 
 	public int getY() {
-		return this.y.getValue();
+		return this.y;
 	}
 
 	public void setY(int newY) {
-		this.y.setValue(newY);;
+		this.y = newY;
 	}
 
 	public int getPV() {
@@ -73,34 +73,39 @@ public class Loup {
 	}
 
 	public void seDeplace() {
-		if (this.x.getValue() > 16) {
+		if (this.x > 16) {
 			this.avance();
+			System.out.println("etape1");
 		}
 
-		else if (this.y.getValue() < 11 && this.x.getValue() < 16) {
+		else if (this.y > 11 && this.x <= 16) {
 				this.monte();
+				System.out.println("etape2");
 		}
 
-		else if (this.y.getValue() > 39 && this.x.getValue() < 16) {
+		else if (this.y < 39 && this.x <= 16) {
 				this.descends();
+				System.out.println("etape3");
 		}
+		System.out.println("etape fin\n---------------------------");
 
 	}
 
 	public void avance() {
 		int i = 0;
-		while (this.x.getValue() > 16 && i < this.vitesse) {
-			this.x.setValue(this.x.getValue()-1);
+		while (this.x > 16 && i < this.vitesse) {
+			this.x = this.x-1;
+			System.out.println("avance X:" + this.x + " Y:" + this.y);
 			i++;
 		}
 		if(i < this.vitesse) {
 			while(i < this.vitesse) {
-				if (this.y.getValue() < 39) {
-					this.y.setValue(this.y.getValue()+1);
+				if (this.y < 39) {
+					this.y++;
 					i++;
 				}
-				else if(this.y.getValue() > 11) {
-					this.y.setValue(this.y.getValue()-1);
+				else if(this.y > 11) {
+					this.y--;
 					i++;
 				}
 			}
@@ -109,11 +114,15 @@ public class Loup {
 
 	public void monte() {
 		int i = 0;
-		while(this.y.getValue() > 11 && this.vitesse > i) {
-			this.y.setValue(this.y.getValue()-1);
+		while(this.y > 11 && this.vitesse > i) {
+			this.y--;
+			i++;
+			System.out.println("monte X:" + this.x + " Y:" + this.y);
 		}
-		while(this.y.getValue() < 39 && this.vitesse > i) {
-			this.y.setValue(this.y.getValue()+1);
+		while(this.y < 39 && this.vitesse > i) {
+			this.y++;
+			i++;
+			System.out.println("descend X:" + this.x + " Y:" + this.y);
 		}
 		if(i < this.vitesse) {
 			this.monte();
@@ -122,11 +131,15 @@ public class Loup {
 
 	public void descends() {
 		int i = 0;
-		while(this.y.getValue() < 39 && this.vitesse > i) {
-			this.y.setValue(this.y.getValue()+1);
+		while(this.y < 39 && this.vitesse > i) {
+			this.y++;
+			i++;
+			System.out.println("descend X:" + this.x + " Y:" + this.y);
 		}
-		while(this.y.getValue() > 11 && this.vitesse > i) {
-			this.y.setValue(this.y.getValue()-1);
+		while(this.y > 11 && this.vitesse > i) {
+			this.y--;
+			i++;
+			System.out.println("avance X:" + this.x + " Y:" + this.y);
 		}
 		if(i < this.vitesse) {
 			this.monte();
