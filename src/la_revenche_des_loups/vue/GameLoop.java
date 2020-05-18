@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 public class GameLoop {
 
 	private Timeline gameLoop;
+	private LoupVue loup;
 	
 	private int temps;
 	
