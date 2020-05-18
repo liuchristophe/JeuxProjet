@@ -1,10 +1,10 @@
 package la_revenche_des_loups.modele;
 
-import la_revenche_des_loups.modele.Terrain;
+import la_revenche_des_loups.modele.Jeu;
 
 public class Loup {
-	private static Jeu jeu;
-	private Terrain terrain;
+	private Jeu jeu;
+	private Jeu terrain;
 	private int x, y;
 	private int pv;
 	private int vitesse;
@@ -47,15 +47,12 @@ public class Loup {
 		return this.ptsATT;
 	}
 
-	public Terrain getMap() {
+	public Jeu getMap() {
 		return this.terrain;
 	}
 
 	public void decrementerPV(int pts) {
 		this.pv -= pts;
-		if (this.pv==0) {
-			this.meurt();
-		}
 	}
 
 	public boolean estVivant() {
@@ -64,10 +61,10 @@ public class Loup {
 
 	public void meurt() {
 		this.pv = 0;
-		this.jeu.retirerLoup(this);
 	}
 
 	public void seDeplace() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		int i=0;
 		while (this.x > 17 || i < 25) {
@@ -94,16 +91,22 @@ public class Loup {
 	public void avance() {
 		this.x--;
 =======
+=======
+>>>>>>> 3711975eecc0ec51c5575d0fe3d744bb6cee0551
 		if (this.x > 17) {
 			this.avance();
 		}
 
 		else if (this.y < 11 && this.x < 17) {
-			this.monte();
+			while (this.y < 11) {
+				this.monte();
+			}
 		}
 
 		else if (this.y > 39 && this.x < 17) {
-			this.descends();
+			while (this.y > 39) {
+				this.descends();
+			}
 		}
 
 	}
@@ -126,7 +129,10 @@ public class Loup {
 				}
 			}
 		}
+<<<<<<< HEAD
 >>>>>>> 9bde10b4fdfd961a3640690dce836d1beb1cf26e
+=======
+>>>>>>> 3711975eecc0ec51c5575d0fe3d744bb6cee0551
 	}
 
 	public void monte() {
