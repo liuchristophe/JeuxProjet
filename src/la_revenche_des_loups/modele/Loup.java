@@ -68,6 +68,7 @@ public class Loup {
 	}
 
 	public void seDeplace() {
+<<<<<<< HEAD
 		int i=0;
 		while (this.x > 17 || i < 25) {
 			if (this.x > 17) {	
@@ -92,14 +93,67 @@ public class Loup {
 
 	public void avance() {
 		this.x--;
+=======
+		if (this.x > 17) {
+			this.avance();
+		}
+
+		else if (this.y < 11 && this.x < 17) {
+			this.monte();
+		}
+
+		else if (this.y > 39 && this.x < 17) {
+			this.descends();
+		}
+
+	}
+
+	public void avance() {
+		int i = 0;
+		while (this.x > 17 && i < this.vitesse) {
+			this.x--;
+			i++;
+		}
+		if(i < this.vitesse) {
+			while(i < this.vitesse) {
+				if (this.y < 39) {
+					this.y++;
+					i++;
+				}
+				else if(this.y > 11) {
+					this.y--;
+					i++;
+				}
+			}
+		}
+>>>>>>> 9bde10b4fdfd961a3640690dce836d1beb1cf26e
 	}
 
 	public void monte() {
-		this.y++;
+		int i = 0;
+		while(this.y > 11 && this.vitesse > i) {
+			this.y--;
+		}
+		while(this.y < 39 && this.vitesse > i) {
+			this.y++;
+		}
+		if(i < this.vitesse) {
+			this.monte();
+		}
 	}
 
 	public void descends() {
-		this.y--;
+
+		int i = 0;
+		while(this.y < 39 && this.vitesse > i) {
+			this.y++;
+		}
+		while(this.y > 11 && this.vitesse > i) {
+			this.y--;
+		}
+		if(i < this.vitesse) {
+			this.monte();
+		}
 	}
 
 	public String toString() {
