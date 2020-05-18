@@ -26,7 +26,7 @@ public class Controleur implements Initializable{
 		this.loupVue = new LoupVue(tilePane, terrain);
 		this.terrainVue = new TerrainVue(tilePane, terrain);
 //		this.terrainVue.afficherTerrainVue(21,21,12);
-		this.loup = new Loup();
+		this.loup = new Loup(null);
 	}
 
 	@FXML

@@ -30,6 +30,7 @@ public class LoupVue {
 		imageview.setFitHeight(12);
 		imageview.setTranslateX(loup.getX()*12);
 		imageview.setTranslateY(loup.getY()*12);
+		System.out.println("");
 		this.panneauJeu.getChildren().add(imageview);
 	}
 }

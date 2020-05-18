@@ -69,15 +69,11 @@ public class Loup {
 		}
 
 		else if (this.y < 11 && this.x < 17) {
-			while (this.y < 11) {
 				this.monte();
-			}
 		}
 
 		else if (this.y > 39 && this.x < 17) {
-			while (this.y > 39) {
 				this.descends();
-			}
 		}
 
 	}
