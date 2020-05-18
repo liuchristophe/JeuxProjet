@@ -64,15 +64,15 @@ public class Loup {
 	}
 
 	public void seDeplace() {
-		if (this.x > 17) {
+		if (this.x > 16) {
 			this.avance();
 		}
 
-		else if (this.y < 11 && this.x < 17) {
+		else if (this.y < 11 && this.x < 16) {
 				this.monte();
 		}
 
-		else if (this.y > 39 && this.x < 17) {
+		else if (this.y > 39 && this.x < 16) {
 				this.descends();
 		}
 
@@ -80,7 +80,7 @@ public class Loup {
 
 	public void avance() {
 		int i = 0;
-		while (this.x > 17 && i < this.vitesse) {
+		while (this.x > 16 && i < this.vitesse) {
 			this.x--;
 			i++;
 		}
@@ -112,7 +112,6 @@ public class Loup {
 	}
 
 	public void descends() {
-
 		int i = 0;
 		while(this.y < 39 && this.vitesse > i) {
 			this.y++;
