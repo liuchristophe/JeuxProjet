@@ -69,10 +69,9 @@ public class Loup {
 
 	public void seDeplace() {
 		int i=0;
-		while (this.x > 17 || i < 25) {
-			if (this.x > 17) {	
+		while (this.x > 16 && i < 25) {
+			if (this.x > 16) {	
 					this.avance();
-					i++;
 				}
 			
 	
@@ -87,6 +86,7 @@ public class Loup {
 					this.descends();
 				}
 			}
+			i++;
 		}
 	}
 
