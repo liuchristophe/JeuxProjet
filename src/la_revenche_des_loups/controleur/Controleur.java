@@ -32,6 +32,7 @@ public class Controleur implements Initializable{
 	@FXML
     void lancerPartie(ActionEvent event) {
 		loupVue.afficherLoupVue(this.loup);
+		this.loup.seDeplace();
     }
 	
 }
