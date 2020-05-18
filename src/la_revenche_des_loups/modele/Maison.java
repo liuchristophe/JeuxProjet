@@ -7,18 +7,17 @@ public class Maison {
 	private int x, yInf,ySup;
 	private int pv;
 	private int ptsATT;
-	private int perimetreX;
-	private int perimetreY;
+	private int perimetre;
+
 
 	public Maison(Jeu j) {
 		this.jeu=j;
-		this.x = 14;
+		this.x = 15;
 		this.yInf=11;
 		this.ySup = 38;
 		this.pv = 10;
 		this.ptsATT = 2;
-		this.perimetreX = 3;
-		this.perimetreY = 3;
+		this.perimetre = 3;
 	}
 
 	public int getX() {
@@ -41,13 +40,10 @@ public class Maison {
 		return this.ptsATT;
 	}
 
-	public int getPerimetreX() {
-		return this.perimetreX;
+	public int getPerimetre() {
+		return this.perimetre;
 	}
 
-	public int getPerimetreY() {
-		return this.perimetreY;
-	}
 
 	public Terrain getMap() {
 		return this.map;
@@ -68,10 +64,10 @@ public class Maison {
 	// A VERIFIER
 	public void seDefend() {
 			
-				if(this.jeu.Verifie(this.x,this.ySup,15)!=null) {
+				if(this.jeu.Verifie(this.x,this.ySup,this.perimetre)!=null) {
 					this.jeu.Verifie(this.x,this.ySup,15).decrementerPV(this.ptsATT);
 				}
-				else if(this.jeu.Verifie(this.x,this.yInf,15)!=null) {
+				else if(this.jeu.Verifie(this.x,this.yInf,this.perimetre)!=null) {
 					this.jeu.Verifie(x,yInf,15).decrementerPV(this.ptsATT);
 				}
 					

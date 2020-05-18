@@ -68,28 +68,26 @@ public class Loup {
 	}
 
 	public void seDeplace() {
-		int i;
-		if (this.x > 17) {
-			i = 0;
-			while (this.x < 17 || i < 25) {
-				this.avance();
-				i++;
+		int i=0;
+		while (this.x > 17 || i < 25) {
+			if (this.x > 17) {	
+					this.avance();
+					i++;
+				}
+			
+	
+			else if (this.y < 11) {
+				while (this.y < 11) {
+					this.monte();
+				}
 			}
-
-		}
-
-		else if (this.y < 11) {
-			while (this.y < 11) {
-				this.monte();
+	
+			else if (this.y > 39) {
+				while (this.y > 39) {
+					this.descends();
+				}
 			}
 		}
-
-		else if (this.y > 39) {
-			while (this.y > 39) {
-				this.descends();
-			}
-		}
-
 	}
 
 	public void avance() {
