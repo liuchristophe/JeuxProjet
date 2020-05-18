@@ -2,7 +2,6 @@ package la_revenche_des_loups.vue;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -44,7 +43,6 @@ public class TerrainVue {
 				positionId(codeTuile, nbTuileLigne, position);
 				Rectangle2D portVue = new Rectangle2D (position[0]*pixelTuile-1, position[1]*pixelTuile, pixelTuile, pixelTuile);
 				imageview.setViewport(portVue);
-				tuiles[codeTuile] = imageview;
 				this.panneauJeu.getChildren().add(imageview);
 			}
 		}
