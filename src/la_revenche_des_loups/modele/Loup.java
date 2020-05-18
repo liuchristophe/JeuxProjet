@@ -93,7 +93,7 @@ public class Loup {
 	}
 
 	public void avance() {
-		this.x++;
+		this.x--;
 	}
 
 	public void monte() {
