@@ -13,6 +13,14 @@ public class Jeu {
 		this.ListeLoups=new ArrayList<Loup>();
 	}
 	
+	public Terrain getTerrain() {
+		return this.terrain;
+	}
+	
+	public Loup getLoup(){
+		return this.ListeLoups.get(0);
+	}
+	
 	public void ajouterLoup(Loup l){
 		this.ListeLoups.add(l);
 	}
@@ -20,6 +28,11 @@ public class Jeu {
 	public void retirerLoup(Loup l){
 		this.ListeLoups.remove(l);
 	}
+	
+	public void reintialiser() {
+        this.terrain=new Terrain();
+        this.ListeLoups=new ArrayList<Loup>();
+    }
 	
 	public Loup Verifie(int x,int y,int peri) {
 		for (int i=0;i<this.ListeLoups.size();i++) {

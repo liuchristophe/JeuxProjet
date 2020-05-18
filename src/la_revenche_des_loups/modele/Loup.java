@@ -73,37 +73,7 @@ public class Loup {
 	}
 
 	public void seDeplace() {
-<<<<<<< HEAD
-
-		int i=0;
-		while (this.x > 17 || i < 25) {
-			if (this.x > 17) {	
-					this.avance();
-					i++;
-				}
-			
-	
-			else if (this.y < 11) {
-				while (this.y < 11) {
-					this.monte();
-				}
-			}
-	
-			else if (this.y > 39) {
-				while (this.y > 39) {
-					this.descends();
-				}
-			}
-		}
-	}
-
-	public void avance() {
-		this.x--;
-
-		if (this.x > 17) {
-=======
 		if (this.x > 16) {
->>>>>>> 5f21aac1225bbbdf4c5e77848701073fdd3d0a75
 			this.avance();
 			System.out.println("etape1");
 		}
@@ -121,8 +91,6 @@ public class Loup {
 
 	}
 
-<<<<<<< HEAD
-=======
 	public void avance() {
 		int i = 0;
 		while (this.x > 16 && i < this.vitesse) {
@@ -144,7 +112,6 @@ public class Loup {
 		}
 	}
 
->>>>>>> 5f21aac1225bbbdf4c5e77848701073fdd3d0a75
 	public void monte() {
 		int i = 0;
 		while(this.y > 11 && this.vitesse > i) {
