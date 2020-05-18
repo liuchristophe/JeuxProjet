@@ -1,14 +1,16 @@
 package la_revenche_des_loups.modele;
 
 public class Tour {
-	private Jeu map;
+	private Terrain map;
 	private int x;
 	private int y;
 	private int pv;
 	private int perimetre;
 	private int degat;
+	private Jeu jeu;
+	private Loup loupCible;
 
-	public Tour(Jeu map, int pv, int degat, int perimetre, int x, int y) {
+	public Tour(Terrain map, int pv, int degat, int perimetre, int x, int y) {
 		this.map = map;
 		this.pv = pv;
 		this.degat = degat;
@@ -17,41 +19,26 @@ public class Tour {
 		this.y = y;
 	}
 
-	public Tour(Jeu m) {
+	public Tour(Terrain m) {
 		this(m, 10, 2, 10, 50, 26);
 	}
 
 	public void seDefend() {
-		Loup loup = cible();
-		if (loup.estVivant()) {
-			loup.decrementerPV(this.degat);
+		if (this.loupCible.estVivant()) {
+			this.loupCible.decrementerPV(this.degat);
 		}
 	}
 
 	// La tour cible le loup jusqu'a ce qu'il quitte le perimetre de la tour ou est
 	// mort
-	public Loup cible() {
-		int i = 0;
-		Loup loupCibler = null;
-		while (i < this.map.getLoups().size()) { // verifie chaque Loup
-			int loupX = this.map.getLoups().get(i).getX();
-			int loupY = this.map.getLoups().get(i).getY();
-			// perimetre horizontal avant perimetre horizontal arriere perimetre vertical
-			// bas perimetre vertical haut
-			if (loupX <= this.x + this.perimetre && loupX >= this.x - this.perimetre && loupY <= this.y + this.perimetre
-					&& loupY >= this.y - this.perimetre) {
-				if (loupCibler != null) {
-					// compare le nouveau loupCibler avec le loup actuelle du tableau
-					if (this.map.getLoups().get(i).getX() < loupX) {
-						loupCibler = this.map.getLoups().get(i);
-					}
-				} else {
-					loupCibler = this.map.getLoups().get(i);
-				}
-			}
-			i++;
+	public void Loupcible() {
+		this.loupCible=this.jeu.Verifie(this.x,this.y,this.perimetre);	
+	}
+	
+	public void ChangeCible() {
+		if((this.loupCible.estVivant()==false)||(this.loupCible.getX()<this.x-this.perimetre)||(this.loupCible.getY()<this.y-this.perimetre)||(this.loupCible.getY()<this.y+this.perimetre)) {
+			this.Loupcible();
 		}
-		return loupCibler;
 	}
 
 	public int getX() {
