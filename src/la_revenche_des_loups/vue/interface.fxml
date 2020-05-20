@@ -25,11 +25,7 @@
                         <Insets left="22.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-<<<<<<< HEAD
                   <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#quitterJeu" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Quitter la partie">
-=======
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#quitterJeu" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Quitter le jeu">
->>>>>>> c1a4df185e0fc4296f5b48d3a3383acd606d6c94
                      <VBox.margin>
                         <Insets left="22.0" top="10.0" />
                      </VBox.margin>
