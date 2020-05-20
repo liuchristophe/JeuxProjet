@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -58,9 +57,6 @@ public class Controleur implements Initializable{
 
 	@FXML
     void lancerPartie(ActionEvent event) {
-//		System.out.println("X:" + loup.getX() + " Y:" + loup.getY());
-		//loupVue.afficherLoupVue(this.loup);
-		//this.loup.seDeplace();
 		this.gameloop.lancerAnimation();
 		this.loupVue.afficherLoupVue(this.loup);
 		this.loup.seDeplace();
