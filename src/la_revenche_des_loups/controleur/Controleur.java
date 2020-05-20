@@ -30,9 +30,6 @@ public class Controleur implements Initializable{
 	private LoupVue loupVue;
 	private MaisonVue maisonVue;
 	private GameLoop gameloop;
-	private TerrainVue terrainVue;
-	private LoupVue loupVue;
-	private Loup loup;
 	private TourVue tourVue;
     @FXML private TilePane tilePane;
     @FXML private Pane tableDeJeu;
