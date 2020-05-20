@@ -21,7 +21,7 @@ public class Jeu {
 		this.ListeLoups.remove(l);
 	}
 	
-	public Loup Verifie(int x,int y,int peri) {
+	public Loup verifie(int x,int y,int peri) {
 		for (int i=0;i<this.ListeLoups.size();i++) {
 			if(((this.ListeLoups.get(i).getX()>x-peri)&&(this.ListeLoups.get(i).getX()<x+peri))&&((this.ListeLoups.get(i).getY()>y-peri)&&(this.ListeLoups.get(i).getY()<y+peri))) {
 				return this.ListeLoups.get(i);

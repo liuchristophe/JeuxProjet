@@ -73,29 +73,24 @@ public class Loup {
 	}
 
 	public void seDeplace() {
-		if (this.x > 16) {
+		if (this.x > 15) {
 			this.avance();
-			System.out.println("etape1");
 		}
 
-		else if (this.y > 11 && this.x <= 16) {
+		else if (this.y > 25+(((int)(Math.random()*28))-14) && this.x <= 15) {
 				this.monte();
-				System.out.println("etape2");
 		}
 
-		else if (this.y < 39 && this.x <= 16) {
+		else if (this.y <= 25+(((int)(Math.random()*28))-14) && this.x <= 15) {
 				this.descends();
-				System.out.println("etape3");
 		}
-		System.out.println("etape fin\n---------------------------");
 
 	}
 
 	public void avance() {
 		int i = 0;
-		while (this.x > 16 && i < this.vitesse) {
+		while (this.x > 15 && i < this.vitesse) {
 			this.x = this.x-1;
-			System.out.println("avance X:" + this.x + " Y:" + this.y);
 			i++;
 		}
 		if(i < this.vitesse) {
@@ -117,12 +112,10 @@ public class Loup {
 		while(this.y > 11 && this.vitesse > i) {
 			this.y--;
 			i++;
-			System.out.println("monte X:" + this.x + " Y:" + this.y);
 		}
 		while(this.y < 39 && this.vitesse > i) {
 			this.y++;
 			i++;
-			System.out.println("descend X:" + this.x + " Y:" + this.y);
 		}
 		if(i < this.vitesse) {
 			this.monte();
@@ -134,12 +127,10 @@ public class Loup {
 		while(this.y < 39 && this.vitesse > i) {
 			this.y++;
 			i++;
-			System.out.println("descend X:" + this.x + " Y:" + this.y);
 		}
 		while(this.y > 11 && this.vitesse > i) {
 			this.y--;
 			i++;
-			System.out.println("avance X:" + this.x + " Y:" + this.y);
 		}
 		if(i < this.vitesse) {
 			this.monte();

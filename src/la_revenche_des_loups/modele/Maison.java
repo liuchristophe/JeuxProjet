@@ -64,11 +64,11 @@ public class Maison {
 	// A VERIFIER
 	public void seDefend() {
 			
-				if(this.jeu.Verifie(this.x,this.ySup,this.perimetre)!=null) {
-					this.jeu.Verifie(this.x,this.ySup,15).decrementerPV(this.ptsATT);
+				if(this.jeu.verifie(this.x,this.ySup,this.perimetre)!=null) {
+					this.jeu.verifie(this.x,this.ySup,15).decrementerPV(this.ptsATT);
 				}
-				else if(this.jeu.Verifie(this.x,this.yInf,this.perimetre)!=null) {
-					this.jeu.Verifie(x,yInf,15).decrementerPV(this.ptsATT);
+				else if(this.jeu.verifie(this.x,this.yInf,this.perimetre)!=null) {
+					this.jeu.verifie(x,yInf,15).decrementerPV(this.ptsATT);
 				}
 					
 	}

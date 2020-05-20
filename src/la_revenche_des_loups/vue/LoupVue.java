@@ -16,7 +16,6 @@ public class LoupVue {
 	
 	public LoupVue(Pane panneau, Terrain terrain) {
 		this.panneauJeu = panneau;
-		System.out.println(this.panneauJeu);
 		this.terrain = terrain;
 		this.loupVue = null;
         try {
@@ -37,7 +36,7 @@ public class LoupVue {
 		}
 	}
 	
-	public void creerLoupVue(Loup loup) {
+	private void creerLoupVue(Loup loup) {
 		ImageView imageview = new ImageView(this.loupVue);
 		imageview.setFitWidth(24);		//A modif
 		imageview.setFitHeight(24);		//A modif

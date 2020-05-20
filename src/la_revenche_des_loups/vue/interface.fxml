@@ -21,7 +21,7 @@
                         <Insets left="22.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="quitterJeu" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Quitter le jeu">
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#quitterJeu" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Quitter le jeu">
                      <VBox.margin>
                         <Insets left="22.0" top="10.0" />
                      </VBox.margin>
@@ -35,7 +35,7 @@
       <Label prefHeight="30.0" prefWidth="199.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="La Revanche Des Loups" textFill="PINK" BorderPane.alignment="TOP_CENTER" />
    </top>
    <center>
-      <Pane fx:id="tableDeJeu" maxHeight="600.0" maxWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="tableDeJeu" maxHeight="600.0" maxWidth="1200.0" onMouseClicked="#cliqueTableDeJeu" prefHeight="600.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <children>
             <TilePane fx:id="tilePane" maxHeight="600.0" maxWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" />
          </children>
