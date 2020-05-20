@@ -47,11 +47,6 @@ public class Controleur implements Initializable{
 		this.maisonVue.creerMaisonVue(maison); //testMaisonVue
 		this.loupVue = new LoupVue(this.tableDeJeu, jeu.getTerrain());
 		this.gameloop = new GameLoop(this.jeu.getLoup(),this.loupVue);
-		this.loup = new Loup(null);
-		this.jeu = new Jeu(this.terrain);
-		this.terrainVue = new TerrainVue(this.tilePane, terrain);
-		this.terrainVue.afficherTerrainVue(21,21,12);
-		this.loupVue = new LoupVue(this.tableDeJeu, terrain);
 		this.tourVue = new TourVue(this.tableDeJeu, this.jeu);
 	}
 
