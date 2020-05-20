@@ -25,7 +25,6 @@ public class GameLoop {
 
 		KeyFrame kf = new KeyFrame(Duration.seconds(0.10), (ev -> {
 			if (nbFrame == 30) {
-				System.out.println("fini");
 				gameLoop.stop();
 			} else {
 				loupVue.afficherLoupVue(this.loup);
