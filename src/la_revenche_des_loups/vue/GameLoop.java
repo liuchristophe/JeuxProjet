@@ -16,7 +16,6 @@ public class GameLoop {
 	public GameLoop(Loup loup, LoupVue loupVue) {
 		this.loup = loup;
 		this.loupVue = loupVue;
-
 	}
 
 	public void initAnimation() {

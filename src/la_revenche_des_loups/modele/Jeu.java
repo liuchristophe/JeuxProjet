@@ -3,10 +3,10 @@ package la_revenche_des_loups.modele;
 import java.util.ArrayList;
 
 public class Jeu {
+	
 	private Terrain terrain;
 	private ArrayList<Loup>ListeLoups; 
 	
-
 
 	public Jeu(Terrain t){
 		this.terrain=t;
