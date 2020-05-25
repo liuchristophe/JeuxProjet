@@ -30,8 +30,8 @@ public class MaisonVue {
 	
 	public void creerMaisonVue(Maison maison) {
 		ImageView imageview = new ImageView(this.maisonVue);
-		imageview.setFitWidth(170);
-		imageview.setFitHeight(270);
+		imageview.setFitWidth(324);
+		imageview.setFitHeight(204);
 		imageview.setTranslateX(maison.getX());
 		imageview.setTranslateY(maison.getYInf()*12); //TEST
 		this.panneauJeu.getChildren().add(imageview);

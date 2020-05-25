@@ -19,8 +19,8 @@ public class Terrain {
 		return this.largeur;
 	}
 
-	public int codeTuile(int x) {
-		return tuileMap[x];
+	public int codeTuile(int id) {
+		return tuileMap[id];
 	}
 	
 	public int codeTuile(int x, int y) {

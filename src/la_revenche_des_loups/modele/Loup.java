@@ -1,11 +1,12 @@
 
 package la_revenche_des_loups.modele;
 
+import java.util.ArrayList;
+
 import la_revenche_des_loups.modele.Jeu;
 
 public class Loup {
 	private Jeu jeu;
-	private Jeu terrain;
 	private int x, y;
 	private int pv;
 	private int vitesse;
@@ -56,10 +57,6 @@ public class Loup {
 		return this.ptsATT;
 	}
 
-	public Jeu getMap() {
-		return this.terrain;
-	}
-
 	public void decrementerPV(int pts) {
 		this.pv -= pts;
 	}
@@ -87,6 +84,10 @@ public class Loup {
 
 	}
 
+	public ArrayList<int[][]> seDeplaceBFS(int posCibleX, int posCibleY) {
+		return null;
+	}
+	
 	public void avance() {
 		int i = 0;
 		while (this.x > 15 && i < this.vitesse) {
