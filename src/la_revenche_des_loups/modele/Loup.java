@@ -61,13 +61,10 @@ public class Loup {
 		return this.ptsATT;
 	}
 
-<<<<<<< HEAD
 	public Tour getTourCible() {
 		return this.tourCible;
 	}
 
-=======
->>>>>>> 25285c4a28ab4fec34a424f3f58c6f8264c867cd
 	public void decrementerPV(int pts) {
 		this.pv -= pts;
 	}

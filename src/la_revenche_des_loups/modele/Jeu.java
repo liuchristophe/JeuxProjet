@@ -47,7 +47,7 @@ public class Jeu {
 		this.ListeLoups = new ArrayList<Loup>();
 	}
 
-	// Permet de vérifier si un loup se situe dans le périmètre d'attaque d'une tour
+	// Permet de vÃ©rifier si un loup se situe dans le pÃ©rimÃ¨tre d'attaque d'une tour
 	public Loup verifieLoupTour(int x, int y, int peri) {
 		for (int i = 0; i < this.ListeLoups.size(); i++) {
 			if (((this.ListeLoups.get(i).getX() > x - peri) && (this.ListeLoups.get(i).getX() < x + peri))
@@ -59,7 +59,7 @@ public class Jeu {
 		return null;
 	}
 
-	// Permet de vérifier si un loup se situe dans le périmètre d'attaque de la
+	// Permet de vÃ©rifier si un loup se situe dans le pÃ©rimÃ¨tre d'attaque de la
 	// maison
 	public Loup verifieLoupMaison(int x, int y, int peri) {
 		for (int i = 0; i < this.ListeLoups.size(); i++) {
@@ -72,7 +72,7 @@ public class Jeu {
 		return null;
 	}
 
-	// Permet de vérifier si une tour se situe dans le périmètre d'attaque d'un loup
+	// Permet de vÃ©rifier si une tour se situe dans le pÃ©rimÃ¨tre d'attaque d'un loup
 	public Tour verifieTour(int x, int y, int peri) {
 		for (int i = 0; i < this.ListeTours.size(); i++) {
 			if ((this.ListeTours.get(i).getY() > y - peri && this.ListeTours.get(i).getY() < y + peri)
@@ -83,11 +83,10 @@ public class Jeu {
 
 		return null;
 	}
-<<<<<<< HEAD
 
-	// Les methodes ci-dessous sont les methodes d'action des différents acteurs
+	// Les methodes ci-dessous sont les methodes d'action des diffÃ©rents acteurs
 
-	// Le loup se déplace s'arrete lorsque il y a une tour dans son périmètre
+	// Le loup se dÃ©place s'arrete lorsque il y a une tour dans son pÃ©rimÃ¨tre
 	// d'attaque, puis attaque
 	public void agitLoup() {
 		for (int i = 0; i < this.ListeLoups.size(); i++) {
@@ -105,8 +104,8 @@ public class Jeu {
 		for (int i = 0; i < this.ListeTours.size(); i++) {
 			if (this.ListeTours.get(i).getLoupCible() != null) {
 				this.ListeTours.get(i).seDefend();
-				// on affiche sur la console que la tour se défend
-				System.out.println("Tour " + this.ListeTours.get(i).getId() + " se défend");
+				// on affiche sur la console que la tour se dÃ©fend
+				System.out.println("Tour " + this.ListeTours.get(i).getId() + " se dï¿½fend");
 				this.ListeTours.get(i).changeCible();
 			} else {
 				this.ListeTours.get(i).loupcible();
@@ -117,14 +116,13 @@ public class Jeu {
 	public void agitMaison() {
 		if (this.maison.getLoupCible() != null) {
 			this.maison.seDefend();
-			// on affiche sur la console que la maison se défend
-			System.out.println("Maison se défend");
+			// on affiche sur la console que la maison se dÃ©fend
+			System.out.println("Maison se dÃ©fend");
 			this.maison.changeCible();
 		} else {
 			this.maison.loupcible();
 		}
 	}
-=======
 	
 	
 	public int[] tableauObstacle() {
@@ -189,7 +187,5 @@ public class Jeu {
 			}
 		}
 	}
-	
->>>>>>> 25285c4a28ab4fec34a424f3f58c6f8264c867cd
 
 }

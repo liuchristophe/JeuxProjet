@@ -18,7 +18,7 @@ public class MaisonVue {
 		this.panneauJeu = panneau;
 		this.maisonVue = null;
 		try {
-			this.maisonVue = new Image(new FileInputStream("src/la_revenche_des_loups/modele/chateau2.png"));
+			this.maisonVue = new Image(new FileInputStream("src/la_revenche_des_loups/modele/chateau3.png"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -26,10 +26,10 @@ public class MaisonVue {
 
 	public void creerMaisonVue(Maison maison) {
 		ImageView imageview = new ImageView(this.maisonVue);
-		imageview.setFitWidth(324);
-		imageview.setFitHeight(204);
-		imageview.setTranslateX(maison.getX());
-		imageview.setTranslateY(maison.getYInf() * 12);
+		imageview.setFitWidth(240);
+		imageview.setFitHeight(390);
+		imageview.setTranslateX(maison.getX()-15);
+		imageview.setTranslateY(maison.getYInf() * 9);
 		this.panneauJeu.getChildren().add(imageview);
 	}
 }
