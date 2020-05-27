@@ -26,7 +26,6 @@ public class Jeu {
 
 	public void ajouterLoup(Loup l) {
 		this.ListeLoups.add(l);
-		System.out.println("ajout d'un loup");
 	}
 
 	public void retirerLoup(Loup l) {
