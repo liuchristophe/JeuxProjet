@@ -65,7 +65,7 @@ public class Jeu {
 	public ArrayList<int[]> bfs(int x, int y) { //idCible losque x + y*tailleTerrain en 1 dimension
 		int largeurTerrain = this.terrain.getLargeur();
 		int tailleTerrain = this.terrain.getHauteur()*largeurTerrain;
-		int[] tabMarquer = new int[tailleTerrain];
+		int[] tabMarquer = this.tableauObstacle().clone();
 		ArrayList<Integer> pile = new ArrayList<Integer>();
 		ArrayList<int[]> bfs = new ArrayList<int[]>();
 		pile.add(y*largeurTerrain + x);
