@@ -1,6 +1,8 @@
 
 package la_revenche_des_loups.modele;
 
+import java.util.ArrayList;
+
 import la_revenche_des_loups.modele.Jeu;
 
 public class Loup {
@@ -59,10 +61,13 @@ public class Loup {
 		return this.ptsATT;
 	}
 
+<<<<<<< HEAD
 	public Tour getTourCible() {
 		return this.tourCible;
 	}
 
+=======
+>>>>>>> 25285c4a28ab4fec34a424f3f58c6f8264c867cd
 	public void decrementerPV(int pts) {
 		this.pv -= pts;
 	}
@@ -90,6 +95,10 @@ public class Loup {
 
 	}
 
+	public ArrayList<int[][]> seDeplaceBFS(int posCibleX, int posCibleY) {
+		return null;
+	}
+	
 	public void avance() {
 		int i = 0;
 		while (this.x > 15 && i < this.vitesse) {
