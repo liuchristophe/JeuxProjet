@@ -34,6 +34,8 @@ public class Controleur implements Initializable {
 	@FXML
 	private TilePane tilePane;
 	@FXML
+    private Pane testBFS;
+	@FXML
 	private Pane tableDeJeu;
 
 	@Override
@@ -70,6 +72,7 @@ public class Controleur implements Initializable {
 	public void cliqueTableDeJeu(MouseEvent click) {
 		int x = ((int) click.getX()) / 12 - 1;
 		int y = ((int) click.getY()) / 12 - 1;
+		System.out.println("x:" + x + " y:" + y);
 		Tour tour = new Tour(this.jeu, x, y);
 		this.tourVue.afficherTourVue(tour);
 	}
