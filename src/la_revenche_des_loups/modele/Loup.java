@@ -1,8 +1,6 @@
 
 package la_revenche_des_loups.modele;
 
-import java.util.ArrayList;
-
 import la_revenche_des_loups.modele.Jeu;
 
 public class Loup {
@@ -90,10 +88,6 @@ public class Loup {
 			this.descends();
 		}
 
-	}
-
-	public ArrayList<int[][]> seDeplaceBFS(int posCibleX, int posCibleY) {
-		return null;
 	}
 	
 	public void avance() {
