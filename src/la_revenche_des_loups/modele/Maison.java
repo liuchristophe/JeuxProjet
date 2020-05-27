@@ -1,19 +1,19 @@
 package la_revenche_des_loups.modele;
 
 public class Maison {
-	
+
 	private Jeu jeu;
-	private Terrain map;
-	private int x, yInf,ySup;
+
+	private int x, yInf, ySup;
 	private int pv;
 	private int ptsATT;
 	private int perimetre;
-
+	private Loup loupCible;
 
 	public Maison(Jeu j) {
-		this.jeu=j;
+		this.jeu = j;
 		this.x = 15;
-		this.yInf=11;
+		this.yInf = 11;
 		this.ySup = 38;
 		this.pv = 10;
 		this.ptsATT = 2;
@@ -27,7 +27,7 @@ public class Maison {
 	public int getYSup() {
 		return this.ySup;
 	}
-	
+
 	public int getYInf() {
 		return this.yInf;
 	}
@@ -44,9 +44,8 @@ public class Maison {
 		return this.perimetre;
 	}
 
-
-	public Terrain getMap() {
-		return this.map;
+	public Loup getLoupCible() {
+		return this.loupCible;
 	}
 
 	public void decrementerPV(int pts) {
@@ -61,16 +60,24 @@ public class Maison {
 		this.pv = 0;
 	}
 
-	// A VERIFIER
 	public void seDefend() {
-			
-				if(this.jeu.verifie(this.x,this.ySup,this.perimetre)!=null) {
-					this.jeu.verifie(this.x,this.ySup,15).decrementerPV(this.ptsATT);
-				}
-				else if(this.jeu.verifie(this.x,this.yInf,this.perimetre)!=null) {
-					this.jeu.verifie(x,yInf,15).decrementerPV(this.ptsATT);
-				}
-					
+		if (this.loupCible != null) {
+			this.loupCible.decrementerPV(this.ptsATT);
+		}
+	}
+
+	public void loupcible() {
+		if (this.jeu.verifieLoupMaison(this.x, this.ySup, this.perimetre) != null) {
+			this.loupCible = this.jeu.verifieLoupMaison(this.x, this.ySup, this.perimetre);
+		} else if (this.jeu.verifieLoupMaison(this.x, this.yInf, this.perimetre) != null) {
+			this.loupCible = this.jeu.verifieLoupMaison(this.x, this.yInf, this.perimetre);
+		}
+	}
+
+	public void changeCible() {
+		if (!this.loupCible.estVivant()) {
+			this.loupcible();
+		}
 	}
 
 	public String toString() {

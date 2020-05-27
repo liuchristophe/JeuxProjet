@@ -20,7 +20,7 @@ import la_revenche_des_loups.vue.MaisonVue;
 import la_revenche_des_loups.vue.TerrainVue;
 import la_revenche_des_loups.vue.TourVue;
 
-public class Controleur implements Initializable{
+public class Controleur implements Initializable {
 
 	private Terrain terrain;
 	private Jeu jeu;
@@ -31,43 +31,46 @@ public class Controleur implements Initializable{
 	private MaisonVue maisonVue;
 	private GameLoop gameloop;
 	private TourVue tourVue;
-    @FXML private TilePane tilePane;
-    @FXML private Pane tableDeJeu;
+	@FXML
+	private TilePane tilePane;
+	@FXML
+	private Pane tableDeJeu;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.terrain=new Terrain();
+		this.terrain = new Terrain();
 		this.jeu = new Jeu(terrain);
-		this.maison = new Maison(jeu); //testMaisonVue
-		this.loup = new Loup(jeu);
-		this.jeu.ajouterLoup(loup);
 		this.terrainVue = new TerrainVue(this.tilePane, jeu.getTerrain());
-		this.terrainVue.afficherTerrainVue(21,21,12);
-		this.maisonVue = new MaisonVue(this.tableDeJeu, jeu.getTerrain()); //testMaisonVue
-		this.maisonVue.creerMaisonVue(maison); //testMaisonVue
+		this.terrainVue.afficherTerrainVue(21, 21, 12);
+		// ajout de la maison et du loup dans le jeu
+		this.maison = new Maison(jeu);
+		this.loup = new Loup(jeu);
+		// ajout des sprites
+		this.maisonVue = new MaisonVue(this.tableDeJeu, jeu.getTerrain());
+		this.maisonVue.creerMaisonVue(maison);
 		this.loupVue = new LoupVue(this.tableDeJeu, jeu.getTerrain());
-		this.gameloop = new GameLoop(this.jeu.getLoup(),this.loupVue);
 		this.tourVue = new TourVue(this.tableDeJeu, this.jeu);
+		// initialisation de la gameloop
+		this.gameloop = new GameLoop(this.jeu.getPremierLoup(), this.loupVue, this.jeu);
 	}
 
 	@FXML
-    void lancerPartie(ActionEvent event) {
+	void lancerPartie(ActionEvent event) {
 		this.gameloop.lancerAnimation();
 		this.loupVue.afficherLoupVue(this.loup);
 		this.loup.seDeplace();
-    }
-	
+	}
+
 	@FXML
-    void quitterJeu(ActionEvent event) {
+	void quitterJeu(ActionEvent event) {
 		this.jeu.reintialiser();
-    }
-	
+	}
+
 	@FXML
 	public void cliqueTableDeJeu(MouseEvent click) {
-		int x = ((int) click.getX())/12-1;
-		int y = ((int) click.getY())/12-1;
+		int x = ((int) click.getX()) / 12 - 1;
+		int y = ((int) click.getY()) / 12 - 1;
 		Tour tour = new Tour(this.jeu, x, y);
 		this.tourVue.afficherTourVue(tour);
-		
-    }
+	}
 }
