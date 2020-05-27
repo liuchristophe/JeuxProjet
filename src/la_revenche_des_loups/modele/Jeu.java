@@ -138,15 +138,15 @@ public class Jeu {
 			}
 		}
 		//Tour comme obstacle taille 3x3
-				for(Tour t : ListeTours) {
-					int x = t.getX();
-					int y = t.getY();
-					for(int idY = y-1; idY < y+2; idY++) {
-						for(int idX = x-1; idX < x+2; idX++) {
-							tab[idX*idY] = 1;
-						}
-					}
+		for(Tour t : ListeTours) {
+			int x = t.getX();
+			int y = t.getY();
+			for(int idY = y-1; idY < y+2; idY++) {
+				for(int idX = x-1; idX < x+2; idX++) {
+					tab[idX*idY] = 1;
 				}
+			}
+		}
 		return tab;
 	}
 	
