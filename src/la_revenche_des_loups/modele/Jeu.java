@@ -105,7 +105,7 @@ public class Jeu {
 			if (this.ListeTours.get(i).getLoupCible() != null) {
 				this.ListeTours.get(i).seDefend();
 				// on affiche sur la console que la tour se défend
-				System.out.println("Tour " + this.ListeTours.get(i).getId() + " se d�fend");
+				System.out.println("Tour " + this.ListeTours.get(i).getId() + " se défend");
 				this.ListeTours.get(i).changeCible();
 			} else {
 				this.ListeTours.get(i).loupcible();
