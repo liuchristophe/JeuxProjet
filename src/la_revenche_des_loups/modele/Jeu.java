@@ -110,9 +110,18 @@ public class Jeu {
 			if( id == 121 || id == 194 || id == 362 || id == 340) {
 				tab[i] = 1;
 			}
-			//Manque du collision de la tour
 			else if(id == 160 || id == 5) {
 				tab[i] = 0;
+			}
+		}
+		//Tour comme obstacle taille 3x3
+		for(Tour t : ListeTours) {
+			int x = t.getX();
+			int y = t.getY();
+			for(int idY = y-1; idY < y+2; idY++) {
+				for(int idX = x-1; idX < x+2; idX++) {
+					tab[idX*idY] = 1;
+				}
 			}
 		}
 		return tab;

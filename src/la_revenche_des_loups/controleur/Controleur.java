@@ -34,6 +34,8 @@ public class Controleur implements Initializable {
 	@FXML
 	private TilePane tilePane;
 	@FXML
+    private Pane testBFS;
+	@FXML
 	private Pane tableDeJeu;
 
 	@Override
