@@ -59,6 +59,7 @@ public class Controleur implements Initializable {
 		//initialisation BFS
 		this.bfsVue = new BFSVue(testBFS, this.jeu);
 		this.bfsVue.afficherBFSVue2(2, 1, 12);
+		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
 	}
 
 	@FXML

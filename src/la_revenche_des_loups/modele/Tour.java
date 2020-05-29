@@ -1,118 +1,75 @@
 package la_revenche_des_loups.modele;
 
-public class Tour {
-	private int x;
-	private int y;
-	private int pv;
-	private int perimetre;
-	private int ptsATT;
-	private Jeu jeu;
-	private Loup loupCible;
+import java.util.ArrayList;
+
+public class Tour extends Acteur{
+	
 	private String id;
 	private static int num = 0;
 
-	public Tour(Jeu jeu, int pv, int degat, int perimetre, int x, int y) {
-		this.jeu = jeu;
-		this.pv = pv;
-		this.ptsATT = degat;
-		this.perimetre = perimetre;
-		this.x = x;
-		this.y = y;
+	public Tour(Jeu jeu, int x, int y, int pv, int perimetre, int degat ) {
+		super(jeu, x, y, pv, perimetre, degat);
 		this.id = "T" + num;
-		this.loupCible = null;
 		num++;
-		this.jeu.ajouterTour(this);
+		//this.jeu.ajouterTour(this);
 	}
 
 	public Tour(Jeu jeu, int x, int y) {
-		this(jeu, 10, 2, 10, x, y);
+		this(jeu, x, y, 10, 10, 2);
 	}
 
 	public Tour(Jeu jeu) {
 		this(jeu, 40, 26);
 	}
 
-	public void seDefend() {
-		if (this.loupCible.estVivant()) {
-			this.loupCible.decrementerPV(this.ptsATT);
-		}
-	}
-
-	// La tour cible le loup jusqu'a ce qu'il quitte le perimetre de la tour ou est
-	// mort
-	public void loupcible() {
-		this.loupCible = this.jeu.verifieLoupTour(this.x, this.y, this.perimetre);
-	}
-
-	public void changeCible() {
-		if ((this.loupCible.estVivant() == false) || (this.loupCible.getX() < this.x - this.perimetre)
-				|| (this.loupCible.getY() < this.y - this.perimetre)
-				|| (this.loupCible.getY() < this.y + this.perimetre)) {
-			this.loupcible();
-		}
-	}
-
 	public String getId() {
 		return this.id;
 	}
-
-	public int getX() {
-		return x;
+	
+	public void seDefend() {
+		if (this.getCible().estVivant()) {
+			this.getCible().seFaitAttaquer(this.getPtsATT());
+		}
 	}
 
-	public int getY() {
-		return y;
+	public void changeCible() {
+		if ((this.getCible().estVivant() == false) || (this.getCible().getX() < this.getX() - this.getPerimetre())
+				|| (this.getCible().getY() < this.getY() - this.getPerimetre())
+				|| (this.getCible().getY() < this.getY() + this.getPerimetre())) {
+			cible();
+		}
 	}
+	
 
-	public int getPv() {
-		return pv;
+	public Acteur verifie(int x, int y, int peri) {
+		ArrayList<Acteur> listeLoups = new ArrayList<Acteur>();
+		for (int i = 0; i < this.getJeu().getListe().size();i++) {
+			if(this.getJeu().getListe().get(i) instanceof Loup) {
+				listeLoups.add(this.getJeu().getListe().get(i));
+			}
+		}
+		for (int i = 0; i < listeLoups.size(); i++) {
+			if ((listeLoups.get(i).getY() > y - peri && listeLoups.get(i).getY() < y + peri)
+					&& (listeLoups.get(i).getX() > x - peri && listeLoups.get(i).getX() < x + peri)) {
+				return listeLoups.get(i);
+			}
+		}
+
+		return null;
 	}
-
-	public int getPerimetre() {
-		return perimetre;
-	}
-
-	public int getDegat() {
-		return ptsATT;
-	}
-
-	public Loup getLoupCible() {
-		return this.loupCible;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public void setPv(int pv) {
-		this.pv = pv;
-	}
-
-	public void setPerimetre(int perimetre) {
-		this.perimetre = perimetre;
-	}
-
-	public void setDegat(int degat) {
-		this.ptsATT = degat;
-	}
-
-	public void decrementerPV(int pts) {
-		this.pv -= pts;
-	}
-
-	public boolean estDetruite() {
-		return this.pv > 0;
-	}
-
-	public void seDetruit() {
-		this.pv = 0;
+	
+	public void agit() {
+            if (this.getCible() != null) {
+                seDefend();
+                // on affiche sur la console que la tour se défend
+                System.out.println("Tour " + getId() + " se défend");
+                changeCible();
+            } else {
+                cible();
+            }
 	}
 
 	public String toString() {
-		return "Position : (" + this.x + ", " + this.y + "), PV : " + this.pv;
+		return "Tour "+this.id+" : (" + this.getX() + ", " + this.getY() + "), PV : " + this.getPV();
 	}
 }

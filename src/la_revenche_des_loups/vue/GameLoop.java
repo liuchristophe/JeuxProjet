@@ -5,7 +5,6 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import la_revenche_des_loups.modele.Jeu;
 import la_revenche_des_loups.modele.Loup;
-import la_revenche_des_loups.modele.Tour;
 
 public class GameLoop {
 
@@ -26,16 +25,14 @@ public class GameLoop {
 		nbFrame = 0;
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
-		KeyFrame kf = new KeyFrame(Duration.seconds(0.50), (ev -> {
+		KeyFrame kf = new KeyFrame(Duration.seconds(0.10), (ev -> {
 			// Le loup agit à chaque frame jusqu'a que la gameloop se stop
-			if (nbFrame == 45) {
+			if (nbFrame == 60 || this.jeu.finPartie()) {
 				gameLoop.stop();
 			} else {
 				loupVue.afficherLoupVue(this.loup);
-				this.jeu.agitLoup();
+				this.jeu.agir();
 			}
-			défenseTourAnimation();
-			défenseMaisonAnimation();
 			nbFrame++;
 		}));
 		gameLoop.getKeyFrames().add(kf);
@@ -43,17 +40,19 @@ public class GameLoop {
 
 	// La maison et les tours agissent toutes les 2 frames
 
+	/*
 	public void défenseTourAnimation() {
 		if (nbFrame % 2 == 0) {
 			this.jeu.agitTour();
 		}
 	}
-
+*/
+	/*
 	public void défenseMaisonAnimation() {
 		if (nbFrame % 2 == 0) {
 			this.jeu.agitMaison();
 		}
-	}
+	}*/
 
 	public void lancerAnimation() {
 		initAnimation();
