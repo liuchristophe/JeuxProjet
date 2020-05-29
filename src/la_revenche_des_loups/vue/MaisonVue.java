@@ -18,7 +18,7 @@ public class MaisonVue {
 		this.panneauJeu = panneau;
 		this.maisonVue = null;
 		try {
-			this.maisonVue = new Image(new FileInputStream("src/la_revenche_des_loups/modele/chateau3.png"));
+			this.maisonVue = new Image(new FileInputStream("src/la_revenche_des_loups/ressources/chateau3.png"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

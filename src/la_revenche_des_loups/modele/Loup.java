@@ -5,88 +5,37 @@ import java.util.ArrayList;
 
 import la_revenche_des_loups.modele.Jeu;
 
-public class Loup {
-	private Jeu jeu;
-	private int x, y;
-	private int pv;
-	private int perimetre;
+public class Loup extends Acteur{
 	private int vitesse;
-	private int ptsATT;
 	private String id;
 	private static int num = 0;
-	private Tour tourCible;
 
 	public Loup(Jeu j) {
-		this.jeu = j;
-		this.x = 99;
-		this.y = (int) (Math.random() * 46) + 2;
-		this.pv = 5;
+		super(j, 99, (int) (Math.random() * 46) + 2, 30, 4, 3);
 		this.vitesse = 2;
-		this.ptsATT = 3;
-		this.perimetre = 4;
 		this.id = "L" + num;
 		num++;
-		this.jeu.ajouterLoup(this);
 	}
 
 	public String getId() {
 		return this.id;
 	}
 
-	public int getX() {
-		return this.x;
-	}
-
-	public void setX(int newX) {
-		this.x = newX;
-	}
-
-	public int getY() {
-		return this.y;
-	}
-
-	public void setY(int newY) {
-		this.y = newY;
-	}
-
-	public int getPV() {
-		return this.pv;
-	}
 
 	public int getVitesse() {
 		return this.vitesse;
 	}
 
-	public int getPtsATT() {
-		return this.ptsATT;
-	}
-
-	public Tour getTourCible() {
-		return this.tourCible;
-	}
-
-	public void decrementerPV(int pts) {
-		this.pv -= pts;
-	}
-
-	public boolean estVivant() {
-		return this.pv > 0;
-	}
-
-	public void meurt() {
-		this.pv = 0;
-	}
-
 	public void seDeplace() {
-		if (this.x > 15) {
+		if (this.getX() > 15) {
 			this.avance();
 		}
 
-		else if (this.y > 25 + (((int) (Math.random() * 28)) - 14) && this.x <= 15) {
+		else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
 			this.monte();
 		}
 
-		else if (this.y <= 25 + (((int) (Math.random() * 28)) - 14) && this.x <= 15) {
+		else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
 			this.descends();
 		}
 
@@ -98,17 +47,17 @@ public class Loup {
 	
 	public void avance() {
 		int i = 0;
-		while (this.x > 15 && i < this.vitesse) {
-			this.x = this.x - 1;
+		while (this.getX() > 15 && i < this.vitesse) {
+			this.setX(this.getX() - 1);
 			i++;
 		}
 		if (i < this.vitesse) {
 			while (i < this.vitesse) {
-				if (this.y < 39) {
-					this.y++;
+				if (this.getY() < 39) {
+					this.setY(this.getY()+1);
 					i++;
-				} else if (this.y > 11) {
-					this.y--;
+				} else if (this.getY() > 11) {
+					this.setY(this.getY()-1);
 					i++;
 				}
 			}
@@ -117,12 +66,12 @@ public class Loup {
 
 	public void monte() {
 		int i = 0;
-		while (this.y > 11 && this.vitesse > i) {
-			this.y--;
+		while (this.getY() > 11 && this.vitesse > i) {
+			this.setY(this.getY()-1);
 			i++;
 		}
-		while (this.y < 39 && this.vitesse > i) {
-			this.y++;
+		while (this.getY() < 39 && this.vitesse > i) {
+			this.setY(this.getY()+1);
 			i++;
 		}
 		if (i < this.vitesse) {
@@ -132,12 +81,12 @@ public class Loup {
 
 	public void descends() {
 		int i = 0;
-		while (this.y < 39 && this.vitesse > i) {
-			this.y++;
+		while (this.getY() < 39 && this.vitesse > i) {
+			this.setY(this.getY()+1);
 			i++;
 		}
-		while (this.y > 11 && this.vitesse > i) {
-			this.y--;
+		while (this.getY() > 11 && this.vitesse > i) {
+			this.setY(this.getY()-1);
 			i++;
 		}
 		if (i < this.vitesse) {
@@ -153,29 +102,64 @@ public class Loup {
 		this.vitesse = 2;
 	}
 
-	public void tourCible() {
-		this.tourCible = this.jeu.verifieTour(x, y, perimetre);
+	public Acteur verifie(int x, int y, int peri) {
+		ArrayList<Acteur> listeTours = new ArrayList<Acteur>();
+		for (int i = 0; i < this.getJeu().getListe().size();i++) {
+			if(this.getJeu().getListe().get(i) instanceof Tour) {
+				listeTours.add(this.getJeu().getListe().get(i));
+			}
+		}
+		for (int i = 0; i < listeTours.size(); i++) {
+			if ((listeTours.get(i).getY() > y - peri && listeTours.get(i).getY() < y + peri)
+					&& (listeTours.get(i).getX() > x - peri && listeTours.get(i).getX() < x + peri)) {
+				return listeTours.get(i);
+			}
+		}
+
+		return null;
 	}
 
 	public void changeCible() {
-		if (this.tourCible.estDetruite()) {
-			this.tourCible();
+		if (!this.getCible().estVivant()) {
+			cible();
 		}
 	}
-
+	
 	public void attaqueTour() {
-		if ((this.x + 1 == this.tourCible.getX() || this.x - 1 == this.tourCible.getX()
-				|| this.x == this.tourCible.getX())
-				&& (this.y + 1 == this.tourCible.getY() || this.y - 1 == this.tourCible.getY()
-						|| this.y == this.tourCible.getY())) {
+		if ((this.getX() + 1 == this.getCible().getX() || this.getX() - 1 == this.getCible().getX()
+				|| this.getX() == this.getCible().getX())
+				&& (this.getY() + 1 == this.getCible().getY() || this.getY() - 1 == this.getCible().getY()
+						|| this.getY() == this.getCible().getY())) {
 			arrete();
 			// on affiche sur la console que le loup attaque
-			System.out.println("loup attaque");
-			this.tourCible.decrementerPV(ptsATT);
+			System.out.println("loup attaque Tour");
+			this.getCible().seFaitAttaquer(this.getPtsATT());
+			if(!this.getCible().estVivant()) {
+				remarche();
+			}
+		}
+	}
+	
+	public void attaqueMaison() {
+		if ((this.getX()== 15 &&(this.getY() <= 38 && this.getY() >= 11)) && this.getJeu().getMaison().estVivant()) {
+			System.out.println("loup attaque Maison");
+			arrete();
+			this.getJeu().getMaison().seFaitAttaquer(this.getPtsATT());
 		}
 	}
 
+	public void agit() {
+            seDeplace();
+            if (this.getCible() != null) {
+                attaqueTour();
+                changeCible();
+            } else {
+            	cible();
+            }
+            attaqueMaison();
+    }
+	
 	public String toString() {
-		return "Position : (" + this.x + ", " + this.y + "), PV : " + this.pv;
+		return "Loup "+this.id+" : (" + this.getX() + ", " + this.getY() + "), PV : " + this.getPV();
 	}
 }

@@ -5,123 +5,101 @@ import java.util.ArrayList;
 public class Jeu {
 
 	private Terrain terrain;
-	private ArrayList<Loup> ListeLoups;
-	private ArrayList<Tour> ListeTours;
-	private Maison maison;
+	private ArrayList<Acteur> listeActeurs;
 
 	public Jeu(Terrain t) {
 		this.terrain = t;
-		this.ListeLoups = new ArrayList<Loup>();
-		this.ListeTours = new ArrayList<Tour>();
-		this.maison = new Maison(this);
+		this.listeActeurs = new ArrayList<Acteur>();
 	}
 
 	public Terrain getTerrain() {
 		return this.terrain;
 	}
-
-	public Loup getPremierLoup() {
-		return this.ListeLoups.get(0);
+	
+	public ArrayList<Acteur> getListe() {
+		return this.listeActeurs;
 	}
-
+	
+	public Acteur getMaison() {
+		for(int i = 0; i < this.listeActeurs.size(); i++) {
+			if (this.listeActeurs.get(i) instanceof Maison) {
+				return this.listeActeurs.get(i);
+			}
+		}
+		return null;
+	}
+/*
+	public Loup getPremierLoup() {
+		for(int i = 0; i < this.listeActeurs.size(); i++) {
+			if (this.listeActeurs.get(i) instanceof Loup) {
+				return this.listeActeurs.get(i);
+			}
+		}
+		return null;
+	}
+*/
+	
+	public void ajouterActeur(Acteur a) {
+		this.listeActeurs.add(a);
+	}
+	
+	public void retirerActeur(Acteur a) {
+		this.listeActeurs.remove(a);
+	}
+	
 	public void ajouterLoup(Loup l) {
-		this.ListeLoups.add(l);
+		this.listeActeurs.add(l);
 	}
 
 	public void retirerLoup(Loup l) {
-		this.ListeLoups.remove(l);
+		this.listeActeurs.remove(l);
 	}
 
 	public void ajouterTour(Tour t) {
-		this.ListeTours.add(t);
+		this.listeActeurs.add(t);
 		System.out.println("ajout de tour");
 	}
 
 	public void retirerTour(Tour t) {
-		this.ListeTours.remove(t);
+		this.listeActeurs.remove(t);
+	}
+	
+	public boolean loupSontMort() {
+		for(int i = 0; i < this.listeActeurs.size(); i++) {
+			if (this.listeActeurs.get(i) instanceof Loup && this.listeActeurs.get(i).estVivant()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public void reintialiser() {
 		this.terrain = new Terrain();
-		this.ListeLoups = new ArrayList<Loup>();
+		this.listeActeurs = new ArrayList<Acteur>();
 	}
 
-	// Permet de vérifier si un loup se situe dans le périmètre d'attaque d'une tour
-	public Loup verifieLoupTour(int x, int y, int peri) {
-		for (int i = 0; i < this.ListeLoups.size(); i++) {
-			if (((this.ListeLoups.get(i).getX() > x - peri) && (this.ListeLoups.get(i).getX() < x + peri))
-					&& ((this.ListeLoups.get(i).getY() > y - peri) && (this.ListeLoups.get(i).getY() < y + peri))) {
-				return this.ListeLoups.get(i);
-			}
-		}
-
-		return null;
-	}
-
-	// Permet de vérifier si un loup se situe dans le périmètre d'attaque de la
-	// maison
-	public Loup verifieLoupMaison(int x, int y, int peri) {
-		for (int i = 0; i < this.ListeLoups.size(); i++) {
-			if ((this.ListeLoups.get(i).getX() < x + peri) && ((this.ListeLoups.get(i).getY() > y - (peri + 22))
-					&& (this.ListeLoups.get(i).getY() < y + peri))) {
-				return this.ListeLoups.get(i);
-			}
-		}
-
-		return null;
-	}
-
-	// Permet de vérifier si une tour se situe dans le périmètre d'attaque d'un loup
-	public Tour verifieTour(int x, int y, int peri) {
-		for (int i = 0; i < this.ListeTours.size(); i++) {
-			if ((this.ListeTours.get(i).getY() > y - peri && this.ListeTours.get(i).getY() < y + peri)
-					&& (this.ListeTours.get(i).getX() > x - peri && this.ListeTours.get(i).getX() < x + peri)) {
-				return this.ListeTours.get(i);
-			}
-		}
-
-		return null;
-	}
-
-	// Les methodes ci-dessous sont les methodes d'action des différents acteurs
-
-	// Le loup se déplace s'arrete lorsque il y a une tour dans son périmètre
-	// d'attaque, puis attaque
-	public void agitLoup() {
-		for (int i = 0; i < this.ListeLoups.size(); i++) {
-			this.ListeLoups.get(i).seDeplace();
-			if (this.ListeLoups.get(i).getTourCible() != null) {
-				this.ListeLoups.get(i).attaqueTour();
-				this.ListeLoups.get(i).changeCible();
-			} else {
-				this.ListeLoups.get(i).tourCible();
-			}
+	public void agir() {
+		for(int i = 0; i < this.listeActeurs.size(); i++) {
+			this.listeActeurs.get(i).agit();
 		}
 	}
 
-	public void agitTour() {
-		for (int i = 0; i < this.ListeTours.size(); i++) {
-			if (this.ListeTours.get(i).getLoupCible() != null) {
-				this.ListeTours.get(i).seDefend();
-				// on affiche sur la console que la tour se défend
-				System.out.println("Tour " + this.ListeTours.get(i).getId() + " se défend");
-				this.ListeTours.get(i).changeCible();
-			} else {
-				this.ListeTours.get(i).loupcible();
-			}
+	public boolean finPartie() {
+		if(loupSontMort() || !this.getMaison().estVivant()) {
+			return true;
 		}
+		return false;
 	}
-
-	public void agitMaison() {
-		if (this.maison.getLoupCible() != null) {
-			this.maison.seDefend();
-			// on affiche sur la console que la maison se défend
-			System.out.println("Maison se défend");
-			this.maison.changeCible();
-		} else {
-			this.maison.loupcible();
-		}
+	
+	public void vague() {
+		
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 	public int[] tableauObstacle() {

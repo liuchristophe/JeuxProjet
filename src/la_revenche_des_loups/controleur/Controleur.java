@@ -51,7 +51,7 @@ public class Controleur implements Initializable {
 		this.loupVue = new LoupVue(this.tableDeJeu, jeu.getTerrain());
 		this.tourVue = new TourVue(this.tableDeJeu, this.jeu);
 		// initialisation de la gameloop
-		this.gameloop = new GameLoop(this.jeu.getPremierLoup(), this.loupVue, this.jeu);
+		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
 	}
 
 	@FXML

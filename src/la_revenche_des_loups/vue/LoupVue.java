@@ -19,7 +19,7 @@ public class LoupVue {
 		this.terrain = terrain;
 		this.loupVue = null;
         try {
-        	loupVue = new Image(new FileInputStream("src/la_revenche_des_loups/modele/Loup_Gris.png"));
+        	loupVue = new Image(new FileInputStream("src/la_revenche_des_loups/ressources/Loup_Gris.png"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
