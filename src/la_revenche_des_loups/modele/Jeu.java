@@ -115,6 +115,7 @@ public class Jeu {
 			}
 		}
 		//Tour comme obstacle taille 3x3
+		/*
 		for(Tour t : ListeTours) {
 			int x = t.getX();
 			int y = t.getY();
@@ -125,6 +126,7 @@ public class Jeu {
 			}
 		}
 		return tab;
+		*/
 	}
 	
 	//Si renvoie list alors bfs.list(int[0] == arrivée && int[1] == départ)
