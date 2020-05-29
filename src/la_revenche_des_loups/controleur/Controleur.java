@@ -55,7 +55,7 @@ public class Controleur implements Initializable {
 		this.loupVue = new LoupVue(this.tableDeJeu, jeu.getTerrain());
 		this.tourVue = new TourVue(this.tableDeJeu, this.jeu);
 		// initialisation de la gameloop
-		this.gameloop = new GameLoop(this.jeu.getPremierLoup(), this.loupVue, this.jeu);
+//		this.gameloop = new GameLoop(this.jeu.getPremierLoup(), this.loupVue, this.jeu);
 		//initialisation BFS
 		this.bfsVue = new BFSVue(testBFS, this.jeu);
 		this.bfsVue.afficherBFSVue2(2, 1, 12);
@@ -81,27 +81,21 @@ public class Controleur implements Initializable {
 		int y = ((int) click.getY()) / 12 - 1;
 		System.out.println("Controleur.cliqueTable[ x: " + x + " y" + y +" ]");
 		if(!this.jeu.verifieObstacle(x, y)) {
-			if(!this.jeu.existeTour()) {
+//			if(!this.jeu.existeTour()) {
 				Tour tour = new Tour(this.jeu, x, y);
 				this.tourVue.afficherTourVue(tour);
 				this.jeu.ajoutObstacleTour(x, y);
 				this.testBFS.getChildren().clear();
 				this.bfsVue.afficherBFSVue(2, 1, 12);
 				System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
-			}
-			else {
-				int idCible = x+y*this.jeu.getTerrain().getLargeur();
-				System.out.println(this.jeu.bfs(99, 25, idCible));
-			}
+//			}
 		}
 		else {
 			System.out.println("Controleur.cliqueTableDeJeu [ pas de tour poser ]");
 			//utilise un variable pour idCible ou sinon ca va faire n'importe quoi
-//			int idCible = x+3+(y+1)*this.jeu.getTerrain().getLargeur()+5;
-			int idCible = x+y*this.jeu.getTerrain().getLargeur()+3;
-			System.out.println(this.jeu.bfs(99, 25, idCible));
+			int idCible = x+y*this.jeu.getTerrain().getLargeur()+3+200;
 			this.testBFS.getChildren().clear();
-			this.bfsVue.afficherBFSVue(2, 1, 12);
+			this.bfsVue.afficherCheminBFS(this.jeu.bfs(99, 25, idCible));
 		}
 	}
 }
