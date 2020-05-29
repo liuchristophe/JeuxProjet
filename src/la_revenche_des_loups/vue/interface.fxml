@@ -38,6 +38,7 @@
       <Pane fx:id="tableDeJeu" maxHeight="600.0" maxWidth="1200.0" onMouseClicked="#cliqueTableDeJeu" prefHeight="600.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <children>
             <TilePane fx:id="tilePane" maxHeight="600.0" maxWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" />
+            <TilePane fx:id="testBFS" maxHeight="600.0" maxWidth="1200.0" opacity="0.2" prefHeight="600.0" prefWidth="1200.0" />
          </children>
       </Pane>
    </center>
