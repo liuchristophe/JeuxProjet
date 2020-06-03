@@ -100,6 +100,16 @@ public abstract class Acteur {
 		this.cible = a;
 	}
 	
+	protected void setTaille(int taille) {
+		this.taille = taille;
+	}
+	
+	public int getTaille() {
+		return this.taille;
+	}
+	
+	public abstract void setTaille();
+	
 	public abstract void changeCible();
 	
 	public abstract void agit();

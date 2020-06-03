@@ -37,8 +37,8 @@ public class TourVue {
 
 	public void creerTourVue(Tour tour) {
 		ImageView imageview = new ImageView(this.tourVue);
-		imageview.setFitWidth(36);
-		imageview.setFitHeight(36);
+		imageview.setFitWidth(12*tour.getTaille());
+		imageview.setFitHeight(12*tour.getTaille());
 		imageview.setTranslateX(tour.getX() * 12);
 		imageview.setTranslateY(tour.getY() * 12);
 		imageview.setId(tour.getId());

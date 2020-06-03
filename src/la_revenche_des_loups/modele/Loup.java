@@ -26,19 +26,25 @@ public class Loup extends Acteur{
 		return this.vitesse;
 	}
 
-	public void seDeplace() {
-		if (this.getX() > 15) {
-			this.avance();
+	public void seDeplace(Tour cible) {
+		//chemin non tracer par le bfs
+		if(cible == null) {
+			if (this.getX() > 15) {
+				this.avance();
+			}
+	
+			else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+				this.monte();
+			}
+	
+			else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+				this.descends();
+			}
 		}
-
-		else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-			this.monte();
+		//chemin tracer par le bfs
+		else {
+			super.getJeu();
 		}
-
-		else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-			this.descends();
-		}
-
 	}
 
 	public ArrayList<int[][]> seDeplaceBFS(int posCibleX, int posCibleY) {
