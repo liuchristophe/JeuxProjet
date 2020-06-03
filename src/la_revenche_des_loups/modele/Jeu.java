@@ -13,25 +13,19 @@ public class Jeu {
 	private Terrain terrain;
 	private int[] tableauObstacle;
 	private ArrayList<Acteur> listeActeurs;
-<<<<<<< HEAD
 	private ArrayList<Loup> listeLoups;
 	private int nbLoups = 0;
-=======
 	private IntegerProperty limiteTours;
 	private IntegerProperty nombreTours;
->>>>>>> 9718a4a4a182e0bfe945896ef70015914597e857
 
 	public Jeu(Terrain t) {
 		this.terrain = t;
 		this.tableauObstacle = new int[this.terrain.getLargeur()*this.terrain.getHauteur()];
 		this.initTableauObstacle();
 		this.listeActeurs = new ArrayList<Acteur>();
-<<<<<<< HEAD
 		this.listeLoups = new ArrayList<Loup>();
-=======
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
->>>>>>> 9718a4a4a182e0bfe945896ef70015914597e857
 	}
 
 	//Avoir un tableau pour voir s'il y a un obstacle
@@ -200,7 +194,7 @@ public class Jeu {
 		return tableauObstacle[x+y*this.terrain.getLargeur()];
 	}
 	
-<<<<<<< HEAD
+
 	/*
 	public int[] tableauObstacle() {
 		int tailleTerrain = this.terrain.getLargeur()*this.terrain.getHauteur();
@@ -247,7 +241,6 @@ public class Jeu {
 	
 	
 	public int[] tabMarquer(int x, int y, int idCible) { //idCible losque x + y*tailleTerrain en 1 dimension
->>>>>>> 9718a4a4a182e0bfe945896ef70015914597e857
 		int largeurTerrain = this.terrain.getLargeur();
 		int tailleTerrain = this.terrain.getHauteur()*largeurTerrain;
 		int[] tabMarquer = this.tableauObstacle.clone();
@@ -335,9 +328,7 @@ public class Jeu {
 			}
 		}
 	}
-<<<<<<< HEAD
 */
-=======
 	
 	public boolean existeTour() {
 		for(Acteur a : listeActeurs) {
@@ -347,6 +338,4 @@ public class Jeu {
 		}
 		return false;
 	}
-
->>>>>>> 9718a4a4a182e0bfe945896ef70015914597e857
 }
