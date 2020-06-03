@@ -12,6 +12,8 @@ public class Tour extends Acteur{
 		this.id = "T" + num;
 		num++;
 		//this.jeu.ajouterTour(this);
+		
+		super.setTaille(3);
 	}
 
 	public Tour(Jeu jeu, int x, int y) {

@@ -144,8 +144,8 @@ public class Jeu {
 	public boolean verifieTourAlentour(int x, int y, int espacement) {
 		for(Acteur a : this.listeActeurs) {
 			if(a instanceof Tour) {
-				for(int yy = a.getY(); yy < a.getY()+3; yy++) {
-					for(int xx = a.getX(); xx < a.getX()+3; xx++) {
+				for(int yy = a.getY(); yy < a.getY()+a.getTaille(); yy++) {
+					for(int xx = a.getX(); xx < a.getX()+a.getTaille(); xx++) {
 						if(xx <= x+espacement+2 && xx >= x-espacement+2 && yy <= y+espacement+2 && yy >= y-espacement+2) {
 							return true;
 						}
@@ -282,13 +282,14 @@ public class Jeu {
 		}
 	}
 	
-	public boolean existeTour() {
-		for(Acteur a : listeActeurs) {
-			if(a.getClass().getName() == "la_revenche_des_loups.modele.Tour") {
-				return true;
-			}
-		}
-		return false;
-	}
+	//Pour un test
+//	public boolean existeTour() {
+//		for(Acteur a : listeActeurs) {
+//			if(a.getClass().getName() == "la_revenche_des_loups.modele.Tour") {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
 }
