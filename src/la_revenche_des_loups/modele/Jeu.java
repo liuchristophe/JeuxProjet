@@ -2,14 +2,19 @@ package la_revenche_des_loups.modele;
 
 import java.util.ArrayList;
 
+
+
 public class Jeu {
 
 	private Terrain terrain;
 	private ArrayList<Acteur> listeActeurs;
+	private ArrayList<Loup> listeLoups;
+	private int nbLoups = 0;
 
 	public Jeu(Terrain t) {
 		this.terrain = t;
 		this.listeActeurs = new ArrayList<Acteur>();
+		this.listeLoups = new ArrayList<Loup>();
 	}
 
 	public Terrain getTerrain() {
@@ -18,6 +23,10 @@ public class Jeu {
 	
 	public ArrayList<Acteur> getListe() {
 		return this.listeActeurs;
+	}
+	
+	public ArrayList<Loup> getListeLoups() {
+		return this.listeLoups;
 	}
 	
 	public Acteur getMaison() {
@@ -47,12 +56,13 @@ public class Jeu {
 		this.listeActeurs.remove(a);
 	}
 	
-	public void ajouterLoup(Loup l) {
-		this.listeActeurs.add(l);
+	public void ajouterLoup() {
+		this.listeLoups.add(new Loup(this));
+		this.nbLoups++;
 	}
 
 	public void retirerLoup(Loup l) {
-		this.listeActeurs.remove(l);
+		this.listeLoups.remove(l);
 	}
 
 	public void ajouterTour(Tour t) {
@@ -65,8 +75,8 @@ public class Jeu {
 	}
 	
 	public boolean loupSontMort() {
-		for(int i = 0; i < this.listeActeurs.size(); i++) {
-			if (this.listeActeurs.get(i) instanceof Loup && this.listeActeurs.get(i).estVivant()) {
+		for(int i = 0; i < this.listeLoups.size(); i++) {
+			if (this.listeLoups.get(i).estVivant()) {
 				return false;
 			}
 		}
@@ -77,22 +87,26 @@ public class Jeu {
 		this.terrain = new Terrain();
 		this.listeActeurs = new ArrayList<Acteur>();
 	}
-
+	
 	public void agir() {
 		for(int i = 0; i < this.listeActeurs.size(); i++) {
+			System.out.println(this.listeActeurs.size());
 			this.listeActeurs.get(i).agit();
 		}
 	}
 
 	public boolean finPartie() {
-		if(loupSontMort() || !this.getMaison().estVivant()) {
+		if(!this.getMaison().estVivant()) {
 			return true;
 		}
 		return false;
 	}
 	
-	public void vague() {
-		
+	public boolean finVague(int nbLoups) {
+		if (this.nbLoups==nbLoups && loupSontMort()) {
+			return true;
+		}
+		return false;
 	}
 	
 	
@@ -101,7 +115,7 @@ public class Jeu {
 	
 	
 	
-	
+	/*
 	public int[] tableauObstacle() {
 		int tailleTerrain = this.terrain.getLargeur()*this.terrain.getHauteur();
 		int tab[] = new int[tailleTerrain];
@@ -115,7 +129,7 @@ public class Jeu {
 			}
 		}
 		//Tour comme obstacle taille 3x3
-		/*
+		
 		for(Tour t : ListeTours) {
 			int x = t.getX();
 			int y = t.getY();
@@ -126,8 +140,9 @@ public class Jeu {
 			}
 		}
 		return tab;
-		*/
+		
 	}
+	
 	
 	//Si renvoie list alors bfs.list(int[0] == arrivée && int[1] == départ)
 	public ArrayList<int[]> bfs(int x, int y) { //idCible losque x + y*tailleTerrain en 1 dimension
@@ -175,5 +190,5 @@ public class Jeu {
 			}
 		}
 	}
-
+*/
 }

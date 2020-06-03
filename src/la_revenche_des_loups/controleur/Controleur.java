@@ -46,21 +46,22 @@ public class Controleur implements Initializable {
 		this.terrainVue.afficherTerrainVue(21, 21, 12);
 		// ajout de la maison et du loup dans le jeu
 		this.maison = new Maison(jeu);
-		this.loup = new Loup(jeu);
 		// ajout des sprites
 		this.maisonVue = new MaisonVue(this.tableDeJeu, jeu.getTerrain());
 		this.maisonVue.creerMaisonVue(maison);
-		this.loupVue = new LoupVue(this.tableDeJeu, jeu.getTerrain());
 		this.tourVue = new TourVue(this.tableDeJeu, this.jeu);
+		
+		
+		//this.loup = new Loup(jeu);
+		//this.loupVue = new LoupVue(this.tableDeJeu);
+		
 		// initialisation de la gameloop
-		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
+		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu);
 	}
 
 	@FXML
 	void lancerPartie(ActionEvent event) {
 		this.gameloop.lancerAnimation();
-		this.loupVue.afficherLoupVue(this.loup);
-		this.loup.seDeplace();
 	}
 
 	@FXML

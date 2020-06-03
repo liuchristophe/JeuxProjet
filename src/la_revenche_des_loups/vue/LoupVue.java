@@ -11,12 +11,10 @@ import la_revenche_des_loups.modele.Terrain;
 
 public class LoupVue {
 	private Pane panneauJeu;
-	private Terrain terrain;
 	private Image loupVue;
 	
-	public LoupVue(Pane panneau, Terrain terrain) {
+	public LoupVue(Pane panneau) {
 		this.panneauJeu = panneau;
-		this.terrain = terrain;
 		this.loupVue = null;
         try {
         	loupVue = new Image(new FileInputStream("src/la_revenche_des_loups/ressources/Loup_Gris.png"));
@@ -25,14 +23,18 @@ public class LoupVue {
         }
 	}
 	
+	public LoupVue getLoupVue() {
+		return this;
+	}
+	
 	public void afficherLoupVue(Loup loup) {
 		ImageView imageview = (ImageView) this.panneauJeu.lookup("#"+loup.getId());
 		if(imageview == null) {
 			creerLoupVue(loup);
 		}
 		else {
-			imageview.setTranslateX(loup.getX()*12);		//A modif
-			imageview.setTranslateY(loup.getY()*12);		//A modif
+			imageview.setTranslateX(loup.getX()*12);		
+			imageview.setTranslateY(loup.getY()*12);		
 		}
 	}
 	
