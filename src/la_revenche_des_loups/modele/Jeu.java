@@ -195,38 +195,10 @@ public class Jeu {
 	}
 	
 
-	/*
-	public int[] tableauObstacle() {
-		int tailleTerrain = this.terrain.getLargeur()*this.terrain.getHauteur();
-		int tab[] = new int[tailleTerrain];
-		for(int i=0; i < tailleTerrain; i++) {
-			int id = this.terrain.codeTuile(i);
-			if( id == 121 || id == 194 || id == 362 || id == 340) {
-				tab[i] = 1;
-			}
-			else if(id == 160 || id == 5) {
-				tab[i] = 0;
-			}
-		}
-		//Tour comme obstacle taille 3x3
-		
-		for(Tour t : ListeTours) {
-			int x = t.getX();
-			int y = t.getY();
-			for(int idY = y-1; idY < y+2; idY++) {
-				for(int idX = x-1; idX < x+2; idX++) {
-					tab[idX*idY] = 1;
-				}
-			}
-		}
-		return tab;
-		
-	}
+	
 	
 	
 	//Si renvoie list alors bfs.list(int[0] == arrivée && int[1] == départ)
-	public ArrayList<int[]> bfs(int x, int y) { //idCible losque x + y*tailleTerrain en 1 dimension
-=======
 	public boolean verifieObstacle(int x, int y) {
 		boolean verifie = false;
 		for(int idY = y; idY < y+3; idY++) {
@@ -328,9 +300,9 @@ public class Jeu {
 			}
 		}
 	}
-*/
+
 	
-<<<<<<< HEAD
+
 	public boolean existeTour() {
 		for(Acteur a : listeActeurs) {
 			if(a.getClass().getName() == "la_revenche_des_loups.modele.Tour") {
@@ -339,7 +311,7 @@ public class Jeu {
 		}
 		return false;
 	}
-=======
+
 	//Pour un test
 //	public boolean existeTour() {
 //		for(Acteur a : listeActeurs) {
@@ -350,5 +322,5 @@ public class Jeu {
 //		return false;
 //	}
 
->>>>>>> 7bcad78267719b8ed510670c94cb8fa2d2abbde6
+
 }

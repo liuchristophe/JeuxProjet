@@ -26,7 +26,7 @@ public class Loup extends Acteur{
 		return this.vitesse;
 	}
 
-	public void seDeplace(Tour cible) {
+	public void seDeplace(Acteur cible) {
 		//chemin non tracer par le bfs
 		if(cible == null) {
 			if (this.getX() > 15) {
@@ -155,7 +155,7 @@ public class Loup extends Acteur{
 	}
 
 	public void agit() {
-            seDeplace();
+            seDeplace(this.getCible());
             if (this.getCible() != null) {
                 attaqueTour();
                 changeCible();

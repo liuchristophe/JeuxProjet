@@ -108,7 +108,7 @@ public abstract class Acteur {
 		return this.taille;
 	}
 	
-	public abstract void setTaille();
+	//public abstract void setTaille();
 	
 	public abstract void changeCible();
 	
