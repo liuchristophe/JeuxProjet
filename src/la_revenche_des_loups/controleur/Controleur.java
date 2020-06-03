@@ -58,7 +58,7 @@ public class Controleur implements Initializable {
 //		this.gameloop = new GameLoop(this.jeu.getPremierLoup(), this.loupVue, this.jeu);
 		//initialisation BFS
 		this.bfsVue = new BFSVue(testBFS, this.jeu);
-		this.bfsVue.afficherBFSVue2(2, 1, 12);
+		this.bfsVue.afficherBFSVue(2, 2, 12);
 		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
 	}
 
@@ -79,23 +79,25 @@ public class Controleur implements Initializable {
 	public void cliqueTableDeJeu(MouseEvent click) {
 		int x = ((int) click.getX()) / 12 - 1;
 		int y = ((int) click.getY()) / 12 - 1;
-		System.out.println("Controleur.cliqueTable[ x: " + x + " y" + y +" ]");
 		if(!this.jeu.verifieObstacle(x, y)) {
-//			if(!this.jeu.existeTour()) {
-				Tour tour = new Tour(this.jeu, x, y);
-				this.tourVue.afficherTourVue(tour);
-				this.jeu.ajoutObstacleTour(x, y);
-				this.testBFS.getChildren().clear();
-				this.bfsVue.afficherBFSVue(2, 1, 12);
-				System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
-//			}
-		}
-		else {
-			System.out.println("Controleur.cliqueTableDeJeu [ pas de tour poser ]");
-			//utilise un variable pour idCible ou sinon ca va faire n'importe quoi
-			int idCible = x+y*this.jeu.getTerrain().getLargeur()+3+200;
-			this.testBFS.getChildren().clear();
-			this.bfsVue.afficherCheminBFS(this.jeu.bfs(99, 25, idCible));
+			if(this.jeu.limiterTours()) {
+				if(!this.jeu.verifieTourAlentour(x, y, 5)) {	
+					Tour tour = new Tour(this.jeu, x, y);
+					this.jeu.ajouterTour(tour);
+					this.tourVue.afficherTourVue(tour);
+					this.jeu.ajoutObstacleTour(x, y);
+					this.testBFS.getChildren().clear();
+					this.bfsVue.afficherBFSVue(2, 1, 12);
+					System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
+					System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
+				}
+				else {
+					System.out.println("Controleur.cliqueTableDeJeu [ tour dans le rayon de 5 tuile ]");
+				}
+			}
+			else {
+				System.out.println("Controleur.cliqueTableDeJeu [ fin tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
+			}
 		}
 	}
 }

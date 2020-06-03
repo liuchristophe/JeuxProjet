@@ -3,17 +3,24 @@ package la_revenche_des_loups.modele;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Jeu {
 
 	private Terrain terrain;
 	private int[] tableauObstacle;
 	private ArrayList<Acteur> listeActeurs;
+	private IntegerProperty limiteTours;
+	private IntegerProperty nombreTours;
 
 	public Jeu(Terrain t) {
 		this.terrain = t;
 		this.tableauObstacle = new int[this.terrain.getLargeur()*this.terrain.getHauteur()];
 		this.initTableauObstacle();
 		this.listeActeurs = new ArrayList<Acteur>();
+		this.limiteTours = new SimpleIntegerProperty(5);
+		this.nombreTours = new SimpleIntegerProperty(0);
 	}
 
 	//Avoir un tableau pour voir s'il y a un obstacle
@@ -29,6 +36,22 @@ public class Jeu {
 				this.tableauObstacle[i] = 0;
 			}
 		}
+	}
+	
+	public IntegerProperty getLimiteToursProperty() {
+		return this.limiteTours;
+	}
+	
+	public int getLimiteTours() {
+		return this.limiteTours.getValue();
+	}
+	
+	public IntegerProperty getNombreToursProperty() {
+		return this.nombreTours;
+	}
+	
+	public int getNombreTours() {
+		return this.nombreTours.getValue();
 	}
 	
 	public Terrain getTerrain() {
@@ -76,7 +99,11 @@ public class Jeu {
 
 	public void ajouterTour(Tour t) {
 		this.listeActeurs.add(t);
-		System.out.println("ajout de tour");
+		this.nombreTours.setValue(this.nombreTours.getValue()+1);;
+	}
+	
+	public boolean limiterTours() {
+		return this.limiteTours.getValue() > this.nombreTours.getValue() ? true : false;
 	}
 
 	public void retirerTour(Tour t) {
@@ -114,6 +141,20 @@ public class Jeu {
 		
 	}
 	
+	public boolean verifieTourAlentour(int x, int y, int espacement) {
+		for(Acteur a : this.listeActeurs) {
+			if(a instanceof Tour) {
+				for(int yy = a.getY(); yy < a.getY()+3; yy++) {
+					for(int xx = a.getX(); xx < a.getX()+3; xx++) {
+						if(xx <= x+espacement+2 && xx >= x-espacement+2 && yy <= y+espacement+2 && yy >= y-espacement+2) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 	
 	// //////////////////////////////////////BFS////////////////////////////////////// //
 	
