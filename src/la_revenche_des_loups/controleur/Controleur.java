@@ -48,25 +48,34 @@ public class Controleur implements Initializable {
 		this.terrainVue.afficherTerrainVue(21, 21, 12);
 		// ajout de la maison et du loup dans le jeu
 		this.maison = new Maison(jeu);
-		this.loup = new Loup(jeu);
 		// ajout des sprites
 		this.maisonVue = new MaisonVue(this.tableDeJeu, jeu.getTerrain());
 		this.maisonVue.creerMaisonVue(maison);
-		this.loupVue = new LoupVue(this.tableDeJeu, jeu.getTerrain());
 		this.tourVue = new TourVue(this.tableDeJeu, this.jeu);
+		
+		
+		//this.loup = new Loup(jeu);
+		//this.loupVue = new LoupVue(this.tableDeJeu);
+		
 		// initialisation de la gameloop
-//		this.gameloop = new GameLoop(this.jeu.getPremierLoup(), this.loupVue, this.jeu);
+		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu);
+		
 		//initialisation BFS
+<<<<<<< HEAD
 //		this.bfsVue = new BFSVue(testBFS, this.jeu);
 //		this.bfsVue.afficherBFSVue(2, 2, 12);
 //		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
+=======
+		
+		//this.bfsVue = new BFSVue(testBFS, this.jeu);
+		//this.bfsVue.afficherBFSVue(2, 2, 12);
+		
+>>>>>>> e5cc2058cb68fa0f48edc766883d5027209e2286
 	}
 
 	@FXML
 	void lancerPartie(ActionEvent event) {
 		this.gameloop.lancerAnimation();
-		this.loupVue.afficherLoupVue(this.loup);
-		this.loup.seDeplace();
 	}
 
 	@FXML
@@ -87,6 +96,11 @@ public class Controleur implements Initializable {
 					this.jeu.ajouterTour(tour);
 					this.tourVue.afficherTourVue(tour);
 					this.jeu.ajoutObstacleTour(x, y);
+<<<<<<< HEAD
+=======
+					//this.testBFS.getChildren().clear();
+					//this.bfsVue.afficherBFSVue(2, 1, 12);
+>>>>>>> e5cc2058cb68fa0f48edc766883d5027209e2286
 					System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
 					System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
 				}

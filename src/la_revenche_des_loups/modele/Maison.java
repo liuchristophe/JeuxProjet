@@ -7,7 +7,7 @@ public class Maison extends Acteur {
 	private int yInf, ySup;
 
 	public Maison(Jeu j) {
-		super(j, 15, 10, 3, 5);
+		super(j, 15, 1000, 3, 30);
 		this.yInf = 11;
 		this.ySup = 38;
 	}

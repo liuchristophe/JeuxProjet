@@ -6,11 +6,15 @@ import java.util.Collections;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+
+
 public class Jeu {
 
 	private Terrain terrain;
 	private int[] tableauObstacle;
 	private ArrayList<Acteur> listeActeurs;
+	private ArrayList<Loup> listeLoups;
+	private int nbLoups = 0;
 	private IntegerProperty limiteTours;
 	private IntegerProperty nombreTours;
 
@@ -19,6 +23,7 @@ public class Jeu {
 		this.tableauObstacle = new int[this.terrain.getLargeur()*this.terrain.getHauteur()];
 		this.initTableauObstacle();
 		this.listeActeurs = new ArrayList<Acteur>();
+		this.listeLoups = new ArrayList<Loup>();
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
 	}
@@ -62,6 +67,10 @@ public class Jeu {
 		return this.listeActeurs;
 	}
 	
+	public ArrayList<Loup> getListeLoups() {
+		return this.listeLoups;
+	}
+	
 	public Acteur getMaison() {
 		for(int i = 0; i < this.listeActeurs.size(); i++) {
 			if (this.listeActeurs.get(i) instanceof Maison) {
@@ -89,12 +98,13 @@ public class Jeu {
 		this.listeActeurs.remove(a);
 	}
 	
-	public void ajouterLoup(Loup l) {
-		this.listeActeurs.add(l);
+	public void ajouterLoup() {
+		this.listeLoups.add(new Loup(this));
+		this.nbLoups++;
 	}
 
 	public void retirerLoup(Loup l) {
-		this.listeActeurs.remove(l);
+		this.listeLoups.remove(l);
 	}
 
 	public void ajouterTour(Tour t) {
@@ -111,8 +121,8 @@ public class Jeu {
 	}
 	
 	public boolean loupSontMort() {
-		for(int i = 0; i < this.listeActeurs.size(); i++) {
-			if (this.listeActeurs.get(i) instanceof Loup && this.listeActeurs.get(i).estVivant()) {
+		for(int i = 0; i < this.listeLoups.size(); i++) {
+			if (this.listeLoups.get(i).estVivant()) {
 				return false;
 			}
 		}
@@ -123,22 +133,26 @@ public class Jeu {
 		this.terrain = new Terrain();
 		this.listeActeurs = new ArrayList<Acteur>();
 	}
-
+	
 	public void agir() {
 		for(int i = 0; i < this.listeActeurs.size(); i++) {
+			System.out.println(this.listeActeurs.size());
 			this.listeActeurs.get(i).agit();
 		}
 	}
 
 	public boolean finPartie() {
-		if(loupSontMort() || !this.getMaison().estVivant()) {
+		if(!this.getMaison().estVivant()) {
 			return true;
 		}
 		return false;
 	}
 	
-	public void vague() {
-		
+	public boolean finVague(int nbLoups) {
+		if (this.nbLoups==nbLoups && loupSontMort()) {
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean verifieTourAlentour(int x, int y, int espacement) {
@@ -180,6 +194,11 @@ public class Jeu {
 		return tableauObstacle[x+y*this.terrain.getLargeur()];
 	}
 	
+
+	
+	
+	
+	//Si renvoie list alors bfs.list(int[0] == arrivée && int[1] == départ)
 	public boolean verifieObstacle(int x, int y) {
 		boolean verifie = false;
 		for(int idY = y; idY < y+3; idY++) {
@@ -298,5 +317,30 @@ public class Jeu {
 			}
 		}
 	}
+<<<<<<< HEAD
+=======
+
+	
+
+	public boolean existeTour() {
+		for(Acteur a : listeActeurs) {
+			if(a.getClass().getName() == "la_revenche_des_loups.modele.Tour") {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//Pour un test
+//	public boolean existeTour() {
+//		for(Acteur a : listeActeurs) {
+//			if(a.getClass().getName() == "la_revenche_des_loups.modele.Tour") {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+>>>>>>> e5cc2058cb68fa0f48edc766883d5027209e2286
+
 
 }

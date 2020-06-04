@@ -24,9 +24,26 @@ public class Loup extends Acteur{
 		return this.vitesse;
 	}
 
+<<<<<<< HEAD
 	public void seDeplace() {
 		if (this.getX() > 15) {
 			this.avance();
+=======
+	public void seDeplace(Acteur cible) {
+		//chemin non tracer par le bfs
+		if(cible == null) {
+			if (this.getX() > 15) {
+				this.avance();
+			}
+	
+			else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+				this.monte();
+			}
+	
+			else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+				this.descends();
+			}
+>>>>>>> e5cc2058cb68fa0f48edc766883d5027209e2286
 		}
 
 		else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
@@ -212,7 +229,7 @@ public class Loup extends Acteur{
 	}
 
 	public void agit() {
-            seDeplace();
+            seDeplace(this.getCible());
             if (this.getCible() != null) {
                 attaqueTour();
                 changeCible();
