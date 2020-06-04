@@ -32,7 +32,7 @@ public class Controleur implements Initializable {
 	private MaisonVue maisonVue;
 	private GameLoop gameloop;
 	private TourVue tourVue;
-	private BFSVue bfsVue;
+//	private BFSVue bfsVue;
 	@FXML
 	private TilePane tilePane;
 	@FXML
@@ -45,7 +45,7 @@ public class Controleur implements Initializable {
 		this.terrain = new Terrain();
 		this.jeu = new Jeu(terrain);
 		this.terrainVue = new TerrainVue(this.tilePane, jeu.getTerrain());
-//		this.terrainVue.afficherTerrainVue(21, 21, 12);
+		this.terrainVue.afficherTerrainVue(21, 21, 12);
 		// ajout de la maison et du loup dans le jeu
 		this.maison = new Maison(jeu);
 		this.loup = new Loup(jeu);
@@ -57,9 +57,9 @@ public class Controleur implements Initializable {
 		// initialisation de la gameloop
 //		this.gameloop = new GameLoop(this.jeu.getPremierLoup(), this.loupVue, this.jeu);
 		//initialisation BFS
-		this.bfsVue = new BFSVue(testBFS, this.jeu);
-		this.bfsVue.afficherBFSVue(2, 2, 12);
-		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
+//		this.bfsVue = new BFSVue(testBFS, this.jeu);
+//		this.bfsVue.afficherBFSVue(2, 2, 12);
+//		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
 	}
 
 	@FXML
@@ -72,13 +72,14 @@ public class Controleur implements Initializable {
 	@FXML
 	void quitterJeu(ActionEvent event) {
 		this.jeu.reintialiser();
-		System.out.println(this.jeu.bfs(99, 25, 2555));
+		System.out.println(this.jeu.bfs(99, 25, 1063));
 	}
 
 	@FXML
 	public void cliqueTableDeJeu(MouseEvent click) {
 		int x = ((int) click.getX()) / 12 - 1;
 		int y = ((int) click.getY()) / 12 - 1;
+		System.out.println("Controleur.cliqueTableDeJeu [ x:" + x + " y:" + y + " ]");
 		if(!this.jeu.verifieObstacle(x, y)) {
 			if(this.jeu.limiterTours()) {
 				if(!this.jeu.verifieTourAlentour(x, y, 5)) {	
@@ -86,8 +87,6 @@ public class Controleur implements Initializable {
 					this.jeu.ajouterTour(tour);
 					this.tourVue.afficherTourVue(tour);
 					this.jeu.ajoutObstacleTour(x, y);
-					this.testBFS.getChildren().clear();
-					this.bfsVue.afficherBFSVue(2, 1, 12);
 					System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
 					System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
 				}

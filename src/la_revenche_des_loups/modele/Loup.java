@@ -3,8 +3,6 @@ package la_revenche_des_loups.modele;
 
 import java.util.ArrayList;
 
-import la_revenche_des_loups.modele.Jeu;
-
 public class Loup extends Acteur{
 	private int vitesse;
 	private String id;
@@ -26,29 +24,88 @@ public class Loup extends Acteur{
 		return this.vitesse;
 	}
 
-	public void seDeplace(Tour cible) {
-		//chemin non tracer par le bfs
-		if(cible == null) {
-			if (this.getX() > 15) {
-				this.avance();
-			}
-	
-			else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-				this.monte();
-			}
-	
-			else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-				this.descends();
-			}
+	public void seDeplace() {
+		if (this.getX() > 15) {
+			this.avance();
 		}
-		//chemin tracer par le bfs
-		else {
-			super.getJeu();
+
+		else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+			this.monte();
+		}
+
+		else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+			this.descends();
+		}if (this.getX() > 15) {
+			this.avance();
+		}
+
+		else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+			this.monte();
+		}
+
+		else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+			this.descends();
 		}
 	}
+	
+//	public void seDeplace(Acteur cible) {
+//		//chemin non tracer par le bfs
+//		if(cible instanceof Maison) {
+//			this.deplace(cible);
+//		}
+//		//chemin tracer par le bfs
+//		else if(cible instanceof Tour) {
+//			this.deplace(cible);
+//		}
+//		//deplacement par default sans prendre en compte les obstacles
+//		//loup en god's feet mode
+//		else {
+//			if (this.getX() > 15) {
+//				this.avance();
+//			}
+//	
+//			else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+//				this.monte();
+//			}
+//	
+//			else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+//				this.descends();
+//			}if (this.getX() > 15) {
+//				this.avance();
+//			}
+//	
+//			else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+//				this.monte();
+//			}
+//	
+//			else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+//				this.descends();
+//			}
+//		}
+//	}
 
-	public ArrayList<int[][]> seDeplaceBFS(int posCibleX, int posCibleY) {
-		return null;
+	public void deplace(Acteur cible) {
+		int chemin = this.getJeu().bfs(this.getX(), this.getY(), cible.getX()+cible.getY()*this.getJeu().getTerrain().getLargeur());
+		switch(chemin) {
+		case 0:
+			System.out.println("Loup.deplace[ ni 1, 2 ou 3; Erreur methode bfs dand Jeu ]");
+		
+		case 1:
+			this.avance();
+			break;
+			
+		case 2:
+			this.monte();
+			break;
+			
+		case 3:
+			this.descends();
+			break;
+			
+		default:
+			System.out.println("Loup.deplace[ erreur dans le bfs ]");
+			break;
+		}
 	}
 	
 	public void avance() {
