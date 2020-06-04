@@ -77,45 +77,46 @@ public class Controleur implements Initializable {
 		System.out.println(this.jeu.bfs(99, 25, 1063));
 	}
 
-//	@FXML
-//	public void cliqueTableDeJeu(MouseEvent click) {
-//		int x = ((int) click.getX()) / 12 - 1;
-//		int y = ((int) click.getY()) / 12 - 1;
-//		System.out.println("Controleur.cliqueTableDeJeu [ x:" + x + " y:" + y + " ]");
-//		if(!this.jeu.verifieObstacle(x, y)) {
-//			if(this.jeu.limiterTours()) {
-//				if(!this.jeu.verifieTourAlentour(x, y, 5)) {	
-//					Tour tour = new Tour(this.jeu, x, y);
-//					this.jeu.ajouterTour(tour);
-//					this.tourVue.afficherTourVue(tour);
-//					this.jeu.ajoutObstacleTour(x, y);
-//					System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
-//					System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
-//				}
-//				else {
-//					System.out.println("Controleur.cliqueTableDeJeu [ tour dans le rayon de 5 tuile ]");
-//				}
-//			}
-//			else {
-//				System.out.println("Controleur.cliqueTableDeJeu [ fin tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
-//			}
-//		}
-//	}
-	
 	@FXML
 	public void cliqueTableDeJeu(MouseEvent click) {
-		int x = ((int) click.getX()) / 12;
-		int y = ((int) click.getY()) / 12;
+		int x = ((int) click.getX()) / 12 - 1;
+		int y = ((int) click.getY()) / 12 - 1;
 		System.out.println("Controleur.cliqueTableDeJeu [ x:" + x + " y:" + y + " ]");
-		boolean erreur=false;
-		try {
-			this.jeu.bfs(99, 25, x+y*100);
-		}
-		catch (Exception e) {
-			erreur=true;
-		}
-		if(!erreur) {
-			System.out.println(this.jeu.bfs(99, 25, x+y*100));
+		if(!this.jeu.verifieObstacle(x, y)) {
+			if(this.jeu.limiterTours()) {
+				if(!this.jeu.verifieTourAlentour(x, y, 5)) {	
+					Tour tour = new Tour(this.jeu, x, y);
+					this.jeu.ajouterTour(tour);
+					this.tourVue.afficherTourVue(tour);
+					this.jeu.ajoutObstacleTour(x, y);
+					System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
+					System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
+				}
+				else {
+					System.out.println("Controleur.cliqueTableDeJeu [ tour dans le rayon de 5 tuile ]");
+				}
+			}
+			else {
+				System.out.println("Controleur.cliqueTableDeJeu [ fin tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
+			}
 		}
 	}
+	
+//	//Test de bfs
+//	@FXML
+//	public void cliqueTableDeJeu(MouseEvent click) {
+//		int x = ((int) click.getX()) / 12;
+//		int y = ((int) click.getY()) / 12;
+//		System.out.println("Controleur.cliqueTableDeJeu [ x:" + x + " y:" + y + " ]");
+//		boolean erreur=false;
+//		try {
+//			this.jeu.bfs(99, 25, x+y*100);
+//		}
+//		catch (Exception e) {
+//			erreur=true;
+//		}
+//		if(!erreur) {
+//			System.out.println(this.jeu.bfs(99, 25, x+y*100));
+//		}
+//	}
 }
