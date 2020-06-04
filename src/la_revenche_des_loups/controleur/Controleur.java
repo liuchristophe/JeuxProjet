@@ -61,16 +61,9 @@ public class Controleur implements Initializable {
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu);
 		
 		//initialisation BFS
-<<<<<<< HEAD
 //		this.bfsVue = new BFSVue(testBFS, this.jeu);
 //		this.bfsVue.afficherBFSVue(2, 2, 12);
 //		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
-=======
-		
-		//this.bfsVue = new BFSVue(testBFS, this.jeu);
-		//this.bfsVue.afficherBFSVue(2, 2, 12);
-		
->>>>>>> e5cc2058cb68fa0f48edc766883d5027209e2286
 	}
 
 	@FXML
@@ -96,11 +89,6 @@ public class Controleur implements Initializable {
 					this.jeu.ajouterTour(tour);
 					this.tourVue.afficherTourVue(tour);
 					this.jeu.ajoutObstacleTour(x, y);
-<<<<<<< HEAD
-=======
-					//this.testBFS.getChildren().clear();
-					//this.bfsVue.afficherBFSVue(2, 1, 12);
->>>>>>> e5cc2058cb68fa0f48edc766883d5027209e2286
 					System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
 					System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
 				}

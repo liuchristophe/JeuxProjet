@@ -317,19 +317,6 @@ public class Jeu {
 			}
 		}
 	}
-<<<<<<< HEAD
-=======
-
-	
-
-	public boolean existeTour() {
-		for(Acteur a : listeActeurs) {
-			if(a.getClass().getName() == "la_revenche_des_loups.modele.Tour") {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	//Pour un test
 //	public boolean existeTour() {
@@ -340,7 +327,6 @@ public class Jeu {
 //		}
 //		return false;
 //	}
->>>>>>> e5cc2058cb68fa0f48edc766883d5027209e2286
 
 
 }
