@@ -17,7 +17,10 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white; -fx-border-width: 4px;" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="100.0" prefWidth="1080.0" style="-fx-border-color: white; -fx-border-width: 1px;" />
+            <VBox prefHeight="100.0" prefWidth="1080.0" style="-fx-border-color: white; -fx-border-width: 1px;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#vagueSuivante" text="Vague Suivante" />
+               </children></VBox>
             <VBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white; -fx-border-width: 1px;">
                <children>
                   <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#lancerPartie" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Lancer une partie">
@@ -42,6 +45,7 @@
       <Pane fx:id="tableDeJeu" maxHeight="600.0" maxWidth="1200.0" onMouseClicked="#cliqueTableDeJeu" prefHeight="600.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <children>
             <TilePane fx:id="tilePane" maxHeight="600.0" maxWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" />
+            <TilePane fx:id="testBFS" maxHeight="600.0" maxWidth="1200.0" opacity="0.2" prefHeight="600.0" prefWidth="1200.0" />
          </children>
       </Pane>
    </center>

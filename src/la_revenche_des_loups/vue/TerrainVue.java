@@ -31,7 +31,7 @@ public class TerrainVue {
 	public void afficherTerrainVue(int nbTuileLigne, int nbTuileColonne, int pixelTuile) {
 		Image tileSet = null;
         try {
-        	tileSet = new Image(new FileInputStream("src/la_revenche_des_loups/modele/Buch_Tiles.png"));
+        	tileSet = new Image(new FileInputStream("src/la_revenche_des_loups/ressources/Buch_Tiles.png"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

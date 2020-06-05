@@ -19,7 +19,7 @@ public class TourVue {
 		this.panneauJeu = panneau;
 		this.tourVue = null;
 		try {
-			tourVue = new Image(new FileInputStream("src/la_revenche_des_loups/modele/tour_brique.png"));
+			tourVue = new Image(new FileInputStream("src/la_revenche_des_loups/ressources/tour_brique.png"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -37,8 +37,8 @@ public class TourVue {
 
 	public void creerTourVue(Tour tour) {
 		ImageView imageview = new ImageView(this.tourVue);
-		imageview.setFitWidth(36);
-		imageview.setFitHeight(36);
+		imageview.setFitWidth(12*tour.getTaille());
+		imageview.setFitHeight(12*tour.getTaille());
 		imageview.setTranslateX(tour.getX() * 12);
 		imageview.setTranslateY(tour.getY() * 12);
 		imageview.setId(tour.getId());

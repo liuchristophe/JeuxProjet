@@ -1,27 +1,15 @@
 package la_revenche_des_loups.modele;
 
-public class Maison {
+import java.util.ArrayList;
 
-	private Jeu jeu;
+public class Maison extends Acteur {
 
-	private int x, yInf, ySup;
-	private int pv;
-	private int ptsATT;
-	private int perimetre;
-	private Loup loupCible;
+	private int yInf, ySup;
 
 	public Maison(Jeu j) {
-		this.jeu = j;
-		this.x = 15;
+		super(j, 15, 150, 3, 5);
 		this.yInf = 11;
 		this.ySup = 38;
-		this.pv = 10;
-		this.ptsATT = 2;
-		this.perimetre = 3;
-	}
-
-	public int getX() {
-		return this.x;
 	}
 
 	public int getYSup() {
@@ -32,56 +20,56 @@ public class Maison {
 		return this.yInf;
 	}
 
-	public int getPV() {
-		return this.pv;
-	}
-
-	public int getPtsATT() {
-		return this.ptsATT;
-	}
-
-	public int getPerimetre() {
-		return this.perimetre;
-	}
-
-	public Loup getLoupCible() {
-		return this.loupCible;
-	}
-
-	public void decrementerPV(int pts) {
-		this.pv -= pts;
-	}
-
-	public boolean estDetruite() {
-		return this.pv > 0;
-	}
-
-	public void seDetruit() {
-		this.pv = 0;
-	}
-
 	public void seDefend() {
-		if (this.loupCible != null) {
-			this.loupCible.decrementerPV(this.ptsATT);
+		if (this.getCible() != null) {
+			this.getCible().seFaitAttaquer(this.getPtsATT());
 		}
 	}
 
-	public void loupcible() {
-		if (this.jeu.verifieLoupMaison(this.x, this.ySup, this.perimetre) != null) {
-			this.loupCible = this.jeu.verifieLoupMaison(this.x, this.ySup, this.perimetre);
-		} else if (this.jeu.verifieLoupMaison(this.x, this.yInf, this.perimetre) != null) {
-			this.loupCible = this.jeu.verifieLoupMaison(this.x, this.yInf, this.perimetre);
+	public Acteur verifie(int x, int y, int peri) {
+		ArrayList<Acteur> listeLoups = new ArrayList<Acteur>();
+		for (int i = 0; i < this.getJeu().getListe().size();i++) {
+			if(this.getJeu().getListe().get(i) instanceof Loup) {
+				listeLoups.add(this.getJeu().getListe().get(i));
+			}
+		}
+		for (int i = 0; i < listeLoups.size(); i++) {
+			if ((listeLoups.get(i).getX() < x + peri) && ((listeLoups.get(i).getY() > y - (peri + 22))
+					&& (listeLoups.get(i).getY() < y + peri))) {
+				return listeLoups.get(i);
+			}
+		}
+
+		return null;
+	}
+	
+	public void cibleMaison() {
+		if (verifie(this.getX(), this.ySup, this.getPerimetre()) != null) {
+			this.setCible(verifie(this.getX(), this.ySup, getPerimetre()));
+		} else if (verifie(this.getX(), this.yInf, this.getPerimetre()) != null) {
+			this.setCible(verifie(this.getX(), this.yInf, getPerimetre()));
 		}
 	}
 
 	public void changeCible() {
-		if (!this.loupCible.estVivant()) {
-			this.loupcible();
+		if (!this.getCible().estVivant()) {
+			cibleMaison();
 		}
 	}
-
+	
+	public void agit() {
+		if (this.getCible() != null) {
+			seDefend();
+			// on affiche sur la console que la maison se défend
+			System.out.println("Maison.agit [ Maison se défend ]");
+			changeCible();
+		} else {
+			cibleMaison();
+		}
+	}
+	
 	public String toString() {
-		return "Position : (" + this.x + ", " + this.yInf + "), PV : " + this.pv;
+		return "Maison : (" + this.getX() + ", " + this.yInf + "), PV : " + this.getPV();
 	}
 
 }

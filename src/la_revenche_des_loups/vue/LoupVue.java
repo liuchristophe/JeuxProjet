@@ -11,18 +11,20 @@ import la_revenche_des_loups.modele.Terrain;
 
 public class LoupVue {
 	private Pane panneauJeu;
-	private Terrain terrain;
 	private Image loupVue;
 	
-	public LoupVue(Pane panneau, Terrain terrain) {
+	public LoupVue(Pane panneau) {
 		this.panneauJeu = panneau;
-		this.terrain = terrain;
 		this.loupVue = null;
         try {
-        	loupVue = new Image(new FileInputStream("src/la_revenche_des_loups/modele/Loup_Gris.png"));
+        	loupVue = new Image(new FileInputStream("src/la_revenche_des_loups/ressources/Loup_Gris.png"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+	}
+	
+	public LoupVue getLoupVue() {
+		return this;
 	}
 	
 	public void afficherLoupVue(Loup loup) {
@@ -31,17 +33,17 @@ public class LoupVue {
 			creerLoupVue(loup);
 		}
 		else {
-			imageview.setTranslateX(loup.getX()*12);		//A modif
-			imageview.setTranslateY(loup.getY()*12);		//A modif
+			imageview.setTranslateX(loup.getX()*12);		
+			imageview.setTranslateY(loup.getY()*12);		
 		}
 	}
 	
 	private void creerLoupVue(Loup loup) {
 		ImageView imageview = new ImageView(this.loupVue);
-		imageview.setFitWidth(24);		//A modif
-		imageview.setFitHeight(24);		//A modif
-		imageview.setTranslateX(loup.getX()*12);		//A modif
-		imageview.setTranslateY(loup.getY()*12);		//A modif
+		imageview.setFitWidth(24);
+		imageview.setFitHeight(24);
+		imageview.setTranslateX(loup.getX()*12);		
+		imageview.setTranslateY(loup.getY()*12);		
 		imageview.setId(loup.getId());
 		this.panneauJeu.getChildren().add(imageview);
 	}
