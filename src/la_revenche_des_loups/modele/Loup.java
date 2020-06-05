@@ -1,19 +1,14 @@
 
 package la_revenche_des_loups.modele;
 
-<<<<<<< HEAD
+
 import la_revenche_des_loups.modele.Jeu;
 
-public class Loup {
-	private Jeu jeu;
-	private int x, y;
-	private int pv;
-	private int perimetre;
-=======
+
+
 import java.util.ArrayList;
 
 public class Loup extends Acteur{
->>>>>>> a2021f4a0a16fe984a99e7c9b7d7416316c7b692
 	private int vitesse;
 	private String id;
 	private static int num = 0;
@@ -48,8 +43,6 @@ public class Loup extends Acteur{
 		}
 
 	}
-<<<<<<< HEAD
-=======
 	
 	/*
 	public void seDeplace(Acteur cible) {
@@ -136,7 +129,6 @@ public class Loup extends Acteur{
 			break;
 		}
 	}
->>>>>>> a2021f4a0a16fe984a99e7c9b7d7416316c7b692
 	
 	public void avance() {
 		int i = 0;
