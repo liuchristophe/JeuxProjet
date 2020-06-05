@@ -110,12 +110,12 @@ public class Jeu {
 		this.nombreTours.setValue(this.nombreTours.getValue()+1);;
 	}
 	
-	public boolean limiterTours() {
-		return this.limiteTours.getValue() > this.nombreTours.getValue() ? true : false;
-	}
-
 	public void retirerTour(Tour t) {
 		this.listeActeurs.remove(t);
+	}
+	
+	public boolean limiterTours() {
+		return this.limiteTours.getValue() > this.nombreTours.getValue() ? true : false;
 	}
 	
 	public boolean loupSontMort() {
@@ -127,6 +127,7 @@ public class Jeu {
 		return true;
 	}
 
+	/*
 	public void reintialiser() {
 		this.terrain = new Terrain();
 		this.tableauObstacle = new int[this.terrain.getLargeur()*this.terrain.getHauteur()];
@@ -137,6 +138,7 @@ public class Jeu {
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
 	}
+	*/
 	
 	public void agir() {
 		for(int i = 0; i < this.listeActeurs.size(); i++) {
@@ -157,6 +159,9 @@ public class Jeu {
 		}
 		return false;
 	}
+	
+	
+	
 	
 	public boolean verifieTourAlentour(int x, int y, int espacement) {
 		for(Acteur a : this.listeActeurs) {

@@ -144,22 +144,6 @@ public class Loup extends Acteur{
 				remarche();
 			}
 		}
-		
-		
-		/*
-		if ((this.getX() + 1 == this.getCible().getX() || this.getX() - 1 == this.getCible().getX()
-				|| this.getX() == this.getCible().getX())
-				&& (this.getY() + 1 == this.getCible().getY() || this.getY() - 1 == this.getCible().getY()
-						|| this.getY() == this.getCible().getY())) {
-			arrete();
-			// on affiche sur la console que le loup attaque
-			System.out.println("loup attaque Tour");
-			this.getCible().seFaitAttaquer(this.getPtsATT());
-			if(!this.getCible().estVivant()) {
-				remarche();
-			}
-		}
-		*/
 	}
 	
 	public void attaqueMaison() {

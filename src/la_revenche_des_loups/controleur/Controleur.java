@@ -74,7 +74,7 @@ public class Controleur implements Initializable {
 	@FXML
 	void quitterJeu(ActionEvent event) {
 		
-		this.jeu.reintialiser();
+		//this.jeu.reintialiser();
 		
 		//System.out.println(this.jeu.bfs(99, 25, 2555));
 	}
