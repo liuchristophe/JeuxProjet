@@ -4,9 +4,8 @@ package la_revenche_des_loups.modele;
 
 import la_revenche_des_loups.modele.Jeu;
 
-
-
 import java.util.ArrayList;
+
 
 public class Loup extends Acteur{
 	private int vitesse;

@@ -1,13 +1,10 @@
-package la_revenche_des_loups.controleur;
+package la_revenche_des_loups.modele;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import la_revenche_des_loups.modele.Jeu;
-import la_revenche_des_loups.modele.Loup;
-import la_revenche_des_loups.modele.Tour;
 import la_revenche_des_loups.vue.LoupVue;
 
 public class GameLoop {
