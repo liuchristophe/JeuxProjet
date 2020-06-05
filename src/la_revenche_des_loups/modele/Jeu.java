@@ -271,7 +271,7 @@ public class Jeu {
 		int arriver = idCible;
 		boolean erreur = false;
 		while(arriver != depart && !erreur) {
-			int i=bfsArriver.size()-1; // /////////////////////////////////A verifier////////////
+			int i=bfsArriver.size()-1; // /////////////////////////////////A verifier
 			while(i>0 && bfsArriver.get(i) != arriver) {
 				i--;
 			}
