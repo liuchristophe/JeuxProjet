@@ -198,8 +198,6 @@ public class Jeu {
 			this.tableauObstacle[id] = 2;
 		}
 	}
-<<<<<<< HEAD
-=======
 	
 	//Retourne un donnée dans tableauObstacle
 	//Si tab[id] = 1 alors obstacle Sinon tab[id] = 0 pas d'obstacle
@@ -330,7 +328,6 @@ public class Jeu {
 			}
 		}
 	}
->>>>>>> a2021f4a0a16fe984a99e7c9b7d7416316c7b692
 
 	//Pour un test
 //	public boolean existeTour() {
