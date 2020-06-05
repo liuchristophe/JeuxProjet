@@ -82,10 +82,12 @@ public abstract class Acteur {
 
 	public void meurt() {
 		this.pv = 0;
-		System.out.println(this+" est mort");
+		System.out.println("Acteur.meurt [ "+this+" est mort ]");
+		
 		if (this instanceof Tour || this instanceof Loup) {
 			this.jeu.retirerActeur(this);
 		}
+		
 	}
 	
 	public void cible() {
@@ -107,8 +109,6 @@ public abstract class Acteur {
 	public int getTaille() {
 		return this.taille;
 	}
-	
-	//public abstract void setTaille();
 	
 	public abstract void changeCible();
 	
