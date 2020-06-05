@@ -40,10 +40,10 @@ public class LoupVue {
 	
 	private void creerLoupVue(Loup loup) {
 		ImageView imageview = new ImageView(this.loupVue);
-		imageview.setFitWidth(24);		//A modif
-		imageview.setFitHeight(24);		//A modif
-		imageview.setTranslateX(loup.getX()*12);		//A modif
-		imageview.setTranslateY(loup.getY()*12);		//A modif
+		imageview.setFitWidth(24);
+		imageview.setFitHeight(24);
+		imageview.setTranslateX(loup.getX()*12);		
+		imageview.setTranslateY(loup.getY()*12);		
 		imageview.setId(loup.getId());
 		this.panneauJeu.getChildren().add(imageview);
 	}

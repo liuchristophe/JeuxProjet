@@ -14,7 +14,6 @@ import la_revenche_des_loups.modele.Loup;
 import la_revenche_des_loups.modele.Maison;
 import la_revenche_des_loups.modele.Terrain;
 import la_revenche_des_loups.vue.BFSVue;
-import la_revenche_des_loups.vue.GameLoop;
 import la_revenche_des_loups.modele.Tour;
 import la_revenche_des_loups.vue.LoupVue;
 import la_revenche_des_loups.vue.MaisonVue;
@@ -25,10 +24,8 @@ public class Controleur implements Initializable {
 
 	private Terrain terrain;
 	private Jeu jeu;
-	private Loup loup;
 	private Maison maison;
-	private TerrainVue terrainVue;	
-	private LoupVue loupVue;
+	private TerrainVue terrainVue;
 	private MaisonVue maisonVue;
 	private GameLoop gameloop;
 	private TourVue tourVue;
@@ -46,26 +43,35 @@ public class Controleur implements Initializable {
 		this.jeu = new Jeu(terrain);
 		this.terrainVue = new TerrainVue(this.tilePane, jeu.getTerrain());
 		this.terrainVue.afficherTerrainVue(21, 21, 12);
+		
 		// ajout de la maison et du loup dans le jeu
 		this.maison = new Maison(jeu);
+		
 		// ajout des sprites
 		this.maisonVue = new MaisonVue(this.tableDeJeu, jeu.getTerrain());
 		this.maisonVue.creerMaisonVue(maison);
 		this.tourVue = new TourVue(this.tableDeJeu, this.jeu);
 		
-		
-		//this.loup = new Loup(jeu);
-		//this.loupVue = new LoupVue(this.tableDeJeu);
-		
 		// initialisation de la gameloop
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu);
 		
 		//initialisation BFS
+<<<<<<< HEAD
 //		this.bfsVue = new BFSVue(testBFS, this.jeu);
 //		this.bfsVue.afficherBFSVue(2, 2, 12);
 //		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
+=======
+		//this.bfsVue = new BFSVue(testBFS, this.jeu);
+		//this.bfsVue.afficherBFSVue(2, 2, 12);
+		
+>>>>>>> f3b4f49a28ad27cc925cf365c8d87a9dbad97be9
 	}
 
+	@FXML
+	void vagueSuivante(ActionEvent event) {
+		this.gameloop.lancerVague();
+	}
+	
 	@FXML
 	void lancerPartie(ActionEvent event) {
 		this.gameloop.lancerAnimation();
@@ -73,8 +79,14 @@ public class Controleur implements Initializable {
 
 	@FXML
 	void quitterJeu(ActionEvent event) {
+		
 		this.jeu.reintialiser();
+<<<<<<< HEAD
 		System.out.println(this.jeu.bfs(99, 25, 1063));
+=======
+		
+		//System.out.println(this.jeu.bfs(99, 25, 2555));
+>>>>>>> f3b4f49a28ad27cc925cf365c8d87a9dbad97be9
 	}
 
 	@FXML

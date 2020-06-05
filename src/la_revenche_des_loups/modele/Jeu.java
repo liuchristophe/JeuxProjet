@@ -14,6 +14,7 @@ public class Jeu {
 	private int[] tableauObstacle;
 	private ArrayList<Acteur> listeActeurs;
 	private ArrayList<Loup> listeLoups;
+	private ArrayList<Tour> listeTour;
 	private int nbLoups = 0;
 	private IntegerProperty limiteTours;
 	private IntegerProperty nombreTours;
@@ -24,6 +25,7 @@ public class Jeu {
 		this.initTableauObstacle();
 		this.listeActeurs = new ArrayList<Acteur>();
 		this.listeLoups = new ArrayList<Loup>();
+		this.listeTour = new ArrayList<Tour>();
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
 	}
@@ -71,6 +73,10 @@ public class Jeu {
 		return this.listeLoups;
 	}
 	
+	public ArrayList<Tour> getListeTours() {
+		return this.listeTour;
+	}
+	
 	public Acteur getMaison() {
 		for(int i = 0; i < this.listeActeurs.size(); i++) {
 			if (this.listeActeurs.get(i) instanceof Maison) {
@@ -79,16 +85,7 @@ public class Jeu {
 		}
 		return null;
 	}
-/*
-	public Loup getPremierLoup() {
-		for(int i = 0; i < this.listeActeurs.size(); i++) {
-			if (this.listeActeurs.get(i) instanceof Loup) {
-				return this.listeActeurs.get(i);
-			}
-		}
-		return null;
-	}
-*/
+
 	
 	public void ajouterActeur(Acteur a) {
 		this.listeActeurs.add(a);
@@ -108,6 +105,7 @@ public class Jeu {
 	}
 
 	public void ajouterTour(Tour t) {
+		this.listeTour.add(t);
 		this.listeActeurs.add(t);
 		this.nombreTours.setValue(this.nombreTours.getValue()+1);;
 	}
@@ -131,12 +129,17 @@ public class Jeu {
 
 	public void reintialiser() {
 		this.terrain = new Terrain();
+		this.tableauObstacle = new int[this.terrain.getLargeur()*this.terrain.getHauteur()];
+		this.initTableauObstacle();
 		this.listeActeurs = new ArrayList<Acteur>();
+		this.listeLoups = new ArrayList<Loup>();
+		this.listeTour = new ArrayList<Tour>();
+		this.limiteTours = new SimpleIntegerProperty(5);
+		this.nombreTours = new SimpleIntegerProperty(0);
 	}
 	
 	public void agir() {
 		for(int i = 0; i < this.listeActeurs.size(); i++) {
-			System.out.println(this.listeActeurs.size());
 			this.listeActeurs.get(i).agit();
 		}
 	}
@@ -169,6 +172,9 @@ public class Jeu {
 		}
 		return false;
 	}
+	
+	
+	
 	
 	// //////////////////////////////////////BFS////////////////////////////////////// //
 	

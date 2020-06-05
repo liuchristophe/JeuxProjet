@@ -9,7 +9,7 @@ public class Loup extends Acteur{
 	private static int num = 0;
 
 	public Loup(Jeu j) {
-		super(j, 99, (int) (Math.random() * 46) + 2, 30, 4, 3);
+		super(j, 99, (int) (Math.random() * 46) + 2, 30, 4, 4);
 		this.vitesse = 2;
 		this.id = "L" + num;
 		num++;
@@ -189,6 +189,21 @@ public class Loup extends Acteur{
 	}
 	
 	public void attaqueTour() {
+		if ((this.getX() + 3 >= this.getCible().getX() || this.getX() - 3 <= this.getCible().getX()
+				|| this.getX() == this.getCible().getX())
+				&& (this.getY() + 3 >= this.getCible().getY() || this.getY() - 3 <= this.getCible().getY()
+						|| this.getY() == this.getCible().getY())) {
+			arrete();
+			// on affiche sur la console que le loup attaque
+			System.out.println("Loup.attaqueTour [ loup attaque Tour ]");
+			this.getCible().seFaitAttaquer(this.getPtsATT());
+			if(!this.getCible().estVivant()) {
+				remarche();
+			}
+		}
+		
+		
+		/*
 		if ((this.getX() + 1 == this.getCible().getX() || this.getX() - 1 == this.getCible().getX()
 				|| this.getX() == this.getCible().getX())
 				&& (this.getY() + 1 == this.getCible().getY() || this.getY() - 1 == this.getCible().getY()
@@ -201,11 +216,12 @@ public class Loup extends Acteur{
 				remarche();
 			}
 		}
+		*/
 	}
 	
 	public void attaqueMaison() {
 		if ((this.getX()== 15 &&(this.getY() <= 38 && this.getY() >= 11)) && this.getJeu().getMaison().estVivant()) {
-			System.out.println("loup attaque Maison");
+			System.out.println("Loup.attaqueMaison [ loup attaque Maison ]");
 			arrete();
 			this.getJeu().getMaison().seFaitAttaquer(this.getPtsATT());
 		}

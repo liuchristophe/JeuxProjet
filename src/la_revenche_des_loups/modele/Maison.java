@@ -7,7 +7,7 @@ public class Maison extends Acteur {
 	private int yInf, ySup;
 
 	public Maison(Jeu j) {
-		super(j, 15, 1000, 3, 30);
+		super(j, 15, 150, 3, 5);
 		this.yInf = 11;
 		this.ySup = 38;
 	}
@@ -61,7 +61,7 @@ public class Maison extends Acteur {
 		if (this.getCible() != null) {
 			seDefend();
 			// on affiche sur la console que la maison se défend
-			System.out.println("Maison se défend");
+			System.out.println("Maison.agit [ Maison se défend ]");
 			changeCible();
 		} else {
 			cibleMaison();

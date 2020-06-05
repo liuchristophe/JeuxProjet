@@ -11,13 +11,12 @@ public class Tour extends Acteur{
 		super(jeu, x, y, pv, perimetre, degat);
 		this.id = "T" + num;
 		num++;
-		//this.jeu.ajouterTour(this);
 		
 		super.setTaille(3);
 	}
 
 	public Tour(Jeu jeu, int x, int y) {
-		this(jeu, x, y, 10, 10, 2);
+		this(jeu, x, y, 30, 5, 2);
 	}
 
 	public Tour(Jeu jeu) {
@@ -64,7 +63,7 @@ public class Tour extends Acteur{
             if (this.getCible() != null) {
                 seDefend();
                 // on affiche sur la console que la tour se défend
-                System.out.println("Tour " + getId() + " se défend");
+                System.out.println("Tour.agit [ Tour " + getId() + " se défend ]");
                 changeCible();
             } else {
                 cible();
