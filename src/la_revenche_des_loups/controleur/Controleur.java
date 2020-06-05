@@ -29,7 +29,7 @@ public class Controleur implements Initializable {
 	private MaisonVue maisonVue;
 	private GameLoop gameloop;
 	private TourVue tourVue;
-	private BFSVue bfsVue;
+//	private BFSVue bfsVue;
 	@FXML
 	private TilePane tilePane;
 	@FXML
@@ -56,9 +56,15 @@ public class Controleur implements Initializable {
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu);
 		
 		//initialisation BFS
+<<<<<<< HEAD
+//		this.bfsVue = new BFSVue(testBFS, this.jeu);
+//		this.bfsVue.afficherBFSVue(2, 2, 12);
+//		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
+=======
 		//this.bfsVue = new BFSVue(testBFS, this.jeu);
 		//this.bfsVue.afficherBFSVue(2, 2, 12);
 		
+>>>>>>> f3b4f49a28ad27cc925cf365c8d87a9dbad97be9
 	}
 
 	@FXML
@@ -74,15 +80,24 @@ public class Controleur implements Initializable {
 	@FXML
 	void quitterJeu(ActionEvent event) {
 		
+<<<<<<< HEAD
 		//this.jeu.reintialiser();
+=======
+		this.jeu.reintialiser();
+<<<<<<< HEAD
+		System.out.println(this.jeu.bfs(99, 25, 1063));
+=======
+>>>>>>> 10b9cc83889ea6a8f5afcd0a3e4c5cc4d52c5bd3
 		
 		//System.out.println(this.jeu.bfs(99, 25, 2555));
+>>>>>>> f3b4f49a28ad27cc925cf365c8d87a9dbad97be9
 	}
 
 	@FXML
 	public void cliqueTableDeJeu(MouseEvent click) {
 		int x = ((int) click.getX()) / 12 - 1;
 		int y = ((int) click.getY()) / 12 - 1;
+		System.out.println("Controleur.cliqueTableDeJeu [ x:" + x + " y:" + y + " ]");
 		if(!this.jeu.verifieObstacle(x, y)) {
 			if(this.jeu.limiterTours()) {
 				if(!this.jeu.verifieTourAlentour(x, y, 5)) {	
@@ -90,8 +105,6 @@ public class Controleur implements Initializable {
 					this.jeu.ajouterTour(tour);
 					this.tourVue.afficherTourVue(tour);
 					this.jeu.ajoutObstacleTour(x, y);
-					//this.testBFS.getChildren().clear();
-					//this.bfsVue.afficherBFSVue(2, 1, 12);
 					System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
 					System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
 				}
@@ -104,4 +117,22 @@ public class Controleur implements Initializable {
 			}
 		}
 	}
+	
+//	//Test de bfs
+//	@FXML
+//	public void cliqueTableDeJeu(MouseEvent click) {
+//		int x = ((int) click.getX()) / 12;
+//		int y = ((int) click.getY()) / 12;
+//		System.out.println("Controleur.cliqueTableDeJeu [ x:" + x + " y:" + y + " ]");
+//		boolean erreur=false;
+//		try {
+//			this.jeu.bfs(99, 25, x+y*100);
+//		}
+//		catch (Exception e) {
+//			erreur=true;
+//		}
+//		if(!erreur) {
+//			System.out.println(this.jeu.bfs(99, 25, x+y*100));
+//		}
+//	}
 }

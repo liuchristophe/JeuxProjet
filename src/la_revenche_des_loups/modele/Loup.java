@@ -3,8 +3,6 @@ package la_revenche_des_loups.modele;
 
 import java.util.ArrayList;
 
-import la_revenche_des_loups.modele.Jeu;
-
 public class Loup extends Acteur{
 	private int vitesse;
 	private String id;
@@ -25,11 +23,30 @@ public class Loup extends Acteur{
 	public int getVitesse() {
 		return this.vitesse;
 	}
-
+	
 	public void seDeplace(Acteur cible) {
-		//chemin non tracer par le bfs
+		//chemin tracer par le bfs sans cible
 		if(cible == null) {
+			this.deplaceVersMaison();
+		}
+		//chemin tracer par le bfs
+		else if(cible instanceof Tour) {
+			this.deplaceVersTour(cible);
+		}
+		//deplacement par default sans prendre en compte les obstacles
+		//loup en god's feet mode
+		else {
 			if (this.getX() > 15) {
+				this.avance();
+			}
+	
+			else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+				this.monte();
+			}
+	
+			else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
+				this.descends();
+			}if (this.getX() > 15) {
 				this.avance();
 			}
 	
@@ -41,14 +58,54 @@ public class Loup extends Acteur{
 				this.descends();
 			}
 		}
-		//chemin tracer par le bfs
-		else {
-			super.getJeu();
-		}
 	}
 
-	public ArrayList<int[][]> seDeplaceBFS(int posCibleX, int posCibleY) {
-		return null;
+	public void deplaceVersTour(Acteur cible) {
+		int chemin = this.getJeu().bfs(this.getX(), this.getY(), cible.getX()+cible.getY()*this.getJeu().getTerrain().getLargeur());
+		switch(chemin) {
+		case 0:
+			System.out.println("Loup.deplace[ ni 1, 2 ou 3; Erreur methode bfs dand Jeu ]");
+		
+		case 1:
+			this.avance();
+			break;
+			
+		case 2:
+			this.monte();
+			break;
+			
+		case 3:
+			this.descends();
+			break;
+			
+		default:
+			System.out.println("Loup.deplace[ erreur dans le bfs ]");
+			break;
+		}
+	}
+	
+	public void deplaceVersMaison() {
+		int chemin = this.getJeu().bfs(this.getX(), this.getY(), 915+((int)(Math.random()*27 - 0))*100);
+		switch(chemin) {
+		case 0:
+			System.out.println("Loup.deplace[ ni 1, 2 ou 3; Erreur methode bfs dand Jeu ]");
+		
+		case 1:
+			this.avance();
+			break;
+			
+		case 2:
+			this.monte();
+			break;
+			
+		case 3:
+			this.descends();
+			break;
+			
+		default:
+			System.out.println("Loup.deplace[ erreur dans le bfs ]");
+			break;
+		}
 	}
 	
 	public void avance() {

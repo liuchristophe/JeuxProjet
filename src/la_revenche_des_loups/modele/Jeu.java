@@ -248,15 +248,16 @@ public class Jeu {
 		return tabMarquer;
 	}
 	
-	//Si renvoie list alors bfs.list(int[0] == arrivée && int[1] == départ)
-	public ArrayList<Integer> bfs(int x, int y, int idCible) { //idCible losque x + y*tailleTerrain en 1 dimension
+	//Si renvoie 1 = avance, 2 = monte, 3 = descend)+
+	public int bfs(int x, int y, int idCible) { //idCible losque x + y*tailleTerrain en 1 dimension
 		int largeurTerrain = this.terrain.getLargeur();
 		int tailleTerrain = this.terrain.getHauteur()*largeurTerrain;
 		int[] tabMarquer = this.tableauObstacle.clone();
 		ArrayList<Integer> pile = new ArrayList<Integer>();
 		ArrayList<Integer> bfsArriver = new ArrayList<Integer>();
 		ArrayList<Integer> bfsDepart = new ArrayList<Integer>();
-		pile.add(y*largeurTerrain + x);
+		int pos = y*largeurTerrain + x;
+		pile.add(pos);
 		tabMarquer[y*largeurTerrain + x] = 1;
 		while(pile.size() > 0) {
 			int id = pile.get(0);
@@ -281,7 +282,7 @@ public class Jeu {
 		int arriver = idCible;
 		boolean erreur = false;
 		while(arriver != depart && !erreur) {
-			int i=bfsArriver.size()-1;
+			int i=bfsArriver.size()-1; // /////////////////////////////////A verifier
 			while(i>0 && bfsArriver.get(i) != arriver) {
 				i--;
 			}
@@ -296,7 +297,23 @@ public class Jeu {
 			}
 		}
 		Collections.reverse(chemin);
-		return chemin;
+		// Convertir bfs pour Loup seDeplace
+		int idPrec = pos;
+		int idSuiv = chemin.get(0);
+		
+		// pour avancer id = 2000 - 1999 == 1
+		if(idPrec-idSuiv == 1) {
+			return 1;
+		}
+		// pour monter id = 2000 - 1900 == 100
+		else if(idPrec-idSuiv == this.getTerrain().getLargeur()) {
+			return 2;
+		}
+		// pour descendre id = 2000 - 2100 == -100
+		else if(idPrec-idSuiv == -this.getTerrain().getLargeur()) {
+			return 3;
+		}
+		return 0;
 	}
 	
 	//Methode permettant ajouter un chemin de tous les bfs puis marque sur un tableau comme case utiliser
@@ -310,17 +327,6 @@ public class Jeu {
 				tabMarquer[idArriver] = 1;
 			}
 		}
-	}
-
-	
-
-	public boolean existeTour() {
-		for(Acteur a : listeActeurs) {
-			if(a.getClass().getName() == "la_revenche_des_loups.modele.Tour") {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	//Pour un test
