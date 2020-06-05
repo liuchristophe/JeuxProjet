@@ -10,12 +10,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import la_revenche_des_loups.modele.Jeu;
-import la_revenche_des_loups.modele.Loup;
 import la_revenche_des_loups.modele.Maison;
 import la_revenche_des_loups.modele.Terrain;
 import la_revenche_des_loups.vue.BFSVue;
 import la_revenche_des_loups.modele.Tour;
-import la_revenche_des_loups.vue.LoupVue;
 import la_revenche_des_loups.vue.MaisonVue;
 import la_revenche_des_loups.vue.TerrainVue;
 import la_revenche_des_loups.vue.TourVue;
@@ -56,15 +54,9 @@ public class Controleur implements Initializable {
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu);
 		
 		//initialisation BFS
-<<<<<<< HEAD
-//		this.bfsVue = new BFSVue(testBFS, this.jeu);
-//		this.bfsVue.afficherBFSVue(2, 2, 12);
-//		this.gameloop = new GameLoop(this.loup, this.loupVue, this.jeu);
-=======
+
 		//this.bfsVue = new BFSVue(testBFS, this.jeu);
 		//this.bfsVue.afficherBFSVue(2, 2, 12);
-		
->>>>>>> f3b4f49a28ad27cc925cf365c8d87a9dbad97be9
 	}
 
 	@FXML
@@ -80,17 +72,10 @@ public class Controleur implements Initializable {
 	@FXML
 	void quitterJeu(ActionEvent event) {
 		
-<<<<<<< HEAD
 		//this.jeu.reintialiser();
-=======
-		this.jeu.reintialiser();
-<<<<<<< HEAD
-		System.out.println(this.jeu.bfs(99, 25, 1063));
-=======
->>>>>>> 10b9cc83889ea6a8f5afcd0a3e4c5cc4d52c5bd3
+
 		
 		//System.out.println(this.jeu.bfs(99, 25, 2555));
->>>>>>> f3b4f49a28ad27cc925cf365c8d87a9dbad97be9
 	}
 
 	@FXML
