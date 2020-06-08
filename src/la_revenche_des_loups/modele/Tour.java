@@ -6,11 +6,19 @@ public class Tour extends Acteur{
 	
 	private String id;
 	private static int num = 0;
+	private Jeu jeu;
+	
+	//Test tir
+	private boolean seDefend;
 
 	public Tour(Jeu jeu, int x, int y, int pv, int perimetre, int degat ) {
 		super(jeu, x, y, pv, perimetre, degat);
 		this.id = "T" + num;
 		num++;
+		this.jeu = jeu;
+		
+		//Test tir
+		this.seDefend = false;
 		
 		super.setTaille(3);
 	}
@@ -27,10 +35,16 @@ public class Tour extends Acteur{
 		return this.id;
 	}
 	
+	public boolean tirEstLance() {
+		return this.seDefend;
+	}
+	
 	public void seDefend() {
 		if (this.getCible().estVivant()) {
 			this.getCible().seFaitAttaquer(this.getPtsATT());
 		}
+		//Test tir
+		this.seDefend = true;
 	}
 
 	public void changeCible() {
@@ -61,7 +75,13 @@ public class Tour extends Acteur{
 	
 	public void agit() {
             if (this.getCible() != null) {
+            	//Test Affichage
+    			this.jeu.setNumeroAction(2);
+            	
                 seDefend();
+                //Test tir
+        		this.seDefend = false;
+                
                 // on affiche sur la console que la tour se défend
                 System.out.println("Tour.agit [ Tour " + getId() + " se défend ]");
                 changeCible();

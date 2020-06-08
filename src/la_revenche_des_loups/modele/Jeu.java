@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import la_revenche_des_loups.vue.LoupVue;
 
 
 
@@ -18,6 +19,11 @@ public class Jeu {
 	private int nbLoups = 0;
 	private IntegerProperty limiteTours;
 	private IntegerProperty nombreTours;
+	private boolean partieLance;
+	
+	//TEST Affichage Historique
+	private int numeroAction;
+	private HistoriqueAction historique;
 
 	public Jeu(Terrain t) {
 		this.terrain = t;
@@ -28,8 +34,22 @@ public class Jeu {
 		this.listeTour = new ArrayList<Tour>();
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
+		this.partieLance = false;
 	}
 
+	//TEST Affichage Historique
+	public int getNumeroAction(){
+		return this.numeroAction;
+	}
+	public void setNumeroAction(int num){
+		this.numeroAction = num;
+		this.historique.miseAJourListeDefile(this.numeroAction);
+	}
+	public void initHistorique(HistoriqueAction historique) {
+		this.historique = historique;
+	}
+	
+	
 	//Avoir un tableau pour voir s'il y a un obstacle
 	//Si tab[id] = 1 alors obstacle Sinon tab[id] = 0 pas d'obstacle
 	public void initTableauObstacle() {
@@ -75,6 +95,19 @@ public class Jeu {
 	
 	public ArrayList<Tour> getListeTours() {
 		return this.listeTour;
+	}
+	
+	public boolean partiEstLance() {
+		return this.partieLance;
+	}
+	
+	public void changeStatutParti() {
+		if(this.partieLance) {
+			this.partieLance = false;
+		}
+		else {
+			this.partieLance = true;
+		}
 	}
 	
 	public Acteur getMaison() {
@@ -161,6 +194,20 @@ public class Jeu {
 	}
 	
 	
+	//Déplacement methpde de gameloop
+	public void nouveauLoup(int nbFrame,int nbLoups) {
+        if (nbFrame % 10 == 0 && this.getListeLoups().size()<nbLoups) {
+            this.ajouterLoup();
+        }
+    }
+
+    public void vague(int nbFrames,LoupVue loupVue,int nbLoups) {
+        nouveauLoup(nbFrames,nbLoups);
+        for (int i = 0; i < this.getListeLoups().size(); i++) {
+            loupVue.afficherLoupVue(this.getListeLoups().get(i));
+        }
+        agir();
+    }
 	
 	
 	public boolean verifieTourAlentour(int x, int y, int espacement) {

@@ -7,12 +7,14 @@ public class Loup extends Acteur{
 	private int vitesse;
 	private String id;
 	private static int num = 0;
+	private Jeu jeu;
 
 	public Loup(Jeu j) {
 		super(j, 99, (int) (Math.random() * 46) + 2, 30, 4, 4);
 		this.vitesse = 2;
 		this.id = "L" + num;
 		num++;
+		this.jeu = j;
 	}
 
 	public String getId() {
@@ -213,6 +215,10 @@ public class Loup extends Acteur{
 			arrete();
 			// on affiche sur la console que le loup attaque
 			System.out.println("Loup.attaqueTour [ loup attaque Tour ]");
+			
+			//Test Affichage
+			this.jeu.setNumeroAction(1);
+			
 			this.getCible().seFaitAttaquer(this.getPtsATT());
 			if(!this.getCible().estVivant()) {
 				remarche();
@@ -224,6 +230,11 @@ public class Loup extends Acteur{
 		if ((this.getX()== 15 &&(this.getY() <= 38 && this.getY() >= 11)) && this.getJeu().getMaison().estVivant()) {
 			System.out.println("Loup.attaqueMaison [ loup attaque Maison ]");
 			arrete();
+			
+			//Test Affichage
+			this.jeu.setNumeroAction(0);
+			
+			
 			this.getJeu().getMaison().seFaitAttaquer(this.getPtsATT());
 		}
 	}

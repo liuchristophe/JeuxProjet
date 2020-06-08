@@ -6,16 +6,14 @@ import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import la_revenche_des_loups.modele.Jeu;
 import la_revenche_des_loups.modele.Tour;
 
 public class TourVue {
-	private Jeu jeu;
+	
 	private Pane panneauJeu;
 	private Image tourVue;
 
-	public TourVue(Pane panneau, Jeu jeu) {
-		this.jeu = jeu;
+	public TourVue(Pane panneau) {
 		this.panneauJeu = panneau;
 		this.tourVue = null;
 		try {
