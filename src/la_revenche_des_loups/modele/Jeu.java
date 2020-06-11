@@ -228,28 +228,14 @@ public class Jeu {
 		return false;
 	}
 	
-<<<<<<< HEAD
 	public void miseAJourToursLimite() {
 		this.limiteTours.set(this.limiteTours.get()+1);
 		this.nombreTours.set(this.nombreTours.get()-1);
-=======
+	}
+
 	//Test tir
 	public ArrayList<Tir> getListeTirs(){
 		return this.listeTirs;
-	}
-	
-	
-	// //////////////////////////////////////BFS////////////////////////////////////// //
-	
-	
-	//Tour comme obstacle taille 3x3
-	public void ajoutObstacleTour(int x, int y) {
-		for(int idY = y; idY < y+3; idY++) {
-			for(int idX = x; idX < x+3; idX++) {
-				this.tableauObstacle[idX+idY*this.terrain.getLargeur()] = 1;
-			}
-		}
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 	}
 	
 

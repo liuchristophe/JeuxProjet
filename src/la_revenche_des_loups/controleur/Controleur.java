@@ -14,14 +14,9 @@ import la_revenche_des_loups.modele.Bfs;
 import la_revenche_des_loups.modele.Jeu;
 import la_revenche_des_loups.modele.Maison;
 import la_revenche_des_loups.modele.Terrain;
-<<<<<<< HEAD
-import la_revenche_des_loups.modele.Tour;
-import la_revenche_des_loups.vue.BFSVue;
-=======
-import la_revenche_des_loups.vue.BFSVue;
+//import la_revenche_des_loups.vue.BFSVue;
 import la_revenche_des_loups.vue.HistoriqueActionVue;
 import la_revenche_des_loups.modele.Tour;
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 import la_revenche_des_loups.vue.MaisonVue;
 import la_revenche_des_loups.vue.TerrainVue;
 import la_revenche_des_loups.vue.TourVue;
@@ -38,7 +33,7 @@ public class Controleur implements Initializable {
 	private TerrainVue terrainVue;
 	private MaisonVue maisonVue;
 	private TourVue tourVue;
-	private BFSVue bfsVue;
+//	private BFSVue bfsVue;
 	@FXML
 	private TilePane tilePane;
 	@FXML
@@ -91,13 +86,8 @@ public class Controleur implements Initializable {
 		
 		
 		//initialisation BFS
-<<<<<<< HEAD
 //		this.bfsVue = new BFSVue(testBFS, this.jeu);
 //		this.bfsVue.afficherBFSVue(2, 2, 12);
-=======
-		//this.bfsVue = new BFSVue(testBFS, this.jeu);
-		//this.bfsVue.afficherBFSVue(2, 2, 12);
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 	}
 
 	@FXML
@@ -115,13 +105,9 @@ public class Controleur implements Initializable {
 
 	@FXML
 	void quitterJeu(ActionEvent event) {
-<<<<<<< HEAD
-		this.jeu.reintialiser();
-=======
 		this.gameloop.pause();
 		//this.jeu.reintialiser();
 		//System.out.println(this.jeu.bfs(99, 25, 2555));
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 	}
 
 	@FXML
@@ -148,11 +134,6 @@ public class Controleur implements Initializable {
 			}
 		}
 	}
-	
-<<<<<<< HEAD
-	//Test d'affichage chemin bfs
-=======
-	
 	//test
 	@FXML
 	void changeLabel() {
@@ -161,7 +142,6 @@ public class Controleur implements Initializable {
 	
 	
 //	//Test de bfs
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 //	@FXML
 //	public void cliqueTableDeJeu(MouseEvent click) {
 //		int x = ((int) click.getX()) / 12;

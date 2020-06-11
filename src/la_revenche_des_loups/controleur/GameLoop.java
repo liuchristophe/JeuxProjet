@@ -8,11 +8,8 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import la_revenche_des_loups.modele.Bfs;
 import la_revenche_des_loups.modele.Jeu;
-<<<<<<< HEAD
 import la_revenche_des_loups.modele.Tour;
-=======
 import la_revenche_des_loups.vue.HistoriqueActionVue;
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 import la_revenche_des_loups.vue.LoupVue;
 import la_revenche_des_loups.vue.TirVue;
 
@@ -41,9 +38,7 @@ public class GameLoop {
 		this.nbLoups = 10;//////////10 par default
 		this.panneau = panneau;
 		this.numVague = 1;
-<<<<<<< HEAD
 		this.bfs = new Bfs(this.jeu);
-=======
 		this.historiqueVue = historiqueVue;
 
 		// test tir
@@ -51,7 +46,6 @@ public class GameLoop {
 		
 		//test bouton pause
 		this.gameloopEnCour = false;
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 	}
 
 	public void initAnimation() {
@@ -59,13 +53,8 @@ public class GameLoop {
 		nbFrame = 0;
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
-<<<<<<< HEAD
-		KeyFrame kf = new KeyFrame(Duration.seconds(0.1), (ev -> {
-			// Le loup agit ï¿½ chaque frame jusqu'a que la gameloop se stop
-=======
 		KeyFrame kf = new KeyFrame(Duration.seconds(0.2), (ev -> {
-			// Le loup agit à chaque frame jusqu'a que la gameloop se stop
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
+			// Le loup agit ï¿½ chaque frame jusqu'a que la gameloop se stop
 			if (this.jeu.finPartie() || this.jeu.finVague(nbLoups)) {
 				this.historiqueVue.affichageFinParti();
 				this.jeu.changeStatutParti();

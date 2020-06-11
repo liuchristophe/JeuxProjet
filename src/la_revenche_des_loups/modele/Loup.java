@@ -7,28 +7,20 @@ public class Loup extends Acteur{
 	private int vitesse;
 	private String id;
 	private static int num = 0;
-<<<<<<< HEAD
 	private Bfs bfs;
 	private ArrayList<Integer> chemin;
 	private boolean cibleTour;
-=======
-	private Jeu jeu;
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 
 	public Loup(Jeu j) {
 		super(j, 99, (int) (Math.random() * 46) + 2, 30, 4, 4);
 		this.vitesse = 1;
 		this.id = "L" + num;
 		num++;
-<<<<<<< HEAD
 		this.bfs = new Bfs(super.getJeu());
 		int idCible = ((int)(Math.random()*25 + 0)+13)*this.getJeu().getTerrain().getLargeur()+15-103;
 		this.chemin = this.bfs.cheminBfs(this.obtenirIdPosition(), idCible);
 		this.cibleTour = false;
 //		this.chemin = null;
-=======
-		this.jeu = j;
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 	}
 
 	public String getId() {
@@ -49,22 +41,6 @@ public class Loup extends Acteur{
 		return this.chemin;
 	}
 	
-	public void seDeplace() {
-		if (this.getX() > 15) {
-			this.avance();
-		}
-
-		else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-			this.monte();
-		}
-
-		else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-			this.descends();
-		}
-
-	}
-	
-	/*
 	public void seDeplace(Acteur cible) {
 		int idCible;
 		if(cible == null && this.cibleTour) {
@@ -122,34 +98,6 @@ public class Loup extends Acteur{
 			}
 		}
 	}
-<<<<<<< HEAD
-=======
-	*/
-
-	public void deplaceVersTour(Acteur cible) {
-		int chemin = this.getJeu().bfs(this.getX(), this.getY(), cible.getX()+cible.getY()*this.getJeu().getTerrain().getLargeur());
-		switch(chemin) {
-		case 0:
-			System.out.println("Loup.deplace[ ni 1, 2 ou 3; Erreur methode bfs dand Jeu ]");
-		
-		case 1:
-			this.avance();
-			break;
-			
-		case 2:
-			this.monte();
-			break;
-			
-		case 3:
-			this.descends();
-			break;
-			
-		default:
-			System.out.println("Loup.deplace[ erreur dans le bfs ]");
-			break;
-		}
-	}
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 	
 	public void arrete() {
 		this.vitesse = 0;
@@ -192,7 +140,7 @@ public class Loup extends Acteur{
 			System.out.println("Loup.attaqueTour [ loup attaque Tour ]");
 			
 			//Test Affichage
-			this.jeu.setNumeroAction(1);
+			super.getJeu().setNumeroAction(1);
 			
 			this.getCible().seFaitAttaquer(this.getPtsATT());
 			if(!this.getCible().estVivant()) {
@@ -207,7 +155,7 @@ public class Loup extends Acteur{
 			arrete();
 			
 			//Test Affichage
-			this.jeu.setNumeroAction(0);
+			super.getJeu().setNumeroAction(0);
 			
 			
 			this.getJeu().getMaison().seFaitAttaquer(this.getPtsATT());
@@ -215,11 +163,6 @@ public class Loup extends Acteur{
 	}
 
 	public void agit() {
-<<<<<<< HEAD
-=======
-            //seDeplace(this.getCible());
-			seDeplace();
->>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
             if (this.getCible() != null) {
                 attaqueTour();
                 changeCible();
