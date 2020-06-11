@@ -21,12 +21,6 @@ public class HistoriqueAction {
 		this.listeAction.add("La Maison se défend");
 		this.listeAction.add("Un Loup est mort");
 		this.listeAction.add("Une Tour a été détruite");
-		// this.listeAction.add("Un Loup attaque la Maison");
-		// this.listeAction.add("Un Loup attaque une Tour");
-		// this.listeAction.add("Une Tour se défend");
-		// this.listeAction.add("La Maison se défend");
-		// this.listeAction.add("Un Loup est mort");
-		// this.listeAction.add("Une Tour a été détruite");
 
 		// Liste défilante
 		this.listeDefile = new ArrayList<String>();

@@ -53,6 +53,8 @@ public class Controleur implements Initializable {
 	@FXML
 	private Label labelAction5;
 
+	@FXML
+	private Label infoActeur;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -65,7 +67,7 @@ public class Controleur implements Initializable {
 		this.maison = new Maison(jeu);
 		
 		// ajout des sprites
-		this.maisonVue = new MaisonVue(this.tableDeJeu, jeu.getTerrain());
+		this.maisonVue = new MaisonVue(this.tableDeJeu, infoActeur);
 		this.maisonVue.creerMaisonVue(maison);
 		this.tourVue = new TourVue(this.tableDeJeu);
 		
@@ -74,17 +76,6 @@ public class Controleur implements Initializable {
 		
 		// initialisation de la gameloop
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu, this.historiqueVue);
-		
-		//Test Affichage Historique
-		/*
-		this.historique = new HistoriqueAction(this.jeu);
-		this.labelAction1.textProperty().bind(this.historique.getListeDefile().get(0));
-		this.labelAction2.textProperty().bind(this.historique.getListeDefile().get(1));
-		this.labelAction3.textProperty().bind(this.historique.getListeDefile().get(2));
-		this.labelAction4.textProperty().bind(this.historique.getListeDefile().get(3));
-		this.labelAction5.textProperty().bind(this.historique.getListeDefile().get(4));
-		this.jeu.initHistorique(this.historique);
-		*/
 		
 		
 		//initialisation BFS
@@ -107,10 +98,8 @@ public class Controleur implements Initializable {
 
 	@FXML
 	void quitterJeu(ActionEvent event) {
-		
+		this.gameloop.pause();
 		//this.jeu.reintialiser();
-
-		
 		//System.out.println(this.jeu.bfs(99, 25, 2555));
 	}
 

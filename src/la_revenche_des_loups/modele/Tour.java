@@ -81,6 +81,7 @@ public class Tour extends Acteur{
                 seDefend();
                 //Test tir
         		this.seDefend = false;
+        		this.jeu.getListeTirs().add(new Tir(this.id, this.getCible().getX(), this.getCible().getY()));
                 
                 // on affiche sur la console que la tour se défend
                 System.out.println("Tour.agit [ Tour " + getId() + " se défend ]");

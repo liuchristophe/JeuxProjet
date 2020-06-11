@@ -57,6 +57,7 @@
                                     <Insets bottom="15.0" top="5.0" />
                                  </VBox.margin></Label>
                               <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#vagueSuivante" style="-fx-background-color: darkseagreen; -fx-border-width: 3px; -fx-border-color: white; -fx-border-radius: 5px;" text="Vague Suivante" />
+                              <Label fx:id="infoActeur" text="TEST" textFill="WHITE" />
                            </children>
                         </VBox>
                      </children>

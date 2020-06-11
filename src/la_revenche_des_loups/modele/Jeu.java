@@ -20,10 +20,11 @@ public class Jeu {
 	private IntegerProperty limiteTours;
 	private IntegerProperty nombreTours;
 	private boolean partieLance;
-	
-	//TEST Affichage Historique
 	private int numeroAction;
 	private HistoriqueAction historique;
+	
+	//Test Tir
+	private ArrayList<Tir> listeTirs;
 
 	public Jeu(Terrain t) {
 		this.terrain = t;
@@ -35,6 +36,9 @@ public class Jeu {
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
 		this.partieLance = false;
+		
+		//Test Tir
+		this.listeTirs = new ArrayList<Tir>();
 	}
 
 	//TEST Affichage Historique
@@ -139,7 +143,6 @@ public class Jeu {
 
 	public void ajouterTour(Tour t) {
 		this.listeTour.add(t);
-		this.listeActeurs.add(t);
 		this.nombreTours.setValue(this.nombreTours.getValue()+1);;
 	}
 	
@@ -225,7 +228,10 @@ public class Jeu {
 		return false;
 	}
 	
-	
+	//Test tir
+	public ArrayList<Tir> getListeTirs(){
+		return this.listeTirs;
+	}
 	
 	
 	// //////////////////////////////////////BFS////////////////////////////////////// //
