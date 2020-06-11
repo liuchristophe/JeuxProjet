@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="la_revenche_des_loups.controleur.Controleur">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1400.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="la_revenche_des_loups.controleur.Controleur">
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white; -fx-border-width: 4px;" BorderPane.alignment="CENTER">
          <children>
@@ -84,11 +84,17 @@
       <Label prefHeight="30.0" prefWidth="199.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="La Revanche Des Loups" textFill="PINK" BorderPane.alignment="TOP_CENTER" />
    </top>
    <center>
-      <Pane fx:id="tableDeJeu" maxHeight="600.0" maxWidth="1200.0" onMouseClicked="#cliqueTableDeJeu" prefHeight="600.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="tableDeJeu" maxHeight="600.0" maxWidth="1200.0" onMouseClicked="#cliqueTableDeJeu" prefHeight="600.0" prefWidth="1200.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
             <TilePane fx:id="tilePane" maxHeight="600.0" maxWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" />
             <TilePane fx:id="testBFS" maxHeight="600.0" maxWidth="1200.0" opacity="0.2" prefHeight="600.0" prefWidth="1200.0" />
          </children>
+         <BorderPane.margin>
+            <Insets right="50.0" />
+         </BorderPane.margin>
       </Pane>
    </center>
+   <left>
+      <VBox prefHeight="649.0" prefWidth="100.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>
