@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -19,7 +21,47 @@
          <children>
             <VBox prefHeight="100.0" prefWidth="1080.0" style="-fx-border-color: white; -fx-border-width: 1px;">
                <children>
-                  <Button mnemonicParsing="false" onAction="#vagueSuivante" text="Vague Suivante" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="95.0" prefWidth="767.0" style="-fx-background-color: pink; -fx-border-color: black; -fx-border-width: 5px;">
+                           <children>
+                              <Label fx:id="labelAction1" style="-fx-font-weight: bold;">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin></Label>
+                              <Label fx:id="labelAction2" style="-fx-font-weight: bold;">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin></Label>
+                              <Label fx:id="labelAction3" style="-fx-font-weight: bold;">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin></Label>
+                              <Label fx:id="labelAction4" style="-fx-font-weight: bold;">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin></Label>
+                              <Label fx:id="labelAction5" style="-fx-font-weight: bold;">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin></Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="90.0" prefWidth="514.0">
+                           <children>
+                              <Label fx:id="labelVague" alignment="CENTER" prefHeight="25.0" prefWidth="186.0" style="-fx-font-weight: bold;" text="Parti non commencée" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" top="5.0" />
+                                 </VBox.margin></Label>
+                              <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#vagueSuivante" style="-fx-background-color: darkseagreen; -fx-border-width: 3px; -fx-border-color: white; -fx-border-radius: 5px;" text="Vague Suivante" />
+                              <Label fx:id="infoActeur" text="TEST" textFill="WHITE" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children></VBox>
             <VBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white; -fx-border-width: 1px;">
                <children>

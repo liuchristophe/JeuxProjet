@@ -6,16 +6,22 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import la_revenche_des_loups.modele.Bfs;
 import la_revenche_des_loups.modele.Jeu;
-import la_revenche_des_loups.modele.Loup;
 import la_revenche_des_loups.modele.Maison;
 import la_revenche_des_loups.modele.Terrain;
+<<<<<<< HEAD
 import la_revenche_des_loups.modele.Tour;
 import la_revenche_des_loups.vue.BFSVue;
+=======
+import la_revenche_des_loups.vue.BFSVue;
+import la_revenche_des_loups.vue.HistoriqueActionVue;
+import la_revenche_des_loups.modele.Tour;
+>>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 import la_revenche_des_loups.vue.MaisonVue;
 import la_revenche_des_loups.vue.TerrainVue;
 import la_revenche_des_loups.vue.TourVue;
@@ -39,6 +45,25 @@ public class Controleur implements Initializable {
     private TilePane testBFS; //juste pour essaie
 	@FXML
 	private Pane tableDeJeu;
+	
+	//test affichage
+	private HistoriqueActionVue historiqueVue;
+	@FXML
+    private Label labelVague;
+
+    @FXML
+    private Label labelAction1;
+    @FXML
+    private Label labelAction2;
+    @FXML
+    private Label labelAction3;
+	@FXML
+    private Label labelAction4;
+	@FXML
+	private Label labelAction5;
+
+	@FXML
+	private Label infoActeur;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -54,31 +79,49 @@ public class Controleur implements Initializable {
 		this.bfs = new Bfs(this.jeu);
 		
 		// ajout des sprites
-		this.maisonVue = new MaisonVue(this.tableDeJeu, jeu.getTerrain());
+		this.maisonVue = new MaisonVue(this.tableDeJeu, infoActeur);
 		this.maisonVue.creerMaisonVue(maison);
-		this.tourVue = new TourVue(this.tableDeJeu, this.jeu);
+		this.tourVue = new TourVue(this.tableDeJeu);
+		
+		//Initialisation de l'historique d'action
+		this.historiqueVue = new HistoriqueActionVue(jeu, labelAction1, labelAction2, labelAction3, labelAction4, labelAction5);
 		
 		// initialisation de la gameloop
-		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu);
+		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu, this.historiqueVue);
+		
 		
 		//initialisation BFS
+<<<<<<< HEAD
 //		this.bfsVue = new BFSVue(testBFS, this.jeu);
 //		this.bfsVue.afficherBFSVue(2, 2, 12);
+=======
+		//this.bfsVue = new BFSVue(testBFS, this.jeu);
+		//this.bfsVue.afficherBFSVue(2, 2, 12);
+>>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 	}
 
 	@FXML
 	void vagueSuivante(ActionEvent event) {
+		//this.historiqueVue.reinitialiserHistorique();
 		this.gameloop.lancerVague();
+		this.labelVague.setText("Vague numéro "+this.gameloop.getNumVague());
 	}
 	
 	@FXML
 	void lancerPartie(ActionEvent event) {
+		this.labelVague.setText("Vague numéro "+this.gameloop.getNumVague());
 		this.gameloop.lancerAnimation();
 	}
 
 	@FXML
 	void quitterJeu(ActionEvent event) {
+<<<<<<< HEAD
 		this.jeu.reintialiser();
+=======
+		this.gameloop.pause();
+		//this.jeu.reintialiser();
+		//System.out.println(this.jeu.bfs(99, 25, 2555));
+>>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 	}
 
 	@FXML
@@ -106,7 +149,19 @@ public class Controleur implements Initializable {
 		}
 	}
 	
+<<<<<<< HEAD
 	//Test d'affichage chemin bfs
+=======
+	
+	//test
+	@FXML
+	void changeLabel() {
+		
+	}
+	
+	
+//	//Test de bfs
+>>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 //	@FXML
 //	public void cliqueTableDeJeu(MouseEvent click) {
 //		int x = ((int) click.getX()) / 12;

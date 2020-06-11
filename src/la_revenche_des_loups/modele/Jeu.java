@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import la_revenche_des_loups.vue.LoupVue;
 
 
 
@@ -17,6 +18,12 @@ public class Jeu {
 	private int nbLoups = 0;
 	private IntegerProperty limiteTours;
 	private IntegerProperty nombreTours;
+	private boolean partieLance;
+	private int numeroAction;
+	private HistoriqueAction historique;
+	
+	//Test Tir
+	private ArrayList<Tir> listeTirs;
 
 	public Jeu(Terrain t) {
 		this.terrain = t;
@@ -27,8 +34,25 @@ public class Jeu {
 		this.listeTour = new ArrayList<Tour>();
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
+		this.partieLance = false;
+		
+		//Test Tir
+		this.listeTirs = new ArrayList<Tir>();
 	}
 
+	//TEST Affichage Historique
+	public int getNumeroAction(){
+		return this.numeroAction;
+	}
+	public void setNumeroAction(int num){
+		this.numeroAction = num;
+		this.historique.miseAJourListeDefile(this.numeroAction);
+	}
+	public void initHistorique(HistoriqueAction historique) {
+		this.historique = historique;
+	}
+	
+	
 	//Avoir un tableau pour voir s'il y a un obstacle
 	//Si tab[id] = 1 alors obstacle Sinon tab[id] = 0 pas d'obstacle
 	public void initTableauObstacle() {
@@ -76,6 +100,19 @@ public class Jeu {
 		return this.listeTour;
 	}
 	
+	public boolean partiEstLance() {
+		return this.partieLance;
+	}
+	
+	public void changeStatutParti() {
+		if(this.partieLance) {
+			this.partieLance = false;
+		}
+		else {
+			this.partieLance = true;
+		}
+	}
+	
 	public Acteur getMaison() {
 		for(int i = 0; i < this.listeActeurs.size(); i++) {
 			if (this.listeActeurs.get(i) instanceof Maison) {
@@ -108,13 +145,13 @@ public class Jeu {
 		this.nombreTours.setValue(this.nombreTours.getValue()+1);;
 	}
 	
-	public boolean limiterTours() {
-		return this.limiteTours.getValue() > this.nombreTours.getValue() ? true : false;
-	}
-
 	public void retirerTour(Tour t) {
 		this.listeActeurs.remove(t);
 		this.listeTour.remove(t);
+	}
+	
+	public boolean limiterTours() {
+		return this.limiteTours.getValue() > this.nombreTours.getValue() ? true : false;
 	}
 	
 	public boolean loupSontMort() {
@@ -126,6 +163,7 @@ public class Jeu {
 		return true;
 	}
 
+	/*
 	public void reintialiser() {
 		this.terrain = new Terrain();
 		this.tableauObstacle = new int[this.terrain.getLargeur()*this.terrain.getHauteur()];
@@ -136,6 +174,7 @@ public class Jeu {
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
 	}
+	*/
 	
 	public void agir() {
 		for(int i = 0; i < this.listeActeurs.size(); i++) {
@@ -157,6 +196,23 @@ public class Jeu {
 		return false;
 	}
 	
+	
+	//Déplacement methpde de gameloop
+	public void nouveauLoup(int nbFrame,int nbLoups) {
+        if (nbFrame % 10 == 0 && this.getListeLoups().size()<nbLoups) {
+            this.ajouterLoup();
+        }
+    }
+
+    public void vague(int nbFrames,LoupVue loupVue,int nbLoups) {
+        nouveauLoup(nbFrames,nbLoups);
+        for (int i = 0; i < this.getListeLoups().size(); i++) {
+            loupVue.afficherLoupVue(this.getListeLoups().get(i));
+        }
+        agir();
+    }
+	
+	
 	public boolean verifieTourAlentour(int x, int y, int espacement) {
 		for(Acteur a : this.listeActeurs) {
 			if(a instanceof Tour) {
@@ -172,9 +228,28 @@ public class Jeu {
 		return false;
 	}
 	
+<<<<<<< HEAD
 	public void miseAJourToursLimite() {
 		this.limiteTours.set(this.limiteTours.get()+1);
 		this.nombreTours.set(this.nombreTours.get()-1);
+=======
+	//Test tir
+	public ArrayList<Tir> getListeTirs(){
+		return this.listeTirs;
+	}
+	
+	
+	// //////////////////////////////////////BFS////////////////////////////////////// //
+	
+	
+	//Tour comme obstacle taille 3x3
+	public void ajoutObstacleTour(int x, int y) {
+		for(int idY = y; idY < y+3; idY++) {
+			for(int idX = x; idX < x+3; idX++) {
+				this.tableauObstacle[idX+idY*this.terrain.getLargeur()] = 1;
+			}
+		}
+>>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 	}
 	
 

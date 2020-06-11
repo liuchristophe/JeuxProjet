@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class Maison extends Acteur {
 
 	private int yInf, ySup;
+	private Jeu jeu;
 
 	public Maison(Jeu j) {
 		super(j, 15, 150, 3, 5);
 		this.yInf = 11;
 		this.ySup = 38;
+		this.jeu = j;
 	}
 
 	public int getYSup() {
@@ -59,6 +61,9 @@ public class Maison extends Acteur {
 	
 	public void agit() {
 		if (this.getCible() != null) {
+			//Test Affichage
+			this.jeu.setNumeroAction(3);
+			
 			seDefend();
 			// on affiche sur la console que la maison se défend
 			System.out.println("Maison.agit [ Maison se défend ]");

@@ -8,8 +8,13 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import la_revenche_des_loups.modele.Bfs;
 import la_revenche_des_loups.modele.Jeu;
+<<<<<<< HEAD
 import la_revenche_des_loups.modele.Tour;
+=======
+import la_revenche_des_loups.vue.HistoriqueActionVue;
+>>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 import la_revenche_des_loups.vue.LoupVue;
+import la_revenche_des_loups.vue.TirVue;
 
 public class GameLoop {
 
@@ -21,14 +26,32 @@ public class GameLoop {
 	private LoupVue loupVue;
 	private Pane panneau;
 	private int numVague;
+	
+	//test bouton pause
+	private boolean gameloopEnCour;
 
-	public GameLoop(Jeu jeu, Pane panneau) {
+	// test tir
+	private TirVue tirVue;
+
+	private HistoriqueActionVue historiqueVue;
+
+	public GameLoop(Jeu jeu, Pane panneau, HistoriqueActionVue historiqueVue) {
 		this.jeu = jeu;
 		this.loupVue = new LoupVue(panneau);
 		this.nbLoups = 10;//////////10 par default
 		this.panneau = panneau;
 		this.numVague = 1;
+<<<<<<< HEAD
 		this.bfs = new Bfs(this.jeu);
+=======
+		this.historiqueVue = historiqueVue;
+
+		// test tir
+		this.tirVue = new TirVue(this.jeu, this.panneau);
+		
+		//test bouton pause
+		this.gameloopEnCour = false;
+>>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 	}
 
 	public void initAnimation() {
@@ -36,33 +59,30 @@ public class GameLoop {
 		nbFrame = 0;
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
+<<<<<<< HEAD
 		KeyFrame kf = new KeyFrame(Duration.seconds(0.1), (ev -> {
 			// Le loup agit ï¿½ chaque frame jusqu'a que la gameloop se stop
+=======
+		KeyFrame kf = new KeyFrame(Duration.seconds(0.2), (ev -> {
+			// Le loup agit à chaque frame jusqu'a que la gameloop se stop
+>>>>>>> 52b6362c55f8d7f900e99063533be4cfababd916
 			if (this.jeu.finPartie() || this.jeu.finVague(nbLoups)) {
+				this.historiqueVue.affichageFinParti();
+				this.jeu.changeStatutParti();
+				this.gameloopEnCour = false;
 				gameLoop.stop();
 				this.numVague++;
 			} else {
-				vague();
+				this.jeu.vague(nbFrame, loupVue, nbLoups);
+				this.tirVue.affichageTir();
+				supprimerLoup();
+				supprimerTour();
+				this.historiqueVue.affichageHistorique();
 			}
 			nbFrame++;
 		}));
 		gameLoop.getKeyFrames().add(kf);
-	}
-
-	public void nouveauLoup() {
-		if (nbFrame % 10 == 0 && this.jeu.getListeLoups().size() < nbLoups) {
-			this.jeu.ajouterLoup();
-		}
-	}
-
-	public void vague() {
-		nouveauLoup();
-		for (int i = 0; i < this.jeu.getListeLoups().size(); i++) {
-			this.loupVue.afficherLoupVue(this.jeu.getListeLoups().get(i));
-		}
-		this.jeu.agir();
-		supprimerLoup();
-		supprimerTour();
+		
 	}
 
 	public void supprimerLoup() {
@@ -89,19 +109,36 @@ public class GameLoop {
 	}
 
 	public void lancerVague() {
-		if (this.numVague <=3) {
-			this.nbLoups += this.numVague*10;
+		if (this.numVague <= 3) {
+			this.nbLoups += this.numVague * 10;
+			this.jeu.changeStatutParti();
+			this.gameloopEnCour = true;
 			gameLoop.play();
-		}
-		else {
+		} else {
 			System.out.println("GameLoop.lancerVague [ Aucune vague restante ]");
 		}
 	}
-	
+
+	public int getNumVague() {
+		return this.numVague;
+	}
+
 	public void lancerAnimation() {
 		System.out.println("GameLoop.lancerAnimation [ je suis dans l'animation ]");
 		initAnimation();
+		this.jeu.changeStatutParti();
+		this.gameloopEnCour = true;
 		gameLoop.play();
+	}
+	
+	//test bouton pause
+	public void pause() {
+		if (this.gameloopEnCour) {
+			this.gameLoop.stop();
+		}
+		else{
+			this.gameLoop.play();
+		}
 	}
 
 }

@@ -84,9 +84,17 @@ public abstract class Acteur {
 		this.pv = 0;
 		System.out.println("Acteur.meurt [ "+this+" est mort ]");
 		
-		if (this instanceof Tour || this instanceof Loup) {
+		//Test Affichage
+		if (this instanceof Loup) {
+			this.jeu.setNumeroAction(4);
 			this.jeu.retirerActeur(this);
 		}
+		else if (this instanceof Tour) {
+			this.jeu.setNumeroAction(5);
+			this.jeu.retirerActeur(this);
+		}
+		
+		
 		
 	}
 	
