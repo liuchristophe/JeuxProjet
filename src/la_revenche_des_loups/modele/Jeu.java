@@ -1,7 +1,6 @@
 package la_revenche_des_loups.modele;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -148,6 +147,7 @@ public class Jeu {
 	
 	public void retirerTour(Tour t) {
 		this.listeActeurs.remove(t);
+		this.listeTour.remove(t);
 	}
 	
 	public boolean limiterTours() {
@@ -228,169 +228,15 @@ public class Jeu {
 		return false;
 	}
 	
+	public void miseAJourToursLimite() {
+		this.limiteTours.set(this.limiteTours.get()+1);
+		this.nombreTours.set(this.nombreTours.get()-1);
+	}
+
 	//Test tir
 	public ArrayList<Tir> getListeTirs(){
 		return this.listeTirs;
 	}
 	
-	
-	// //////////////////////////////////////BFS////////////////////////////////////// //
-	
-	
-	//Tour comme obstacle taille 3x3
-	public void ajoutObstacleTour(int x, int y) {
-		for(int idY = y; idY < y+3; idY++) {
-			for(int idX = x; idX < x+3; idX++) {
-				this.tableauObstacle[idX+idY*this.terrain.getLargeur()] = 1;
-			}
-		}
-	}
-	
-	public void ajoutBFS(ArrayList<Integer> bfs) {
-		for(int id : bfs) {
-			this.tableauObstacle[id] = 2;
-		}
-	}
-	
-	//Retourne un donnée dans tableauObstacle
-	//Si tab[id] = 1 alors obstacle Sinon tab[id] = 0 pas d'obstacle
-	public int retourTableauObstacle(int x, int y) {
-		return tableauObstacle[x+y*this.terrain.getLargeur()];
-	}
-	
-
-	
-	
-	
-	//Si renvoie list alors bfs.list(int[0] == arrivée && int[1] == départ)
-	public boolean verifieObstacle(int x, int y) {
-		boolean verifie = false;
-		for(int idY = y; idY < y+3; idY++) {
-			for(int idX = x; idX < x+3; idX++) {
-				if(retourTableauObstacle(idX, idY) == 1) {
-					verifie = true;
-				}
-			}
-		}
-		return verifie;
-	}
-	
-	
-	public int[] tabMarquer(int x, int y, int idCible) { //idCible losque x + y*tailleTerrain en 1 dimension
-		int largeurTerrain = this.terrain.getLargeur();
-		int tailleTerrain = this.terrain.getHauteur()*largeurTerrain;
-		int[] tabMarquer = this.tableauObstacle.clone();
-		ArrayList<Integer> pile = new ArrayList<Integer>();
-		ArrayList<Integer> bfsArriver = new ArrayList<Integer>();
-		ArrayList<Integer> bfsDepart = new ArrayList<Integer>();
-		pile.add(y*largeurTerrain + x);
-		tabMarquer[y*largeurTerrain + x] = 1;
-		while(pile.size() > 0) {
-			int id = pile.get(0);
-			//Avant
-			int idA = id-1;
-			passageBFS(tailleTerrain, idA, id, tabMarquer, bfsArriver, bfsDepart, pile);
-			//Haut
-			int idH = id - largeurTerrain;
-			passageBFS(tailleTerrain, idH, id, tabMarquer, bfsArriver, bfsDepart, pile);
-			//Bas
-			int idB = id + largeurTerrain;
-			passageBFS(tailleTerrain, idB, id, tabMarquer, bfsArriver, bfsDepart, pile);
-			pile.remove(0);
-		}
-		return tabMarquer;
-	}
-	
-	//Si renvoie 1 = avance, 2 = monte, 3 = descend)+
-	public int bfs(int x, int y, int idCible) { //idCible losque x + y*tailleTerrain en 1 dimension
-		int largeurTerrain = this.terrain.getLargeur();
-		int tailleTerrain = this.terrain.getHauteur()*largeurTerrain;
-		int[] tabMarquer = this.tableauObstacle.clone();
-		ArrayList<Integer> pile = new ArrayList<Integer>();
-		ArrayList<Integer> bfsArriver = new ArrayList<Integer>();
-		ArrayList<Integer> bfsDepart = new ArrayList<Integer>();
-		int pos = y*largeurTerrain + x;
-		pile.add(pos);
-		tabMarquer[y*largeurTerrain + x] = 1;
-		while(pile.size() > 0) {
-			int id = pile.get(0);
-			//Avant
-			int idA = id-1;
-			passageBFS(tailleTerrain, idA, id, tabMarquer, bfsArriver, bfsDepart, pile);
-			//Haut
-			int idH = id - largeurTerrain;
-			passageBFS(tailleTerrain, idH, id, tabMarquer, bfsArriver, bfsDepart, pile);
-			//Bas
-			int idB = id + largeurTerrain;
-			passageBFS(tailleTerrain, idB, id, tabMarquer, bfsArriver, bfsDepart, pile);
-			//Recule
-//			if(id%100!=99) {
-//				int idR = id + 1;
-//				passageBFS(tailleTerrain, idR, id, tabMarquer, bfsArriver, bfsDepart, pile);
-				pile.remove(0);
-//			}
-		}
-		ArrayList<Integer> chemin = new ArrayList<Integer>();
-		int depart = y*largeurTerrain + x;
-		int arriver = idCible;
-		boolean erreur = false;
-		while(arriver != depart && !erreur) {
-			int i=bfsArriver.size()-1; // /////////////////////////////////A verifier
-			while(i>0 && bfsArriver.get(i) != arriver) {
-				i--;
-			}
-			if(bfsArriver.get(i) == arriver){
-				chemin.add(arriver);
-				arriver = bfsDepart.get(i);
-			}
-			else {
-				erreur = true;
-				System.out.println("Jeu.bfs[ ne trouve pas ]");
-				System.out.println(idCible + " existe?" + bfsArriver.contains(idCible));
-			}
-		}
-		Collections.reverse(chemin);
-		// Convertir bfs pour Loup seDeplace
-		int idPrec = pos;
-		int idSuiv = chemin.get(0);
-		
-		// pour avancer id = 2000 - 1999 == 1
-		if(idPrec-idSuiv == 1) {
-			return 1;
-		}
-		// pour monter id = 2000 - 1900 == 100
-		else if(idPrec-idSuiv == this.getTerrain().getLargeur()) {
-			return 2;
-		}
-		// pour descendre id = 2000 - 2100 == -100
-		else if(idPrec-idSuiv == -this.getTerrain().getLargeur()) {
-			return 3;
-		}
-		return 0;
-	}
-	
-	//Methode permettant ajouter un chemin de tous les bfs puis marque sur un tableau comme case utiliser
-	//donnée[0] = idArriver donnée[1] = idPrecedent
-	private static void passageBFS(int tailleTerrain, int idArriver, int idPrecedent, int[] tabMarquer, ArrayList<Integer> bfsArriver, ArrayList<Integer> bfsDepart, ArrayList<Integer> pile) {
-		if(idArriver < tailleTerrain) {
-			if(tabMarquer[idArriver] == 0) {
-				bfsArriver.add(idArriver);
-				bfsDepart.add(idPrecedent);
-				pile.add(idArriver);
-				tabMarquer[idArriver] = 1;
-			}
-		}
-	}
-
-	//Pour un test
-//	public boolean existeTour() {
-//		for(Acteur a : listeActeurs) {
-//			if(a.getClass().getName() == "la_revenche_des_loups.modele.Tour") {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-
 
 }

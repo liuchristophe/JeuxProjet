@@ -8,12 +8,14 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
+import la_revenche_des_loups.modele.Bfs;
 import la_revenche_des_loups.modele.Jeu;
 
 public class BFSVue {
 	private Jeu jeu;
 	private TilePane panneau;
 	private Image tileSet;
+	private Bfs bfs;
 	
 	public BFSVue(TilePane panneau, Jeu jeu){
 		this.jeu = jeu;
@@ -24,13 +26,14 @@ public class BFSVue {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        this.bfs = new Bfs(jeu);
 	}
 	
 	public void afficherBFSVue(int nbTuileLigne, int nbTuileColonne, int pixelTuile) {
 		
 		for (int y=0;y<this.jeu.getTerrain().getHauteur();y++) {
 			for (int x=0;x<this.jeu.getTerrain().getLargeur();x++) {
-				int codeTuile=this.jeu.retourTableauObstacle(x, y);
+				int codeTuile=this.bfs.retourTableauObstacle(x, y);
 				ImageView imageview = new ImageView(this.tileSet);
 				Rectangle2D portVue = null;
 				if(codeTuile == 0) {
@@ -45,30 +48,11 @@ public class BFSVue {
 		}
 	}
 	
-	public void afficherBFSVue2(int nbTuileLigne, int nbTuileColonne, int pixelTuile) {
-		for (int y=0;y<this.jeu.getTerrain().getHauteur();y++) {
-			for (int x=0;x<this.jeu.getTerrain().getLargeur();x++) {
-				int[] tabMarquer = this.jeu.tabMarquer(99, 25, 3333);
-				int codeTuile=tabMarquer[y*this.jeu.getTerrain().getLargeur()+x];
-				ImageView imageview = new ImageView(this.tileSet);
-				Rectangle2D portVue;
-				if(codeTuile == 0) {
-					portVue = new Rectangle2D(12,0,12,12);
-				}
-				else {
-					portVue = new Rectangle2D(0,0,12,12);
-				}
-				imageview.setViewport(portVue);
-				this.panneau.getChildren().add(imageview);
-			}
-		}
-	}
-	
 	public void afficherCheminBFS(ArrayList<Integer> bfs) {
-		this.jeu.ajoutBFS(bfs);
+		this.bfs.ajoutBFS(bfs);
 		for (int y=0;y<this.jeu.getTerrain().getHauteur();y++) {
 			for (int x=0;x<this.jeu.getTerrain().getLargeur();x++) {
-				int codeTuile=this.jeu.retourTableauObstacle(x, y);
+				int codeTuile=this.bfs.retourTableauObstacle(x, y);
 				ImageView imageview = new ImageView(this.tileSet);
 				Rectangle2D portVue = null;
 				if(codeTuile == 0) {
