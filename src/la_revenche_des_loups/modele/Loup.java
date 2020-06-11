@@ -10,7 +10,7 @@ public class Loup extends Acteur{
 	private Bfs bfs;
 	private ArrayList<Integer> chemin;
 	private boolean cibleTour;
-
+	
 	public Loup(Jeu j) {
 		super(j, 99, (int) (Math.random() * 46) + 2, 30, 4, 4);
 		this.vitesse = 1;
