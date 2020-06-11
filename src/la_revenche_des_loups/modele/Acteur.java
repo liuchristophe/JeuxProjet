@@ -110,6 +110,10 @@ public abstract class Acteur {
 		return this.taille;
 	}
 	
+	public int obtenirIdPosition() {
+		return this.x+this.y*this.getJeu().getTerrain().getLargeur();
+	}
+	
 	public abstract void changeCible();
 	
 	public abstract void agit();
