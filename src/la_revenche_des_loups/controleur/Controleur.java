@@ -98,14 +98,14 @@ public class Controleur implements Initializable {
 	void vagueSuivante(ActionEvent event) {
 		if (!this.jeu.getPartiEstLance()) {
 			this.gameloop.lancerVague();
-			this.labelVague.setText("Vague numéro " + this.gameloop.getNumVague());
+			this.labelVague.setText("Vague numéro " + this.gameloop.getNumVague()+"/5");
 		}
 	}
 
 	@FXML
 	void lancerPartie(ActionEvent event) {
 		if (this.gameloop.getNumVague() == 1 && !this.jeu.getPartiEstLance()) {
-			this.labelVague.setText("Vague numéro " + this.gameloop.getNumVague());
+			this.labelVague.setText("Vague numéro " + this.gameloop.getNumVague()+"/5");
 			this.gameloop.lancerAnimation();
 		}
 	}
