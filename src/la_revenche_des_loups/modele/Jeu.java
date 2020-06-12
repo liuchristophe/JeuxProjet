@@ -24,7 +24,7 @@ public class Jeu {
 	private Bfs bfs;
 	
 	private ArrayList<Tir> listeTirs;
-	private int monnaie;
+	private IntegerProperty monnaie;
 
 	public Jeu(Terrain t) {
 		this.terrain = t;
@@ -43,7 +43,7 @@ public class Jeu {
 =======
 >>>>>>> df99cd66e69950b08e02012fc35a9180593d9040
 		this.listeTirs = new ArrayList<Tir>();
-		this.monnaie = 1000;
+		this.monnaie = new SimpleIntegerProperty(1000);
 	}
 	
 	public Bfs getBfs() {
@@ -65,12 +65,12 @@ public class Jeu {
 	
 	//test payer tour
 	public void payerTour(int prix) {
-		if (prix <= this.monnaie) {
-			this.monnaie -= prix;
+		if (prix <= this.monnaie.getValue()) {
+			this.monnaie.setValue(this.monnaie.getValue()-prix);
 		}
 	}
 	
-	public int getMonnaie() {
+	public IntegerProperty getMonnaie() {
 		return this.monnaie;
 	}
 	

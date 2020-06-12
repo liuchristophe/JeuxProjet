@@ -90,6 +90,7 @@ public class Controleur implements Initializable {
 		// initialisation de la gameloop
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu, this.historiqueVue);
 		
+<<<<<<< HEAD
 		this.actionControleur = new ActionControleur(this.jeu);
 		
 		this.bfs = new Bfs(this.jeu);
@@ -103,6 +104,9 @@ public class Controleur implements Initializable {
 		this.imageTourBrique = new ImageView(tourBrique);
 		*/
 		//this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaie());
+=======
+		this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaie().asString());
+>>>>>>> 01cbbaac6213f8c2d8346668b6ce2440941b376e
 	}
 
 	@FXML
