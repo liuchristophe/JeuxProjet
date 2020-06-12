@@ -94,13 +94,15 @@ public class Controleur implements Initializable {
 	@FXML
 	void vagueSuivante(ActionEvent event) {
 		// this.historiqueVue.reinitialiserHistorique();
-		this.gameloop.lancerVague();
-		this.labelVague.setText("Vague numéro " + this.gameloop.getNumVague());
+		if (!this.jeu.getPartiEstLance()) {
+			this.gameloop.lancerVague();
+			this.labelVague.setText("Vague numéro " + this.gameloop.getNumVague());
+		}
 	}
 
 	@FXML
 	void lancerPartie(ActionEvent event) {
-		if (this.gameloop.getNumVague() == 1) {
+		if (this.gameloop.getNumVague() == 1 && !this.jeu.getPartiEstLance()) {
 			this.labelVague.setText("Vague numéro " + this.gameloop.getNumVague());
 			this.gameloop.lancerAnimation();
 		}

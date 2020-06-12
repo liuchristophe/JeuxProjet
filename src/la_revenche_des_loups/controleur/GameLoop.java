@@ -26,7 +26,6 @@ public class GameLoop {
 	private int numVague;
 
 	// test bouton pause
-	private boolean gameloopEnCour;
 
 	// test tir
 	private TirVue tirVue;
@@ -45,8 +44,7 @@ public class GameLoop {
 		// test tir
 		this.tirVue = new TirVue(this.jeu, this.panneau);
 
-		// test bouton pause
-		this.gameloopEnCour = false;
+		
 	}
 
 	public void initAnimation() {
@@ -59,7 +57,6 @@ public class GameLoop {
 			if (this.jeu.finPartie() || this.jeu.finVague(nbLoups)) {
 				this.historiqueVue.affichageFinParti();
 				this.jeu.changeStatutParti();
-				this.gameloopEnCour = false;
 				gameLoop.stop();
 				this.numVague++;
 			} else {
@@ -105,7 +102,6 @@ public class GameLoop {
 	public void lancerVague() {
 		this.nbLoups += this.numVague * 10;
 		this.jeu.changeStatutParti();
-		this.gameloopEnCour = true;
 		gameLoop.play();
 	}
 
@@ -117,17 +113,12 @@ public class GameLoop {
 		System.out.println("GameLoop.lancerAnimation [ je suis dans l'animation ]");
 		initAnimation();
 		this.jeu.changeStatutParti();
-		this.gameloopEnCour = true;
 		gameLoop.play();
 	}
 
 	// test bouton pause
 	public void pause() {
-		if (this.gameloopEnCour) {
-			this.gameLoop.stop();
-		} else {
-			this.gameLoop.play();
-		}
+		
 	}
 
 }
