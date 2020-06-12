@@ -114,17 +114,17 @@
                               <Insets bottom="5.0" top="5.0" />
                            </HBox.margin>
                            <children>
-                              <ImageView fitHeight="95.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-                                 <image>
-                                    <Image url="@../ressources/chateauFinal2.png" />
-                                 </image>
+                              <ImageView fitHeight="58.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
-                                    <Insets left="15.0" />
+                                    <Insets left="15.0" top="10.0" />
                                  </HBox.margin>
+                                 <image>
+                                    <Image url="@../ressources/roi.png" />
+                                 </image>
                               </ImageView>
                               <Label style="-fx-font-weight: bold;" text="PV :">
                                  <HBox.margin>
-                                    <Insets left="15.0" top="25.0" />
+                                    <Insets left="10.0" top="25.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -155,16 +155,11 @@
                      </children>
                   </HBox>
                </children></VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="97.0" prefWidth="312.0" style="-fx-border-color: white; -fx-border-width: 1px;">
+            <VBox alignment="CENTER" prefHeight="97.0" prefWidth="312.0" style="-fx-border-color: white; -fx-border-width: 1px;">
                <children>
                   <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#lancerPartie" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Lancer une partie">
                      <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#quitterJeu" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Quitter la partie">
-                     <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets />
                      </VBox.margin>
                   </Button>
                </children>

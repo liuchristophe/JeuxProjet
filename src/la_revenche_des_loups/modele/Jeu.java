@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import la_revenche_des_loups.modele.ClasseLoup.Loup_Blanc;
+import la_revenche_des_loups.modele.ClasseLoup.Loup_Gris;
+import la_revenche_des_loups.modele.ClasseLoup.Loup_Fantome;
 import la_revenche_des_loups.vue.LoupVue;
 
 
@@ -22,7 +25,6 @@ public class Jeu {
 	private int numeroAction;
 	private HistoriqueAction historique;
 	private Bfs bfs;
-	
 	private ArrayList<Tir> listeTirs;
 	private IntegerProperty monnaie;
 
@@ -40,7 +42,7 @@ public class Jeu {
 		
 		//Test Tir
 		this.listeTirs = new ArrayList<Tir>();
-		this.monnaie = new SimpleIntegerProperty(1000);
+		this.monnaie = new SimpleIntegerProperty(1200);
 	}
 	
 	public Bfs getBfs() {
@@ -154,9 +156,17 @@ public class Jeu {
 	}
 	
 	public void ajouterLoup() {
-		this.listeLoups.add(new Loup(this));
-		this.nbLoups++;
-	}
+        if(this.nbLoups%10==0&&this.nbLoups!=0) {
+            this.listeLoups.add(new Loup_Blanc(this));
+        }
+        else if(this.nbLoups%4==0&&this.nbLoups!=0) {
+            this.listeLoups.add(new Loup_Fantome(this));
+        }
+        else{
+            this.listeLoups.add(new Loup_Gris(this));
+        }
+        this.nbLoups++;
+    }
 
 	public void retirerLoup(Loup l) {
 		this.listeLoups.remove(l);
@@ -184,19 +194,6 @@ public class Jeu {
 		}
 		return true;
 	}
-
-	/*
-	public void reintialiser() {
-		this.terrain = new Terrain();
-		this.tableauObstacle = new int[this.terrain.getLargeur()*this.terrain.getHauteur()];
-		this.initTableauObstacle();
-		this.listeActeurs = new ArrayList<Acteur>();
-		this.listeLoups = new ArrayList<Loup>();
-		this.listeTour = new ArrayList<Tour>();
-		this.limiteTours = new SimpleIntegerProperty(5);
-		this.nombreTours = new SimpleIntegerProperty(0);
-	}
-	*/
 	
 	public void agir() {
 		for(int i = 0; i < this.listeActeurs.size(); i++) {
@@ -211,9 +208,9 @@ public class Jeu {
 		return false;
 	}
 	
-	public boolean finVague(int nbLoups) {
+	public boolean finVague(int nbLoups, int numVague) {
 		if (this.nbLoups==nbLoups && loupSontMort()) {
-			this.monnaie.set(this.monnaie.getValue()+500);
+			this.monnaie.set(this.monnaie.getValue()+350*numVague);
 			return true;
 		}
 		return false;
@@ -222,7 +219,7 @@ public class Jeu {
 	
 	//Déplacement methpde de gameloop
 	public void nouveauLoup(int nbFrame,int nbLoups) {
-        if (nbFrame % 10 == 0 && this.getListeLoups().size()<nbLoups) {
+        if (nbFrame % 7 == 0 && this.getListeLoups().size()<nbLoups) {
             this.ajouterLoup();
         }
     }

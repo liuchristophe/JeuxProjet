@@ -38,15 +38,4 @@ public class HistoriqueActionVue {
 		this.l4.setText("*******************");
 		this.l5.setText("*******************");
 	}
-
-	/*
-	public void reinitialiserHistorique() {
-		this.l1.setText("");
-		this.l2.setText("");
-		this.l3.setText("");
-		this.l4.setText("");
-		this.l5.setText("");
-		this.historique.reinitialiserListeDefile();
-	}
-	 */
 }

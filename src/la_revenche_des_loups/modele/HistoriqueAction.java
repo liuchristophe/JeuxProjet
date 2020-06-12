@@ -7,7 +7,6 @@ import javafx.beans.property.StringProperty;
 
 public class HistoriqueAction {
 
-	// Test Affichage
 	private ArrayList<String> listeAction;
 	private ArrayList<String> listeDefile;
 	private Jeu jeu;

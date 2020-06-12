@@ -45,17 +45,4 @@ public class TirVue {
 			}
 		}
 	}
-
-	/*
-	 * public void supprimerTir() { ImageView impact = new ImageView();
-	 * impact.setFitWidth(12); impact.setFitHeight(12);
-	 * impact.translateXProperty().bind(this.jeu.getListeTirs().get(i).getPositionX(
-	 * ));
-	 * impact.translateYProperty().bind(this.jeu.getListeTirs().get(i).getPositionY(
-	 * )); impact.setId(this.jeu.getListeTirs().get(i).getIdTir());
-	 * System.out.println("Lookup : "+this.panneauJeu.lookup("#"+this.jeu.
-	 * getListeTirs().get(i).getIdTir()));
-	 * this.panneauJeu.getChildren().add(impact);
-	 * System.out.println("creation de l'impact "+impact.getId()); }
-	 */
 }

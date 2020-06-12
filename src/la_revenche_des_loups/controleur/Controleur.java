@@ -10,11 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import la_revenche_des_loups.modele.Bfs;
+import la_revenche_des_loups.exception.MonException;
 import la_revenche_des_loups.modele.Jeu;
 import la_revenche_des_loups.modele.Maison;
 import la_revenche_des_loups.modele.Terrain;
-import la_revenche_des_loups.vue.BFSVue;
 import la_revenche_des_loups.vue.HistoriqueActionVue;
 import la_revenche_des_loups.vue.MaisonVue;
 import la_revenche_des_loups.vue.TerrainVue;
@@ -33,8 +32,6 @@ public class Controleur implements Initializable {
 
 	@FXML
 	private TilePane tilePane;
-	// @FXML
-	// private TilePane testBFS; // juste pour essaie
 	@FXML
 	private Pane tableDeJeu;
 
@@ -82,7 +79,11 @@ public class Controleur implements Initializable {
 		this.historiqueVue = new HistoriqueActionVue(jeu, labelAction1, labelAction2, labelAction3, labelAction4, labelAction5);
 
 		// initialisation de la gameloop
-		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu, this.historiqueVue);
+		try {
+			this.gameloop = new GameLoop(this.jeu, this.tableDeJeu, this.historiqueVue);
+		} catch (MonException e) {
+			e.printStackTrace();
+		}
 
 		// affichage de la monnaie du joueur
 		this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaieProperty().asString());
@@ -91,14 +92,10 @@ public class Controleur implements Initializable {
 		this.labelNbMaxTour.textProperty().bind(this.jeu.getNombreToursProperty().asString());
 
 		this.actionControleur = new ActionControleur(this.jeu);
-		
-		
-		//this.labelTourSelection.textProperty().bind(this.actionControleur.getTourSelection());
 	}
 
 	@FXML
 	void vagueSuivante(ActionEvent event) {
-		// this.historiqueVue.reinitialiserHistorique();
 		if (!this.jeu.getPartiEstLance()) {
 			this.gameloop.lancerVague();
 			this.labelVague.setText("Vague numéro " + this.gameloop.getNumVague());
@@ -111,13 +108,6 @@ public class Controleur implements Initializable {
 			this.labelVague.setText("Vague numéro " + this.gameloop.getNumVague());
 			this.gameloop.lancerAnimation();
 		}
-	}
-
-	@FXML
-	void quitterJeu(ActionEvent event) {
-		this.gameloop.pause();
-		// this.jeu.reintialiser();
-		// System.out.println(this.jeu.bfs(99, 25, 2555));
 	}
 
 	@FXML
@@ -146,16 +136,5 @@ public class Controleur implements Initializable {
 		this.TypeTour = 1;
 		actionControleur.tourSelection(this.TypeTour, this.labelTourSelection);
 	}
-
-//	//Test de bfs
-//	@FXML
-//	public void cliqueTableDeJeu(MouseEvent click) {
-//		int x = ((int) click.getX()) / 12;
-//		int y = ((int) click.getY()) / 12;
-//		System.out.println("Controleur.cliqueTableDeJeu"+this.bfs.cheminBfs(x, y, 1615));
-//		System.out.println("Controleur.cliqueTableDeJeu [ x:" + x + " y:" + y + " ]");
-//		this.testBFS.getChildren().clear();
-//		this.bfsVue.afficherCheminBFS(this.bfs.cheminBfs(x, y, 1615));
-//	}
 	
 }

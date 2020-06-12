@@ -7,8 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import la_revenche_des_loups.modele.Tour;
-import la_revenche_des_loups.modele.Tour_Bois;
-import la_revenche_des_loups.modele.Tour_Paille;
+import la_revenche_des_loups.modele.ClasseTour.Tour_Bois;
+import la_revenche_des_loups.modele.ClasseTour.Tour_Paille;
 
 public class TourVue {
 	

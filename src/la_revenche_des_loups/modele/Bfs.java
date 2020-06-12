@@ -1,6 +1,5 @@
 package la_revenche_des_loups.modele;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -29,8 +28,7 @@ public class Bfs {
 			}
 		}
 	}	
-	
-	//liste.get(0) = listeDepart et liste.get(1) = listeVersCible
+
 	public void listeDepartArriverBfs(int idDepart, ArrayList<Integer> listeDepart, ArrayList<Integer> listeVersCible){
 		ArrayList<Integer> pile = new ArrayList<Integer>();
 		int[] tabMarquage = this.tableauObstacle.clone();
@@ -74,48 +72,7 @@ public class Bfs {
 				posCible++;
 			}
 		}
-		
-//		if(tour) {
-//			System.out.println("Bfs.cheminBfs[entre dans le cas du tour]");
-//			posCible += 101;//Recentrer le pos de la tour
-//			if(!listeVersCible.contains(idCible)) {
-//				int i=0;
-//				int posPrim = -1;
-//				while(i<2){
-//					
-//					//cote tour droite
-//					posPrim = this.cherchePosCible(posCible, listeVersCible, 2, i);
-//					if(posPrim != -1) {
-//						posCible = posPrim;
-//					}
-//					
-//					//cote tour haute
-//					posPrim = this.cherchePosCible(posCible, listeVersCible, -2*this.jeu.getTerrain().getLargeur(), i);
-//					if(posPrim != -1) {
-//						posCible = posPrim;
-//					}
-//					
-//					//cote tour bas
-//					posPrim = this.cherchePosCible(posCible, listeVersCible, 2*this.jeu.getTerrain().getLargeur(), i);
-//					if(posPrim != -1) {
-//						posCible = posPrim;
-//					}
-//					
-//					//cote tour gauche
-//					posPrim = this.cherchePosCible(posCible, listeVersCible, -2, i);
-//					if(posPrim != -1) {
-//						posCible = posPrim;
-//					}
-//					
-//					i++;
-//				}
-//				
-//				if(posPrim == -1) {
-//					System.out.println("Bfs.cheminBfs[erreur pas de position alentour du tour trouver]");
-//					posCible = idCible;
-//				}
-//			}
-//		}
+
 		ArrayList<Integer> chemin = new ArrayList<Integer>();
 		boolean fini = false;
 		boolean erreur = false;
@@ -147,7 +104,6 @@ public class Bfs {
 			System.out.println("Bfs.cheminBfs[erreur du cheminement]");
 		}
 		
-//		System.out.println("Bfs.cheminBfs[posCible: "+posCible+" et idCible: "+idCible+"]");
 		Collections.reverse(chemin);
 		return chemin;
 	}
