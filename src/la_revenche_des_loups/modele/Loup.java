@@ -1,16 +1,8 @@
 package la_revenche_des_loups.modele;
 
-
-import la_revenche_des_loups.modele.Jeu;
-
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-
-public class Loup extends Acteur{
-=======
 public abstract class Loup extends Acteur{
->>>>>>> dev
 	private int vitesse;
 	private String id;
 	private static int num = 0;

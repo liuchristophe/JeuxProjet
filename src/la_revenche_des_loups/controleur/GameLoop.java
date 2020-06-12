@@ -1,4 +1,4 @@
-package la_revenche_des_loups.modele;
+package la_revenche_des_loups.controleur;
 
 import java.util.ArrayList;
 
@@ -6,14 +6,11 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-<<<<<<< HEAD:src/la_revenche_des_loups/modele/GameLoop.java
-=======
 import la_revenche_des_loups.exception.MonException;
 import la_revenche_des_loups.modele.Bfs;
 import la_revenche_des_loups.modele.Jeu;
 import la_revenche_des_loups.modele.Tour;
 import la_revenche_des_loups.vue.HistoriqueActionVue;
->>>>>>> dev:src/la_revenche_des_loups/controleur/GameLoop.java
 import la_revenche_des_loups.vue.LoupVue;
 import la_revenche_des_loups.vue.TirVue;
 
