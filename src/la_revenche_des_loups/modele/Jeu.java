@@ -21,6 +21,7 @@ public class Jeu {
 	private boolean partieLance;
 	private int numeroAction;
 	private HistoriqueAction historique;
+	private Bfs bfs;
 	
 	//Test Tir
 	private ArrayList<Tir> listeTirs;
@@ -35,9 +36,14 @@ public class Jeu {
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
 		this.partieLance = false;
+		this.bfs = new Bfs(this);
 		
 		//Test Tir
 		this.listeTirs = new ArrayList<Tir>();
+	}
+	
+	public Bfs getBfs() {
+		return this.bfs;
 	}
 
 	//TEST Affichage Historique
@@ -100,7 +106,7 @@ public class Jeu {
 		return this.listeTour;
 	}
 	
-	public boolean partiEstLance() {
+	public boolean getPartiEstLance() {
 		return this.partieLance;
 	}
 	

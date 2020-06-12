@@ -35,7 +35,7 @@ public class GameLoop {
 	public GameLoop(Jeu jeu, Pane panneau, HistoriqueActionVue historiqueVue) {
 		this.jeu = jeu;
 		this.loupVue = new LoupVue(panneau);
-		this.nbLoups = 10;//////////10 par default
+		this.nbLoups = 1;//////////10 par default
 		this.panneau = panneau;
 		this.numVague = 1;
 		this.bfs = new Bfs(this.jeu);
@@ -53,7 +53,7 @@ public class GameLoop {
 		nbFrame = 0;
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
-		KeyFrame kf = new KeyFrame(Duration.seconds(0.2), (ev -> {
+		KeyFrame kf = new KeyFrame(Duration.seconds(0.05), (ev -> {
 			// Le loup agit � chaque frame jusqu'a que la gameloop se stop
 			if (this.jeu.finPartie() || this.jeu.finVague(nbLoups)) {
 				this.historiqueVue.affichageFinParti();
@@ -77,7 +77,7 @@ public class GameLoop {
 	public void supprimerLoup() {
 		for (int i = 0; i < this.jeu.getListeLoups().size(); i++) {
 			if (!this.jeu.getListeLoups().get(i).estVivant()) {
-				this.panneau.getChildren().remove(this.panneau.lookup("#" + this.jeu.getListeLoups().get(i).getId()));
+				this.loupVue.supprimerLoup(this.jeu.getListeLoups().get(i));
 			}
 		}
 	}
@@ -85,10 +85,12 @@ public class GameLoop {
 	public void supprimerTour() {
 		ArrayList<Tour> toursMorts = new ArrayList<Tour>();
 		for (int i = 0; i < this.jeu.getListeTours().size(); i++) {
-			if (!this.jeu.getListeTours().get(i).estVivant()) {
+			Tour tour = this.jeu.getListeTours().get(i);
+			if (!tour.estVivant()) {
 				this.panneau.getChildren().remove(this.panneau.lookup("#" + this.jeu.getListeTours().get(i).getId()));
 				toursMorts.add(this.jeu.getListeTours().get(i));
 				this.jeu.miseAJourToursLimite();
+				this.jeu.getBfs().enleveObstacleTour(tour.getX(), tour.getY());
 			}
 		}
 		for(Tour t : toursMorts) {

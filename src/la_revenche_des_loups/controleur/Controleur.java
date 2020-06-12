@@ -10,13 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import la_revenche_des_loups.modele.Bfs;
 import la_revenche_des_loups.modele.Jeu;
 import la_revenche_des_loups.modele.Maison;
 import la_revenche_des_loups.modele.Terrain;
-//import la_revenche_des_loups.vue.BFSVue;
+import la_revenche_des_loups.vue.BFSVue;
 import la_revenche_des_loups.vue.HistoriqueActionVue;
-import la_revenche_des_loups.modele.Tour;
 import la_revenche_des_loups.vue.MaisonVue;
 import la_revenche_des_loups.vue.TerrainVue;
 import la_revenche_des_loups.vue.TourVue;
@@ -26,14 +24,14 @@ public class Controleur implements Initializable {
 	private Terrain terrain;
 	private Jeu jeu;
 	private Maison maison;
-	private Bfs bfs;
 	
 	private GameLoop gameloop;
+	private ActionControleur actionControleur;
 	
 	private TerrainVue terrainVue;
 	private MaisonVue maisonVue;
 	private TourVue tourVue;
-//	private BFSVue bfsVue;
+	private BFSVue bfsVue;
 	@FXML
 	private TilePane tilePane;
 	@FXML
@@ -71,8 +69,6 @@ public class Controleur implements Initializable {
 		// ajout de la maison et du loup dans le jeu
 		this.maison = new Maison(jeu);
 		
-		this.bfs = new Bfs(this.jeu);
-		
 		// ajout des sprites
 		this.maisonVue = new MaisonVue(this.tableDeJeu, infoActeur);
 		this.maisonVue.creerMaisonVue(maison);
@@ -84,6 +80,7 @@ public class Controleur implements Initializable {
 		// initialisation de la gameloop
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu, this.historiqueVue);
 		
+		this.actionControleur = new ActionControleur(this.jeu);
 		
 		//initialisation BFS
 //		this.bfsVue = new BFSVue(testBFS, this.jeu);
@@ -115,24 +112,7 @@ public class Controleur implements Initializable {
 		int x = ((int) click.getX()) / 12 - 1;
 		int y = ((int) click.getY()) / 12 - 1;
 		System.out.println("Controleur.cliqueTableDeJeu [ x:" + x + " y:" + y + " ]");
-		if(!this.bfs.verifieObstacle(x, y)) {
-			if(this.jeu.limiterTours()) {
-				if(!this.jeu.verifieTourAlentour(x, y, 8)) {	
-					Tour tour = new Tour(this.jeu, x, y);
-					this.jeu.ajouterTour(tour);
-					this.tourVue.afficherTourVue(tour);
-					this.bfs.ajoutObstacleTour(x, y);
-					System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
-					System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
-				}
-				else {
-					System.out.println("Controleur.cliqueTableDeJeu [ tour dans le rayon de 5 tuile ]");
-				}
-			}
-			else {
-				System.out.println("Controleur.cliqueTableDeJeu [ fin tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
-			}
-		}
+		this.actionControleur.ajouteTourDansJeu(x, y, tourVue);
 	}
 	//test
 	@FXML
