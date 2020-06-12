@@ -60,6 +60,8 @@ public class Controleur implements Initializable {
 
 	@FXML
 	private Label labelNbMaxTour;
+	@FXML
+    private Label labelTourSelection;
 	private int TypeTour = 1;
 
 	@Override
@@ -89,6 +91,9 @@ public class Controleur implements Initializable {
 		this.labelNbMaxTour.textProperty().bind(this.jeu.getNombreToursProperty().asString());
 
 		this.actionControleur = new ActionControleur(this.jeu);
+		
+		
+		//this.labelTourSelection.textProperty().bind(this.actionControleur.getTourSelection());
 	}
 
 	@FXML
@@ -120,21 +125,26 @@ public class Controleur implements Initializable {
 		int x = ((int) click.getX()) / 12 - 1;
 		int y = ((int) click.getY()) / 12 - 1;
 		actionControleur.ajouteTourDansJeu(x, y, this.TypeTour, this.tableDeJeu);
+		actionControleur.tourSelection(this.TypeTour, this.labelTourSelection);
 	}
 
 	@FXML
 	void typeBrique(MouseEvent event) {
 		this.TypeTour = 3;
+		actionControleur.tourSelection(this.TypeTour, this.labelTourSelection);
+		
 	}
 
 	@FXML
 	void typeBois(MouseEvent event) {
 		this.TypeTour = 2;
+		actionControleur.tourSelection(this.TypeTour, this.labelTourSelection);
 	}
 
 	@FXML
 	void typePaille(MouseEvent event) {
 		this.TypeTour = 1;
+		actionControleur.tourSelection(this.TypeTour, this.labelTourSelection);
 	}
 
 //	//Test de bfs

@@ -63,7 +63,7 @@
                               </ImageView>
                               <VBox prefHeight="79.0" prefWidth="138.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="138.0">
                                        <children>
                                           <Label style="-fx-font-weight: bold;" text="NOMBRE MAX :" />
                                           <Label style="-fx-font-weight: bold;" text="5" textFill="#b10606">
@@ -75,10 +75,10 @@
                                              </font></Label>
                                        </children>
                                        <VBox.margin>
-                                          <Insets top="5.0" />
+                                          <Insets top="3.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="138.0">
                                        <children>
                                           <Label prefHeight="17.0" prefWidth="116.0" style="-fx-font-weight: bold;" text="NOMBRE ACTUEL  :" />
                                           <Label fx:id="labelNbMaxTour" style="-fx-font-weight: bold;" textFill="#b10606">
@@ -90,7 +90,19 @@
                                              </font></Label>
                                        </children>
                                        <VBox.margin>
-                                          <Insets bottom="5.0" />
+                                          <Insets />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="19.0" prefWidth="39.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" text="SELECTIONNÉ :" />
+                                          <Label fx:id="labelTourSelection" style="-fx-font-weight: bold;" text="PAILLE" textFill="#b10606">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin></Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="3.0" />
                                        </VBox.margin>
                                     </HBox>
                                  </children>

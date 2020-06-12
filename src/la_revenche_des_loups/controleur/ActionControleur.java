@@ -1,5 +1,9 @@
 package la_revenche_des_loups.controleur;
 
+
+
+
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import la_revenche_des_loups.modele.Bfs;
 import la_revenche_des_loups.modele.Jeu;
@@ -13,11 +17,13 @@ public class ActionControleur {
 	private Jeu jeu;
 	private Bfs bfs;
 	private TourVue tourVue;
+	//private StringProperty tourSelection;
 	
 	public ActionControleur(Jeu jeu) {
 		this.jeu = jeu;
 		this.bfs = this.jeu.getBfs();
 		this.bfs = new Bfs(jeu);
+		//this.tourSelection = new SimpleStringProperty();
 	}
 	
 	public void ajouteTourDansJeu(int x, int y, int typeTour,Pane tableDeJeu) {
@@ -75,6 +81,21 @@ public class ActionControleur {
 			 }
 		}
 	}
+	
+	public void tourSelection(int typeTour, Label tourSelection) {
+		if(typeTour==1) {
+			tourSelection.setText("PAILLE");
+        }
+        else if(typeTour==2) {
+        	tourSelection.setText("BOIS");
+        }
+        else {
+        	tourSelection.setText("BRIQUE");
+        }
+	}
 
+	//public StringProperty getTourSelection() {
+	//	return this.tourSelection;
+	//}
 }
 
