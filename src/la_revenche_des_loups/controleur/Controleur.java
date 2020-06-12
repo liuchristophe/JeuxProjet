@@ -1,5 +1,7 @@
 package la_revenche_des_loups.controleur;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -7,6 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -17,6 +21,9 @@ import la_revenche_des_loups.modele.Terrain;
 //import la_revenche_des_loups.vue.BFSVue;
 import la_revenche_des_loups.vue.HistoriqueActionVue;
 import la_revenche_des_loups.modele.Tour;
+import la_revenche_des_loups.modele.Tour_Bois;
+import la_revenche_des_loups.modele.Tour_Brique;
+import la_revenche_des_loups.modele.Tour_Paille;
 import la_revenche_des_loups.vue.MaisonVue;
 import la_revenche_des_loups.vue.TerrainVue;
 import la_revenche_des_loups.vue.TourVue;
@@ -59,7 +66,12 @@ public class Controleur implements Initializable {
 
 	@FXML
 	private Label infoActeur;
+	
+	@FXML
+    private Label monnaieJoueur;
 
+	private int TypeTour = 1;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.terrain = new Terrain();
@@ -76,7 +88,6 @@ public class Controleur implements Initializable {
 		// ajout des sprites
 		this.maisonVue = new MaisonVue(this.tableDeJeu, infoActeur);
 		this.maisonVue.creerMaisonVue(maison);
-		this.tourVue = new TourVue(this.tableDeJeu);
 		
 		//Initialisation de l'historique d'action
 		this.historiqueVue = new HistoriqueActionVue(jeu, labelAction1, labelAction2, labelAction3, labelAction4, labelAction5);
@@ -84,10 +95,15 @@ public class Controleur implements Initializable {
 		// initialisation de la gameloop
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu, this.historiqueVue);
 		
-		
-		//initialisation BFS
-//		this.bfsVue = new BFSVue(testBFS, this.jeu);
-//		this.bfsVue.afficherBFSVue(2, 2, 12);
+		/*
+		try {
+			this.tourBrique = new Image(new FileInputStream("src/la_revenche_des_loups/ressources/tour_brique.png"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		this.imageTourBrique = new ImageView(tourBrique);
+		*/
+		//this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaie());
 	}
 
 	@FXML
@@ -111,35 +127,56 @@ public class Controleur implements Initializable {
 	}
 
 	@FXML
-	public void cliqueTableDeJeu(MouseEvent click) {
-		int x = ((int) click.getX()) / 12 - 1;
-		int y = ((int) click.getY()) / 12 - 1;
-		System.out.println("Controleur.cliqueTableDeJeu [ x:" + x + " y:" + y + " ]");
-		if(!this.bfs.verifieObstacle(x, y)) {
-			if(this.jeu.limiterTours()) {
-				if(!this.jeu.verifieTourAlentour(x, y, 8)) {	
-					Tour tour = new Tour(this.jeu, x, y);
-					this.jeu.ajouterTour(tour);
-					this.tourVue.afficherTourVue(tour);
-					this.bfs.ajoutObstacleTour(x, y);
-					System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
-					System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
-				}
-				else {
-					System.out.println("Controleur.cliqueTableDeJeu [ tour dans le rayon de 5 tuile ]");
-				}
-			}
-			else {
-				System.out.println("Controleur.cliqueTableDeJeu [ fin tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
-			}
-		}
-	}
-	//test
-	@FXML
-	void changeLabel() {
-		
-	}
+    public void cliqueTableDeJeu(MouseEvent click) {
+        int x = ((int) click.getX()) / 12 - 1;
+        int y = ((int) click.getY()) / 12 - 1;
+        if(!this.bfs.verifieObstacle(x, y)) {
+            if(this.jeu.limiterTours()) {
+                if(!this.jeu.verifieTourAlentour(x, y, 5)) {
+                    Tour tour;
+                    if(TypeTour==1) {
+                        tour = new Tour_Paille(this.jeu, x, y);
+                    }
+                    else if(TypeTour==2) {
+                        tour = new Tour_Bois(this.jeu, x, y);
+                    }
+                    else {
+                        tour = new Tour_Brique(this.jeu, x, y);
+                    }
+                    this.jeu.ajouterTour(tour);
+                    this.tourVue = new TourVue(this.tableDeJeu, tour);
+                    this.tourVue.afficherTourVue(tour);
+                    this.bfs.ajoutObstacleTour(x, y);
+                    //this.testBFS.getChildren().clear();
+                    //this.bfsVue.afficherBFSVue(2, 1, 12);
+                    System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
+                    System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
+                }
+                else {
+                    System.out.println("Controleur.cliqueTableDeJeu [ tour dans le rayon de 5 tuile ]");
+                }
+            }
+            else {
+                System.out.println("Controleur.cliqueTableDeJeu [ fin tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
+            }
+        }
+    }
 	
+	  @FXML
+	  void typeBrique(MouseEvent event) {
+		  System.out.println("fonction tour brique");
+		  this.TypeTour = 3;
+	  }
+	
+	  @FXML
+	  void typeBois(MouseEvent event) {
+		  this.TypeTour = 2;
+	  }
+	  
+	  @FXML
+	  void typePaille(MouseEvent event) {
+		  this.TypeTour = 1;
+	  } 
 	
 //	//Test de bfs
 //	@FXML
