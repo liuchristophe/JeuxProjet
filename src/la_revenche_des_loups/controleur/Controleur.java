@@ -14,10 +14,6 @@ import la_revenche_des_loups.modele.Bfs;
 import la_revenche_des_loups.modele.Jeu;
 import la_revenche_des_loups.modele.Maison;
 import la_revenche_des_loups.modele.Terrain;
-import la_revenche_des_loups.modele.Tour;
-import la_revenche_des_loups.modele.Tour_Bois;
-import la_revenche_des_loups.modele.Tour_Brique;
-import la_revenche_des_loups.modele.Tour_Paille;
 import la_revenche_des_loups.vue.BFSVue;
 import la_revenche_des_loups.vue.HistoriqueActionVue;
 import la_revenche_des_loups.vue.MaisonVue;
@@ -29,15 +25,12 @@ public class Controleur implements Initializable {
 	private Terrain terrain;
 	private Jeu jeu;
 	private Maison maison;
-	private Bfs bfs;
 	
 	private GameLoop gameloop;
 	private ActionControleur actionControleur;
 	
 	private TerrainVue terrainVue;
 	private MaisonVue maisonVue;
-	private TourVue tourVue;
-	private BFSVue bfsVue;
 	@FXML
 	private TilePane tilePane;
 	@FXML
@@ -90,10 +83,8 @@ public class Controleur implements Initializable {
 		// initialisation de la gameloop
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu, this.historiqueVue);
 		
-<<<<<<< HEAD
 		this.actionControleur = new ActionControleur(this.jeu);
 		
-		this.bfs = new Bfs(this.jeu);
 		
 		/*
 		try {
@@ -104,9 +95,8 @@ public class Controleur implements Initializable {
 		this.imageTourBrique = new ImageView(tourBrique);
 		*/
 		//this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaie());
-=======
-		this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaie().asString());
->>>>>>> 01cbbaac6213f8c2d8346668b6ce2440941b376e
+
+		this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaieProperty().asString());
 	}
 
 	@FXML
@@ -133,41 +123,11 @@ public class Controleur implements Initializable {
     public void cliqueTableDeJeu(MouseEvent click) {
         int x = ((int) click.getX()) / 12 - 1;
         int y = ((int) click.getY()) / 12 - 1;
-        if(!this.bfs.verifieObstacle(x, y)) {
-            if(this.jeu.limiterTours()) {
-                if(!this.jeu.verifieTourAlentour(x, y, 5)) {
-                    Tour tour;
-                    if(TypeTour==1) {
-                        tour = new Tour_Paille(this.jeu, x, y);
-                    }
-                    else if(TypeTour==2) {
-                        tour = new Tour_Bois(this.jeu, x, y);
-                    }
-                    else {
-                        tour = new Tour_Brique(this.jeu, x, y);
-                    }
-                    this.jeu.ajouterTour(tour);
-                    this.tourVue = new TourVue(this.tableDeJeu, tour);
-                    this.tourVue.afficherTourVue(tour);
-                    this.bfs.ajoutObstacleTour(x, y);
-                    //this.testBFS.getChildren().clear();
-                    //this.bfsVue.afficherBFSVue(2, 1, 12);
-                    System.out.println("Controleur.cliqueTableDeJeu [ ajout d un tour ]");
-                    System.out.println("Controleur.cliqueTableDeJeu [ tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
-                }
-                else {
-                    System.out.println("Controleur.cliqueTableDeJeu [ tour dans le rayon de 5 tuile ]");
-                }
-            }
-            else {
-                System.out.println("Controleur.cliqueTableDeJeu [ fin tour " + this.jeu.getNombreTours() + "/" + this.jeu.getLimiteTours() + " ]");
-            }
-        }
+        actionControleur.ajouteTourDansJeu(x, y, this.TypeTour,this.tableDeJeu);
     }
 	
 	  @FXML
 	  void typeBrique(MouseEvent event) {
-		  System.out.println("fonction tour brique");
 		  this.TypeTour = 3;
 	  }
 	

@@ -36,12 +36,9 @@ public class Jeu {
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
 		this.partieLance = false;
-<<<<<<< HEAD
 		this.bfs = new Bfs(this);
 		
 		//Test Tir
-=======
->>>>>>> df99cd66e69950b08e02012fc35a9180593d9040
 		this.listeTirs = new ArrayList<Tir>();
 		this.monnaie = new SimpleIntegerProperty(1000);
 	}
@@ -70,8 +67,12 @@ public class Jeu {
 		}
 	}
 	
-	public IntegerProperty getMonnaie() {
+	public IntegerProperty getMonnaieProperty() {
 		return this.monnaie;
+	}
+	
+	public int getMonnaie() {
+		return this.monnaie.getValue();
 	}
 	
 	//Avoir un tableau pour voir s'il y a un obstacle

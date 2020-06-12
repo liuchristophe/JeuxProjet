@@ -53,11 +53,7 @@ public class GameLoop {
 		nbFrame = 0;
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
-<<<<<<< HEAD
-		KeyFrame kf = new KeyFrame(Duration.seconds(0.05), (ev -> {
-=======
 		KeyFrame kf = new KeyFrame(Duration.seconds(0.1), (ev -> {
->>>>>>> df99cd66e69950b08e02012fc35a9180593d9040
 			// Le loup agit � chaque frame jusqu'a que la gameloop se stop
 			if (this.jeu.finPartie() || this.jeu.finVague(nbLoups)) {
 				this.historiqueVue.affichageFinParti();

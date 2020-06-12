@@ -6,17 +6,21 @@ public class Tour_Brique extends Tour{
 		super(jeu,x,y,30,15,15,250);	
 	}
 	
-	public void AttaqueSpé() {
-		if(this.nombreEnnemis()>=2) {
-			for (int i=0;i<this.getJeu().getListeLoups().size();i++) {
-				if ((this.getJeu().getListeLoups().get(i).getY() > this.getY() - this.getPerimetre() && this.getJeu().getListeLoups().get(i).getY() < this.getY() + this.getPerimetre())
-						&& (this.getJeu().getListeLoups().get(i).getX() > this.getX() - this.getPerimetre() && this.getJeu().getListeLoups().get(i).getX() < this.getX() + this.getPerimetre())){
-						
-					this.getJeu().getListeLoups().get(i).seFaitAttaquer(10);
-				}
-			}		
-		}
+	public static int getPrix() {
+		return 250;
 	}
+	
+//	public void AttaqueSpe() {
+//		if(this.nombreEnnemis()>=2) {
+//			for (int i=0;i<this.getJeu().getListeLoups().size();i++) {
+//				if ((this.getJeu().getListeLoups().get(i).getY() > this.getY() - this.getPerimetre() && this.getJeu().getListeLoups().get(i).getY() < this.getY() + this.getPerimetre())
+//						&& (this.getJeu().getListeLoups().get(i).getX() > this.getX() - this.getPerimetre() && this.getJeu().getListeLoups().get(i).getX() < this.getX() + this.getPerimetre())){
+//						
+//					this.getJeu().getListeLoups().get(i).seFaitAttaquer(10);
+//				}
+//			}		
+//		}
+//	}
 
 
 }
