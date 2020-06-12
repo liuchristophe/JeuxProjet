@@ -2,14 +2,19 @@ package la_revenche_des_loups.modele;
 
 import java.util.ArrayList;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Maison extends Acteur {
 
 	private int yInf, ySup;
+	private IntegerProperty affichagePv;
 
 	public Maison(Jeu j) {
-		super(j, 15, 150, 3, 5);
+		super(j, 15, 5000, 3, 50);
 		this.yInf = 11;
 		this.ySup = 38;
+		this.affichagePv = new SimpleIntegerProperty(super.getPV());
 	}
 
 	public int getYSup() {
@@ -20,6 +25,16 @@ public class Maison extends Acteur {
 		return this.yInf;
 	}
 
+	public IntegerProperty getPvMaison() {
+		this.affichagePv.set(super.getPV());
+		return this.affichagePv;
+	}
+	
+	public void seFaitAttaquer(int pts) {
+		super.seFaitAttaquer(pts);
+		this.getPvMaison();
+		
+	}
 	public void seDefend() {
 		if (this.getCible() != null) {
 			this.getCible().seFaitAttaquer(this.getPtsATT());
@@ -57,11 +72,12 @@ public class Maison extends Acteur {
 		}
 	}
 	
+	//Cette methode englobe toutes les action de la maison lors d'un tour de jeu
 	public void agit() {
 		if (this.getCible() != null) {
+			super.getJeu().setNumeroAction(3);
+			
 			seDefend();
-			// on affiche sur la console que la maison se défend
-			System.out.println("Maison.agit [ Maison se défend ]");
 			changeCible();
 		} else {
 			cibleMaison();

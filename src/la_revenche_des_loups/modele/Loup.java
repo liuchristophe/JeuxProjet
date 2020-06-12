@@ -1,4 +1,3 @@
-
 package la_revenche_des_loups.modele;
 
 
@@ -6,186 +5,84 @@ import la_revenche_des_loups.modele.Jeu;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 
 public class Loup extends Acteur{
+=======
+public abstract class Loup extends Acteur{
+>>>>>>> dev
 	private int vitesse;
 	private String id;
 	private static int num = 0;
-
-	public Loup(Jeu j) {
-		super(j, 99, (int) (Math.random() * 46) + 2, 30, 4, 4);
-		this.vitesse = 2;
+	protected Bfs bfs;
+	protected ArrayList<Integer> chemin;
+	protected boolean cibleTour;
+	
+	public Loup(Jeu jeu, int pv, int perimetre, int degat) {
+		super(jeu, 99, (int) (Math.random() * 46) + 2, pv, perimetre, degat);
+		this.vitesse = 1;
 		this.id = "L" + num;
 		num++;
+		this.bfs = new Bfs(super.getJeu());
+		int idCible = ((int)(Math.random()*25 + 0)+13)*this.getJeu().getTerrain().getLargeur()+15-103;
+		this.chemin = this.bfs.cheminBfs(this.obtenirIdPosition(), idCible);
+		this.cibleTour = false;
 	}
-
+	
 	public String getId() {
 		return this.id;
 	}
 
-
-	public int getVitesse() {
-		return this.vitesse;
+	public ArrayList<Integer> getChemin() {
+		return this.chemin;
 	}
 	
-	public void seDeplace() {
-		if (this.getX() > 15) {
-			this.avance();
-		}
-
-		else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-			this.monte();
-		}
-
-		else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-			this.descends();
-		}
-
-	}
+	public abstract void tracerChemin(Acteur cible);
 	
-	/*
 	public void seDeplace(Acteur cible) {
-		//chemin tracer par le bfs sans cible
-		if(cible == null) {
-			this.deplaceVersMaison();
+		tracerChemin(cible);
+		if(this.chemin == null) {
+			System.out.println("Loup.seDeplace[chemin = null]");
 		}
-		//chemin tracer par le bfs
-		else if(cible instanceof Tour) {
-			this.deplaceVersTour(cible);
-		}
-		//deplacement par default sans prendre en compte les obstacles
-		//loup en god's feet mode
 		else {
-			if (this.getX() > 15) {
-				this.avance();
-			}
-	
-			else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-				this.monte();
-			}
-	
-			else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-				this.descends();
-			}if (this.getX() > 15) {
-				this.avance();
-			}
-	
-			else if (this.getY() > 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-				this.monte();
-			}
-	
-			else if (this.getY() <= 25 + (((int) (Math.random() * 28)) - 14) && this.getX() <= 15) {
-				this.descends();
-			}
-		}
-	}
-	*/
-
-	public void deplaceVersTour(Acteur cible) {
-		int chemin = this.getJeu().bfs(this.getX(), this.getY(), cible.getX()+cible.getY()*this.getJeu().getTerrain().getLargeur());
-		switch(chemin) {
-		case 0:
-			System.out.println("Loup.deplace[ ni 1, 2 ou 3; Erreur methode bfs dand Jeu ]");
-		
-		case 1:
-			this.avance();
-			break;
-			
-		case 2:
-			this.monte();
-			break;
-			
-		case 3:
-			this.descends();
-			break;
-			
-		default:
-			System.out.println("Loup.deplace[ erreur dans le bfs ]");
-			break;
-		}
-	}
-	
-	public void deplaceVersMaison() {
-		int chemin = this.getJeu().bfs(this.getX(), this.getY(), 915+((int)(Math.random()*27 - 0))*100);
-		switch(chemin) {
-		case 0:
-			System.out.println("Loup.deplace[ ni 1, 2 ou 3; Erreur methode bfs dand Jeu ]");
-		
-		case 1:
-			this.avance();
-			break;
-			
-		case 2:
-			this.monte();
-			break;
-			
-		case 3:
-			this.descends();
-			break;
-			
-		default:
-			System.out.println("Loup.deplace[ erreur dans le bfs ]");
-			break;
-		}
-	}
-	
-	public void avance() {
-		int i = 0;
-		while (this.getX() > 15 && i < this.vitesse) {
-			this.setX(this.getX() - 1);
-			i++;
-		}
-		if (i < this.vitesse) {
-			while (i < this.vitesse) {
-				if (this.getY() < 39) {
-					this.setY(this.getY()+1);
-					i++;
-				} else if (this.getY() > 11) {
-					this.setY(this.getY()-1);
-					i++;
+			if(this.chemin.size()>0) {
+				for(int i = 0; i<this.vitesse; i++) {
+					int dir;
+					if(this.chemin.size()<2) {
+						dir = 0;
+					}
+					else {
+						dir = this.chemin.get(0) - this.chemin.get(1);
+					}
+					switch(dir) {
+					case 1:
+						this.setX(this.getX()-1);
+						break;
+					case 100:
+						this.setY(this.getY()-1);
+						break;
+					case -100:
+						this.setY(this.getY()+1);
+						break;
+					default:
+						//tu ne fait rien
+						break;
+					}
 				}
+				this.chemin.remove(0);
 			}
 		}
 	}
-
-	public void monte() {
-		int i = 0;
-		while (this.getY() > 11 && this.vitesse > i) {
-			this.setY(this.getY()-1);
-			i++;
-		}
-		while (this.getY() < 39 && this.vitesse > i) {
-			this.setY(this.getY()+1);
-			i++;
-		}
-		if (i < this.vitesse) {
-			this.monte();
-		}
-	}
-
-	public void descends() {
-		int i = 0;
-		while (this.getY() < 39 && this.vitesse > i) {
-			this.setY(this.getY()+1);
-			i++;
-		}
-		while (this.getY() > 11 && this.vitesse > i) {
-			this.setY(this.getY()-1);
-			i++;
-		}
-		if (i < this.vitesse) {
-			this.monte();
-		}
-	}
-
+	
 	public void arrete() {
 		this.vitesse = 0;
 	}
 
 	public void remarche() {
-		this.vitesse = 2;
+		this.vitesse = 1;
 	}
 
+	//permet de vérifier si une tour se trouve dans le périmetre d'un loup
 	public Acteur verifie(int x, int y, int peri) {
 		ArrayList<Acteur> listeTours = new ArrayList<Acteur>();
 		for (int i = 0; i < this.getJeu().getListe().size();i++) {
@@ -215,8 +112,9 @@ public class Loup extends Acteur{
 				&& (this.getY() + 3 >= this.getCible().getY() || this.getY() - 3 <= this.getCible().getY()
 						|| this.getY() == this.getCible().getY())) {
 			arrete();
-			// on affiche sur la console que le loup attaque
-			System.out.println("Loup.attaqueTour [ loup attaque Tour ]");
+			
+			super.getJeu().setNumeroAction(1);
+			
 			this.getCible().seFaitAttaquer(this.getPtsATT());
 			if(!this.getCible().estVivant()) {
 				remarche();
@@ -226,20 +124,22 @@ public class Loup extends Acteur{
 	
 	public void attaqueMaison() {
 		if ((this.getX()== 15 &&(this.getY() <= 38 && this.getY() >= 11)) && this.getJeu().getMaison().estVivant()) {
-			System.out.println("Loup.attaqueMaison [ loup attaque Maison ]");
 			arrete();
+			
+			super.getJeu().setNumeroAction(0);
+			
 			this.getJeu().getMaison().seFaitAttaquer(this.getPtsATT());
 		}
 	}
 
+	//Cette methode englobe toutes les action du loup lors d'un tour de jeu
 	public void agit() {
-            //seDeplace(this.getCible());
-			seDeplace();
             if (this.getCible() != null) {
                 attaqueTour();
                 changeCible();
             } else {
             	cible();
+                seDeplace(this.getCible());
             }
             attaqueMaison();
     }

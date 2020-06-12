@@ -2,21 +2,24 @@ package la_revenche_des_loups.modele;
 
 import java.util.ArrayList;
 
-public class Tour extends Acteur{
+public abstract class Tour extends Acteur{
 	
 	private String id;
 	private static int num = 0;
+	private int prix;
 
-	public Tour(Jeu jeu, int x, int y, int pv, int perimetre, int degat ) {
+	public Tour(Jeu jeu, int x, int y, int pv, int perimetre, int degat, int prix ) {
 		super(jeu, x, y, pv, perimetre, degat);
 		this.id = "T" + num;
 		num++;
-		
+		this.prix = prix;
+		super.getJeu().payerTour(this.prix);
 		super.setTaille(3);
+		jeu.ajouterTour(this);
 	}
 
 	public Tour(Jeu jeu, int x, int y) {
-		this(jeu, x, y, 30, 5, 2);
+		this(jeu, x, y, 30, 5, 2,0);
 	}
 
 	public Tour(Jeu jeu) {
@@ -41,7 +44,7 @@ public class Tour extends Acteur{
 		}
 	}
 	
-
+	//permet de vérifier si un loup se trouve dans le périmetre d'une tour
 	public Acteur verifie(int x, int y, int peri) {
 		ArrayList<Acteur> listeLoups = new ArrayList<Acteur>();
 		for (int i = 0; i < this.getJeu().getListe().size();i++) {
@@ -59,17 +62,32 @@ public class Tour extends Acteur{
 		return null;
 	}
 	
+	//Cette methode englobe toutes les action d'Une tour lors d'un tour de jeu
 	public void agit() {
             if (this.getCible() != null) {
+            	super.getJeu().setNumeroAction(2);
+            	
                 seDefend();
-                // on affiche sur la console que la tour se défend
-                System.out.println("Tour.agit [ Tour " + getId() + " se défend ]");
+        		super.getJeu().getListeTirs().add(new Tir(this.id, this.getCible().getX(), this.getCible().getY()));
+        		
                 changeCible();
             } else {
                 cible();
             }
 	}
 
+	public int nombreEnnemis() {
+        int nbEnnemis=0;
+        for (int i=0;i<this.getJeu().getListeLoups().size();i++) {
+            if ((this.getJeu().getListeLoups().get(i).getY() > this.getY() - this.getPerimetre() && this.getJeu().getListeLoups().get(i).getY() < this.getY() + this.getPerimetre())
+                    && (this.getJeu().getListeLoups().get(i).getX() > this.getX() - this.getPerimetre() && this.getJeu().getListeLoups().get(i).getX() < this.getX() + this.getPerimetre())){
+                        i++;
+            }
+        }
+
+        return nbEnnemis;
+    }
+	
 	public String toString() {
 		return "Tour "+this.id+" : (" + this.getX() + ", " + this.getY() + "), PV : " + this.getPV();
 	}

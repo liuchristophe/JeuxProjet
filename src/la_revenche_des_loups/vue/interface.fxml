@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -13,24 +16,150 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="la_revenche_des_loups.controleur.Controleur">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1400.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="la_revenche_des_loups.controleur.Controleur">
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white; -fx-border-width: 4px;" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="100.0" prefWidth="1080.0" style="-fx-border-color: white; -fx-border-width: 1px;">
                <children>
-                  <Button mnemonicParsing="false" onAction="#vagueSuivante" text="Vague Suivante" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="95.0" prefWidth="343.0" style="-fx-background-color: pink; -fx-border-color: black; -fx-border-width: 5px;">
+                           <children>
+                              <Label fx:id="labelAction1" style="-fx-font-weight: bold;">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin></Label>
+                              <Label fx:id="labelAction2" style="-fx-font-weight: bold;">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin></Label>
+                              <Label fx:id="labelAction3" style="-fx-font-weight: bold;">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin></Label>
+                              <Label fx:id="labelAction4" style="-fx-font-weight: bold;">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin></Label>
+                              <Label fx:id="labelAction5" style="-fx-font-weight: bold;">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin></Label>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="85.0" prefWidth="222.0" style="-fx-background-color: pink; -fx-border-color: darkseagreen; -fx-border-radius: 5px; -fx-border-width: 3px;">
+                           <HBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fitHeight="46.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../ressources/tour_bois.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <VBox prefHeight="79.0" prefWidth="138.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="138.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" text="NOMBRE MAX :" />
+                                          <Label style="-fx-font-weight: bold;" text="5" textFill="#b10606">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="138.0">
+                                       <children>
+                                          <Label prefHeight="17.0" prefWidth="116.0" style="-fx-font-weight: bold;" text="NOMBRE ACTUEL  :" />
+                                          <Label fx:id="labelNbMaxTour" style="-fx-font-weight: bold;" textFill="#b10606">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="19.0" prefWidth="39.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" text="SELECTIONNÉ :" />
+                                          <Label fx:id="labelTourSelection" style="-fx-font-weight: bold;" text="PAILLE" textFill="#b10606">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin></Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="3.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="85.0" prefWidth="166.0" style="-fx-background-color: pink; -fx-border-color: darkseagreen; -fx-border-radius: 5px; -fx-border-width: 3px;">
+                           <HBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fitHeight="58.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="15.0" top="10.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@../ressources/roi.png" />
+                                 </image>
+                              </ImageView>
+                              <Label style="-fx-font-weight: bold;" text="PV :">
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="25.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="pvMaison" style="-fx-font-weight: bold;">
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="25.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="90.0" prefWidth="338.0">
+                           <children>
+                              <Label fx:id="labelVague" alignment="CENTER" prefHeight="25.0" prefWidth="186.0" style="-fx-font-weight: bold;" text="Parti non commencée" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" top="5.0" />
+                                 </VBox.margin></Label>
+                              <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#vagueSuivante" style="-fx-background-color: darkseagreen; -fx-border-width: 3px; -fx-border-color: white; -fx-border-radius: 5px;" text="Vague Suivante" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children></VBox>
-            <VBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white; -fx-border-width: 1px;">
+            <VBox alignment="CENTER" prefHeight="97.0" prefWidth="312.0" style="-fx-border-color: white; -fx-border-width: 1px;">
                <children>
                   <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#lancerPartie" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Lancer une partie">
                      <VBox.margin>
-                        <Insets left="22.0" top="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#quitterJeu" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Quitter la partie">
-                     <VBox.margin>
-                        <Insets left="22.0" top="10.0" />
+                        <Insets />
                      </VBox.margin>
                   </Button>
                </children>
@@ -42,11 +171,124 @@
       <Label prefHeight="30.0" prefWidth="199.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="La Revanche Des Loups" textFill="PINK" BorderPane.alignment="TOP_CENTER" />
    </top>
    <center>
-      <Pane fx:id="tableDeJeu" maxHeight="600.0" maxWidth="1200.0" onMouseClicked="#cliqueTableDeJeu" prefHeight="600.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="tableDeJeu" maxHeight="600.0" maxWidth="1200.0" onMouseClicked="#cliqueTableDeJeu" prefHeight="600.0" prefWidth="1200.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
             <TilePane fx:id="tilePane" maxHeight="600.0" maxWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" />
             <TilePane fx:id="testBFS" maxHeight="600.0" maxWidth="1200.0" opacity="0.2" prefHeight="600.0" prefWidth="1200.0" />
          </children>
+         <BorderPane.margin>
+            <Insets right="40.0" />
+         </BorderPane.margin>
       </Pane>
    </center>
+   <left>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="120.0" style="-fx-background-color: pink; -fx-border-color: white; -fx-border-width: 5px;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="15.0" />
+         </BorderPane.margin>
+         <children>
+            <HBox prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: darkseagreen;">
+               <children>
+                  <ImageView fitHeight="34.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../ressources/piece.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="monnaieJoueur" style="-fx-font-weight: bold;">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 3px; -fx-border-color: darkseagreen; -fx-border-radius: 5px;">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#typeBrique" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ressources/tour_brique.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="109.0" style="-fx-font-weight: bold;" text="TOUR DE BRIQUE" textFill="#4a4a4a">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="PV : 1500" textFill="#b10606">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="ATTAQUE : 50" textFill="#b10606" />
+                  <Label style="-fx-font-weight: bold;" text="PRIX : 1000" textFill="#599a18">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 3px; -fx-border-color: darkseagreen; -fx-border-radius: 5px;">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#typeBois" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ressources/tour_bois.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></ImageView>
+                  <Label alignment="CENTER" style="-fx-font-weight: bold;" text="TOUR DE BOIS" textFill="#4d2929">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="PV : 700" textFill="#b10606">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="ATTAQUE : 35" textFill="#b10606" />
+                  <Label style="-fx-font-weight: bold;" text="PRIX : 450" textFill="#599a18">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 3px; -fx-border-color: darkseagreen; -fx-border-radius: 5px;">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#typePaille" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ressources/tour_paille.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" style="-fx-font-weight: bold;" text="TOUR DE PAILLE" textFill="#83773a">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="PV : 300" textFill="#b10606">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="ATTAQUE : 20" textFill="#b10606" />
+                  <Label style="-fx-font-weight: bold;" text="PRIX : 200" textFill="#599a18">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children></VBox>
+         </children></VBox>
+   </left>
 </BorderPane>

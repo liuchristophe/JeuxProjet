@@ -18,7 +18,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 		BorderPane root = FXMLLoader.load(getClass().getResource("vue/interface.fxml"));
-			Scene scene = new Scene(root,1280,750);
+			Scene scene = new Scene(root,1400,840);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("La revenge des Loups");
 			primaryStage.show();

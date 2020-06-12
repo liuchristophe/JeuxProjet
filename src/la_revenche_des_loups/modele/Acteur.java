@@ -82,9 +82,13 @@ public abstract class Acteur {
 
 	public void meurt() {
 		this.pv = 0;
-		System.out.println("Acteur.meurt [ "+this+" est mort ]");
 		
-		if (this instanceof Tour || this instanceof Loup) {
+		if (this instanceof Loup) {
+			this.jeu.setNumeroAction(4);
+			this.jeu.retirerActeur(this);
+		}
+		else if (this instanceof Tour) {
+			this.jeu.setNumeroAction(5);
 			this.jeu.retirerActeur(this);
 		}
 		
@@ -98,7 +102,7 @@ public abstract class Acteur {
 		return this.cible;
 	}
 	
-	public void setCible(Acteur a) {
+	protected void setCible(Acteur a) {
 		this.cible = a;
 	}
 	
@@ -108,6 +112,10 @@ public abstract class Acteur {
 	
 	public int getTaille() {
 		return this.taille;
+	}
+	
+	public int obtenirIdPosition() {
+		return this.x+this.y*this.getJeu().getTerrain().getLargeur();
 	}
 	
 	public abstract void changeCible();
