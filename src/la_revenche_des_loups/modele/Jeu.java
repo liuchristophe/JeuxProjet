@@ -213,6 +213,7 @@ public class Jeu {
 	
 	public boolean finVague(int nbLoups) {
 		if (this.nbLoups==nbLoups && loupSontMort()) {
+			this.monnaie.set(this.monnaie.getValue()+500);
 			return true;
 		}
 		return false;

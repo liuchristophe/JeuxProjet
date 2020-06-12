@@ -24,7 +24,7 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="95.0" prefWidth="536.0" style="-fx-background-color: pink; -fx-border-color: black; -fx-border-width: 5px;">
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="95.0" prefWidth="343.0" style="-fx-background-color: pink; -fx-border-color: black; -fx-border-width: 5px;">
                            <children>
                               <Label fx:id="labelAction1" style="-fx-font-weight: bold;">
                                  <VBox.margin>
@@ -48,14 +48,63 @@
                                  </VBox.margin></Label>
                            </children>
                         </VBox>
-                        <HBox prefHeight="95.0" prefWidth="162.0" style="-fx-background-color: pink; -fx-border-color: darkseagreen; -fx-border-radius: 5px; -fx-border-width: 3px;">
+                        <HBox alignment="CENTER" prefHeight="85.0" prefWidth="222.0" style="-fx-background-color: pink; -fx-border-color: darkseagreen; -fx-border-radius: 5px; -fx-border-width: 3px;">
                            <HBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </HBox.margin>
                            <children>
-                              <ImageView fitHeight="82.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                              <ImageView fitHeight="46.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../ressources/chateau3.png" />
+                                    <Image url="@../ressources/tour_bois.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <VBox prefHeight="79.0" prefWidth="138.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: bold;" text="NOMBRE MAX :" />
+                                          <Label style="-fx-font-weight: bold;" text="5" textFill="#b10606">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label prefHeight="17.0" prefWidth="116.0" style="-fx-font-weight: bold;" text="NOMBRE ACTUEL  :" />
+                                          <Label fx:id="labelNbMaxTour" style="-fx-font-weight: bold;" textFill="#b10606">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="85.0" prefWidth="166.0" style="-fx-background-color: pink; -fx-border-color: darkseagreen; -fx-border-radius: 5px; -fx-border-width: 3px;">
+                           <HBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fitHeight="95.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                                 <image>
+                                    <Image url="@../ressources/chateauFinal2.png" />
                                  </image>
                                  <HBox.margin>
                                     <Insets left="15.0" />
@@ -65,15 +114,21 @@
                                  <HBox.margin>
                                     <Insets left="15.0" top="25.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
                               </Label>
                               <Label fx:id="pvMaison" style="-fx-font-weight: bold;">
                                  <HBox.margin>
                                     <Insets left="5.0" top="25.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
-                        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="90.0" prefWidth="380.0">
+                        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="90.0" prefWidth="338.0">
                            <children>
                               <Label fx:id="labelVague" alignment="CENTER" prefHeight="25.0" prefWidth="186.0" style="-fx-font-weight: bold;" text="Parti non commencée" textFill="WHITE">
                                  <font>
@@ -83,7 +138,6 @@
                                     <Insets bottom="15.0" top="5.0" />
                                  </VBox.margin></Label>
                               <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#vagueSuivante" style="-fx-background-color: darkseagreen; -fx-border-width: 3px; -fx-border-color: white; -fx-border-radius: 5px;" text="Vague Suivante" />
-                              <Label fx:id="infoActeur" text="TEST" textFill="WHITE" />
                            </children>
                         </VBox>
                      </children>

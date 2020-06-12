@@ -37,6 +37,11 @@ public class Maison extends Acteur {
 		return this.affichagePv;
 	}
 	
+	public void seFaitAttaquer(int pts) {
+		super.seFaitAttaquer(pts);
+		this.getPvMaison();
+		
+	}
 	public void seDefend() {
 		if (this.getCible() != null) {
 			this.getCible().seFaitAttaquer(this.getPtsATT());
