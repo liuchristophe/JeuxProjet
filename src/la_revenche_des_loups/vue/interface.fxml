@@ -66,7 +66,7 @@
                                     <Insets left="15.0" top="25.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label style="-fx-font-weight: bold;">
+                              <Label fx:id="pvMaison" style="-fx-font-weight: bold;">
                                  <HBox.margin>
                                     <Insets left="5.0" top="25.0" />
                                  </HBox.margin>

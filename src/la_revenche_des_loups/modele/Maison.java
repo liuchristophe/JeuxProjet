@@ -2,16 +2,25 @@ package la_revenche_des_loups.modele;
 
 import java.util.ArrayList;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Maison extends Acteur {
 
 	private int yInf, ySup;
 	private Jeu jeu;
+	
+	//test affiche pv maison
+	private IntegerProperty affichagePv;
 
 	public Maison(Jeu j) {
 		super(j, 15, 150, 3, 5);
 		this.yInf = 11;
 		this.ySup = 38;
 		this.jeu = j;
+		
+		//test affiche pv maison
+		this.affichagePv = new SimpleIntegerProperty(super.getPV());
 	}
 
 	public int getYSup() {
@@ -22,6 +31,12 @@ public class Maison extends Acteur {
 		return this.yInf;
 	}
 
+	//test affiche pv maison
+	public IntegerProperty getPvMaison() {
+		this.affichagePv.set(super.getPV());
+		return this.affichagePv;
+	}
+	
 	public void seDefend() {
 		if (this.getCible() != null) {
 			this.getCible().seFaitAttaquer(this.getPtsATT());

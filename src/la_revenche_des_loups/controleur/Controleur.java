@@ -69,6 +69,8 @@ public class Controleur implements Initializable {
 	
 	@FXML
     private Label monnaieJoueur;
+    @FXML
+    private Label pvMaison;
 
 	private int TypeTour = 1;
 	
@@ -96,6 +98,7 @@ public class Controleur implements Initializable {
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu, this.historiqueVue);
 		
 		this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaie().asString());
+		this.pvMaison.textProperty().bind(this.maison.getPvMaison().asString());
 	}
 
 	@FXML
