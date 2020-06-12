@@ -85,25 +85,12 @@ public class Controleur implements Initializable {
 		// initialisation de la gameloop
 		this.gameloop = new GameLoop(this.jeu, this.tableDeJeu, this.historiqueVue);
 		
-<<<<<<< HEAD
-		this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaie().asString());
+
 		this.pvMaison.textProperty().bind(this.maison.getPvMaison().asString());
-=======
+
 		this.actionControleur = new ActionControleur(this.jeu);
-		
-		
-		/*
-		try {
-			this.tourBrique = new Image(new FileInputStream("src/la_revenche_des_loups/ressources/tour_brique.png"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		this.imageTourBrique = new ImageView(tourBrique);
-		*/
-		//this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaie());
 
 		this.monnaieJoueur.textProperty().bind(this.jeu.getMonnaieProperty().asString());
->>>>>>> 860f6cc9bf19aad7ebef7b429adf67b16b5591c1
 	}
 
 	@FXML
