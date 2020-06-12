@@ -23,7 +23,7 @@ public class Jeu {
 	private HistoriqueAction historique;
 	
 	private ArrayList<Tir> listeTirs;
-	private int monnaie;
+	private IntegerProperty monnaie;
 
 	public Jeu(Terrain t) {
 		this.terrain = t;
@@ -36,7 +36,7 @@ public class Jeu {
 		this.nombreTours = new SimpleIntegerProperty(0);
 		this.partieLance = false;
 		this.listeTirs = new ArrayList<Tir>();
-		this.monnaie = 1000;
+		this.monnaie = new SimpleIntegerProperty(1000);
 	}
 
 	//TEST Affichage Historique
@@ -54,12 +54,12 @@ public class Jeu {
 	
 	//test payer tour
 	public void payerTour(int prix) {
-		if (prix <= this.monnaie) {
-			this.monnaie -= prix;
+		if (prix <= this.monnaie.getValue()) {
+			this.monnaie.setValue(this.monnaie.getValue()-prix);
 		}
 	}
 	
-	public int getMonnaie() {
+	public IntegerProperty getMonnaie() {
 		return this.monnaie;
 	}
 	
