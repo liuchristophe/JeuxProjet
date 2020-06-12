@@ -1,5 +1,6 @@
 package la_revenche_des_loups.modele;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 

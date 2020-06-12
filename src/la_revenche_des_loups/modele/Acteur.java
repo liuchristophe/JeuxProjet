@@ -106,7 +106,7 @@ public abstract class Acteur {
 		return this.cible;
 	}
 	
-	public void setCible(Acteur a) {
+	protected void setCible(Acteur a) {
 		this.cible = a;
 	}
 	

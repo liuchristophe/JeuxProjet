@@ -1,4 +1,3 @@
-
 package la_revenche_des_loups.modele;
 
 import java.util.ArrayList;

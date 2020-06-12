@@ -21,6 +21,7 @@ public class Jeu {
 	private boolean partieLance;
 	private int numeroAction;
 	private HistoriqueAction historique;
+	private Bfs bfs;
 	
 	private ArrayList<Tir> listeTirs;
 	private IntegerProperty monnaie;
@@ -35,8 +36,15 @@ public class Jeu {
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
 		this.partieLance = false;
+		this.bfs = new Bfs(this);
+		
+		//Test Tir
 		this.listeTirs = new ArrayList<Tir>();
 		this.monnaie = new SimpleIntegerProperty(1000);
+	}
+	
+	public Bfs getBfs() {
+		return this.bfs;
 	}
 
 	//TEST Affichage Historique
@@ -59,8 +67,12 @@ public class Jeu {
 		}
 	}
 	
-	public IntegerProperty getMonnaie() {
+	public IntegerProperty getMonnaieProperty() {
 		return this.monnaie;
+	}
+	
+	public int getMonnaie() {
+		return this.monnaie.getValue();
 	}
 	
 	//Avoir un tableau pour voir s'il y a un obstacle
@@ -110,7 +122,7 @@ public class Jeu {
 		return this.listeTour;
 	}
 	
-	public boolean partiEstLance() {
+	public boolean getPartiEstLance() {
 		return this.partieLance;
 	}
 	

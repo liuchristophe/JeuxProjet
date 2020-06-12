@@ -47,5 +47,7 @@ public class LoupVue {
 		this.panneauJeu.getChildren().add(imageview);
 	}
 	
-	
+	public void supprimerLoup(Loup loup) {
+        this.panneauJeu.getChildren().remove(this.panneauJeu.lookup("#" + loup.getId()));
+    }
 }

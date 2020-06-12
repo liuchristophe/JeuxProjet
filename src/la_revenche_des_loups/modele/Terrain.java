@@ -8,11 +8,16 @@ public class Terrain {
 	private int hauteur = 50;
 	private int largeur = 100;
 	private int taille = this.hauteur*this.largeur;
-
+	private int distanciationTour = 0;
+	
 	public Terrain() {
 
 	}
 
+	public int getDistanciationTour() {
+		return this.distanciationTour;
+	}
+	
 	public int getTaille() {
 		return this.taille;
 	}
