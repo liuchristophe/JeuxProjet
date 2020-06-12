@@ -8,14 +8,12 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Maison extends Acteur {
 
 	private int yInf, ySup;
-	private Jeu jeu;
 	private IntegerProperty affichagePv;
 
 	public Maison(Jeu j) {
-		super(j, 15, 5000, 3, 100);
+		super(j, 15, 5000, 3, 50);
 		this.yInf = 11;
 		this.ySup = 38;
-		this.jeu = j;
 		this.affichagePv = new SimpleIntegerProperty(super.getPV());
 	}
 
@@ -74,9 +72,10 @@ public class Maison extends Acteur {
 		}
 	}
 	
+	//Cette methode englobe toutes les action de la maison lors d'un tour de jeu
 	public void agit() {
 		if (this.getCible() != null) {
-			this.jeu.setNumeroAction(3);
+			super.getJeu().setNumeroAction(3);
 			
 			seDefend();
 			changeCible();

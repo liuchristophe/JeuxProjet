@@ -222,13 +222,13 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label style="-fx-font-weight: bold;" text="PV :" textFill="#b10606">
+                  <Label style="-fx-font-weight: bold;" text="PV : 1500" textFill="#b10606">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label style="-fx-font-weight: bold;" text="ATTAQUE :" textFill="#b10606" />
-                  <Label style="-fx-font-weight: bold;" text="PRIX :" textFill="#599a18">
+                  <Label style="-fx-font-weight: bold;" text="ATTAQUE : 50" textFill="#b10606" />
+                  <Label style="-fx-font-weight: bold;" text="PRIX : 1000" textFill="#599a18">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -249,13 +249,13 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label style="-fx-font-weight: bold;" text="PV :" textFill="#b10606">
+                  <Label style="-fx-font-weight: bold;" text="PV : 700" textFill="#b10606">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label style="-fx-font-weight: bold;" text="ATTAQUE :" textFill="#b10606" />
-                  <Label style="-fx-font-weight: bold;" text="PRIX :" textFill="#599a18">
+                  <Label style="-fx-font-weight: bold;" text="ATTAQUE : 35" textFill="#b10606" />
+                  <Label style="-fx-font-weight: bold;" text="PRIX : 450" textFill="#599a18">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -277,13 +277,13 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label style="-fx-font-weight: bold;" text="PV :" textFill="#b10606">
+                  <Label style="-fx-font-weight: bold;" text="PV : 300" textFill="#b10606">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label style="-fx-font-weight: bold;" text="ATTAQUE :" textFill="#b10606" />
-                  <Label style="-fx-font-weight: bold;" text="PRIX :" textFill="#599a18">
+                  <Label style="-fx-font-weight: bold;" text="ATTAQUE : 20" textFill="#b10606" />
+                  <Label style="-fx-font-weight: bold;" text="PRIX : 200" textFill="#599a18">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

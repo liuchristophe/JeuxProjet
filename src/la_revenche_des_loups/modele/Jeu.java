@@ -18,14 +18,14 @@ public class Jeu {
 	private ArrayList<Acteur> listeActeurs;
 	private ArrayList<Loup> listeLoups;
 	private ArrayList<Tour> listeTour;
+	private ArrayList<Tir> listeTirs;
 	private int nbLoups = 0;
-	private IntegerProperty limiteTours;
-	private IntegerProperty nombreTours;
 	private boolean partieLance;
 	private int numeroAction;
-	private HistoriqueAction historique;
 	private Bfs bfs;
-	private ArrayList<Tir> listeTirs;
+	private HistoriqueAction historique;
+	private IntegerProperty limiteTours;
+	private IntegerProperty nombreTours;
 	private IntegerProperty monnaie;
 
 	public Jeu(Terrain t) {
@@ -39,34 +39,12 @@ public class Jeu {
 		this.nombreTours = new SimpleIntegerProperty(0);
 		this.partieLance = false;
 		this.bfs = new Bfs(this);
-		
-		//Test Tir
 		this.listeTirs = new ArrayList<Tir>();
 		this.monnaie = new SimpleIntegerProperty(1200);
 	}
 	
 	public Bfs getBfs() {
 		return this.bfs;
-	}
-
-	//TEST Affichage Historique
-	public int getNumeroAction(){
-		return this.numeroAction;
-	}
-	public void setNumeroAction(int num){
-		this.numeroAction = num;
-		this.historique.miseAJourListeDefile(this.numeroAction);
-	}
-	public void initHistorique(HistoriqueAction historique) {
-		this.historique = historique;
-	}
-	
-	
-	//test payer tour
-	public void payerTour(int prix) {
-		if (prix <= this.monnaie.getValue()) {
-			this.monnaie.setValue(this.monnaie.getValue()-prix);
-		}
 	}
 	
 	public IntegerProperty getMonnaieProperty() {
@@ -75,21 +53,6 @@ public class Jeu {
 	
 	public int getMonnaie() {
 		return this.monnaie.getValue();
-	}
-	
-	//Avoir un tableau pour voir s'il y a un obstacle
-	//Si tab[id] = 1 alors obstacle Sinon tab[id] = 0 pas d'obstacle
-	public void initTableauObstacle() {
-		int tailleTerrain = this.terrain.getLargeur()*this.terrain.getHauteur();
-		for(int i=0; i < tailleTerrain; i++) {
-			int id = this.terrain.codeTuile(i);
-			if( id == 121 || id == 194 || id == 362 || id == 340) {
-				this.tableauObstacle[i] = 1;
-			}
-			else if(id == 160 || id == 5) {
-				this.tableauObstacle[i] = 0;
-			}
-		}
 	}
 	
 	public IntegerProperty getLimiteToursProperty() {
@@ -122,6 +85,10 @@ public class Jeu {
 	
 	public ArrayList<Tour> getListeTours() {
 		return this.listeTour;
+	}
+	
+	public ArrayList<Tir> getListeTirs(){
+		return this.listeTirs;
 	}
 	
 	public boolean getPartiEstLance() {
@@ -182,6 +149,47 @@ public class Jeu {
 		this.listeTour.remove(t);
 	}
 	
+	
+
+	//selection du numero d'action lors de l'affichage de l'historique
+	public int getNumeroAction(){
+		return this.numeroAction;
+	}
+	public void setNumeroAction(int num){
+		this.numeroAction = num;
+		this.historique.miseAJourListeDefile(this.numeroAction);
+	}
+	public void initHistorique(HistoriqueAction historique) {
+		this.historique = historique;
+	}
+	
+	
+	//test payer tour
+	public void payerTour(int prix) {
+		if (prix <= this.monnaie.getValue()) {
+			this.monnaie.setValue(this.monnaie.getValue()-prix);
+		}
+	}
+	
+	
+	
+	//Avoir un tableau pour voir s'il y a un obstacle
+	//Si tab[id] = 1 alors obstacle Sinon tab[id] = 0 pas d'obstacle
+	public void initTableauObstacle() {
+		int tailleTerrain = this.terrain.getLargeur()*this.terrain.getHauteur();
+		for(int i=0; i < tailleTerrain; i++) {
+			int id = this.terrain.codeTuile(i);
+			if( id == 121 || id == 194 || id == 362 || id == 340) {
+				this.tableauObstacle[i] = 1;
+			}
+			else if(id == 160 || id == 5) {
+				this.tableauObstacle[i] = 0;
+			}
+		}
+	}
+	
+	
+	
 	public boolean limiterTours() {
 		return this.limiteTours.getValue() > this.nombreTours.getValue() ? true : false;
 	}
@@ -194,6 +202,9 @@ public class Jeu {
 		}
 		return true;
 	}
+	
+	
+	// ci dessous les méthodes d'action durant la parti
 	
 	public void agir() {
 		for(int i = 0; i < this.listeActeurs.size(); i++) {
@@ -210,16 +221,16 @@ public class Jeu {
 	
 	public boolean finVague(int nbLoups, int numVague) {
 		if (this.nbLoups==nbLoups && loupSontMort()) {
-			this.monnaie.set(this.monnaie.getValue()+350*numVague);
+			this.monnaie.set(this.monnaie.getValue()+450*numVague);
 			return true;
 		}
 		return false;
 	}
 	
 	
-	//Déplacement methpde de gameloop
+	//Déplacement methode de gameloop
 	public void nouveauLoup(int nbFrame,int nbLoups) {
-        if (nbFrame % 7 == 0 && this.getListeLoups().size()<nbLoups) {
+        if (nbFrame % 10 == 0 && this.getListeLoups().size()<nbLoups) {
             this.ajouterLoup();
         }
     }
@@ -232,7 +243,7 @@ public class Jeu {
         agir();
     }
 	
-	
+	//permet de vérifier ci des tours sont deja placer lors du placement d'une tour dans le jeu
 	public boolean verifieTourAlentour(int x, int y, int espacement) {
 		for(Acteur a : this.listeActeurs) {
 			if(a instanceof Tour) {
@@ -252,11 +263,5 @@ public class Jeu {
 		this.limiteTours.set(this.limiteTours.get()+1);
 		this.nombreTours.set(this.nombreTours.get()-1);
 	}
-
-	//Test tir
-	public ArrayList<Tir> getListeTirs(){
-		return this.listeTirs;
-	}
-	
 
 }

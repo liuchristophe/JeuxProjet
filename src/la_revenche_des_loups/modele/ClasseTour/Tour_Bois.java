@@ -10,7 +10,7 @@ public class Tour_Bois extends Tour{
 	}
 	
 	public static int getPrix() {
-		return 125;
+		return 450;
 	}
 	
 }

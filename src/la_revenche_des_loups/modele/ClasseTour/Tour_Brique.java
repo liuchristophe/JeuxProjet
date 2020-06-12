@@ -6,11 +6,11 @@ import la_revenche_des_loups.modele.Tour;
 public class Tour_Brique extends Tour{
 	
 	public Tour_Brique(Jeu jeu, int x, int y) {
-		super(jeu,x,y,1500,5,50,1000);	
+		super(jeu,x,y,1500,6,50,1000);	
 	}
 	
 	public static int getPrix() {
-		return 250;
+		return 1000;
 	}
 
 

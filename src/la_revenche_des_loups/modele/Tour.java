@@ -15,6 +15,7 @@ public abstract class Tour extends Acteur{
 		this.prix = prix;
 		super.getJeu().payerTour(this.prix);
 		super.setTaille(3);
+		jeu.ajouterTour(this);
 	}
 
 	public Tour(Jeu jeu, int x, int y) {
@@ -43,7 +44,7 @@ public abstract class Tour extends Acteur{
 		}
 	}
 	
-
+	//permet de vérifier si un loup se trouve dans le périmetre d'une tour
 	public Acteur verifie(int x, int y, int peri) {
 		ArrayList<Acteur> listeLoups = new ArrayList<Acteur>();
 		for (int i = 0; i < this.getJeu().getListe().size();i++) {
@@ -61,6 +62,7 @@ public abstract class Tour extends Acteur{
 		return null;
 	}
 	
+	//Cette methode englobe toutes les action d'Une tour lors d'un tour de jeu
 	public void agit() {
             if (this.getCible() != null) {
             	super.getJeu().setNumeroAction(2);

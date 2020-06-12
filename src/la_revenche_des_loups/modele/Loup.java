@@ -74,6 +74,7 @@ public abstract class Loup extends Acteur{
 		this.vitesse = 1;
 	}
 
+	//permet de vérifier si une tour se trouve dans le périmetre d'un loup
 	public Acteur verifie(int x, int y, int peri) {
 		ArrayList<Acteur> listeTours = new ArrayList<Acteur>();
 		for (int i = 0; i < this.getJeu().getListe().size();i++) {
@@ -104,7 +105,6 @@ public abstract class Loup extends Acteur{
 						|| this.getY() == this.getCible().getY())) {
 			arrete();
 			
-			
 			super.getJeu().setNumeroAction(1);
 			
 			this.getCible().seFaitAttaquer(this.getPtsATT());
@@ -124,6 +124,7 @@ public abstract class Loup extends Acteur{
 		}
 	}
 
+	//Cette methode englobe toutes les action du loup lors d'un tour de jeu
 	public void agit() {
             if (this.getCible() != null) {
                 attaqueTour();

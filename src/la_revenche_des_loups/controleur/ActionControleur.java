@@ -45,7 +45,6 @@ public class ActionControleur {
 						}
 						break;
 					}
-
 					if (peuxPayer) {
 						if (!this.jeu.verifieTourAlentour(x, y, 5)) {
 							Tour tour;
@@ -56,7 +55,6 @@ public class ActionControleur {
 							} else {
 								tour = new Tour_Brique(this.jeu, x, y);
 							}
-							this.jeu.ajouterTour(tour);
 							tourVue = new TourVue(tableDeJeu, tour);
 							tourVue.afficherTourVue(tour);
 						}
