@@ -12,8 +12,8 @@ public class Tir {
 
 	public Tir(String id, int xCible, int yCible) {
 		this.idTir = "Tir" + num + id;
-		this.positionX = new SimpleIntegerProperty((xCible ) * 12);
-		this.positionY = new SimpleIntegerProperty((yCible) * 12);
+		this.positionX = new SimpleIntegerProperty((xCible+1) * 12);
+		this.positionY = new SimpleIntegerProperty((yCible-1) * 12);
 		this.num++;
 	}
 

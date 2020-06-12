@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.paint.*?>
 <?import java.lang.*?>
@@ -23,7 +24,7 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="95.0" prefWidth="767.0" style="-fx-background-color: pink; -fx-border-color: black; -fx-border-width: 5px;">
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="95.0" prefWidth="536.0" style="-fx-background-color: pink; -fx-border-color: black; -fx-border-width: 5px;">
                            <children>
                               <Label fx:id="labelAction1" style="-fx-font-weight: bold;">
                                  <VBox.margin>
@@ -47,7 +48,32 @@
                                  </VBox.margin></Label>
                            </children>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="90.0" prefWidth="514.0">
+                        <HBox prefHeight="95.0" prefWidth="162.0" style="-fx-background-color: pink; -fx-border-color: darkseagreen; -fx-border-radius: 5px; -fx-border-width: 3px;">
+                           <HBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fitHeight="82.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                                 <image>
+                                    <Image url="@../ressources/chateau3.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label style="-fx-font-weight: bold;" text="PV :">
+                                 <HBox.margin>
+                                    <Insets left="15.0" top="25.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label style="-fx-font-weight: bold;">
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="25.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="90.0" prefWidth="380.0">
                            <children>
                               <Label fx:id="labelVague" alignment="CENTER" prefHeight="25.0" prefWidth="186.0" style="-fx-font-weight: bold;" text="Parti non commencée" textFill="WHITE">
                                  <font>
@@ -63,16 +89,16 @@
                      </children>
                   </HBox>
                </children></VBox>
-            <VBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white; -fx-border-width: 1px;">
+            <VBox alignment="TOP_CENTER" prefHeight="97.0" prefWidth="312.0" style="-fx-border-color: white; -fx-border-width: 1px;">
                <children>
                   <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#lancerPartie" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Lancer une partie">
                      <VBox.margin>
-                        <Insets left="22.0" top="10.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
                   <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#quitterJeu" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: pink; -fx-font-weight: bold;" text="Quitter la partie">
                      <VBox.margin>
-                        <Insets left="22.0" top="10.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
                </children>
@@ -90,11 +116,118 @@
             <TilePane fx:id="testBFS" maxHeight="600.0" maxWidth="1200.0" opacity="0.2" prefHeight="600.0" prefWidth="1200.0" />
          </children>
          <BorderPane.margin>
-            <Insets right="50.0" />
+            <Insets right="40.0" />
          </BorderPane.margin>
       </Pane>
    </center>
    <left>
-      <VBox prefHeight="649.0" prefWidth="100.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER" />
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="120.0" style="-fx-background-color: pink; -fx-border-color: white; -fx-border-width: 5px;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="15.0" />
+         </BorderPane.margin>
+         <children>
+            <HBox prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: darkseagreen;">
+               <children>
+                  <ImageView fitHeight="34.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../ressources/piece.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="monnaieJoueur" style="-fx-font-weight: bold;">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 3px; -fx-border-color: darkseagreen; -fx-border-radius: 5px;">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#typeBrique" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ressources/tour_brique.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="109.0" style="-fx-font-weight: bold;" text="TOUR DE BRIQUE" textFill="#4a4a4a">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="PV :" textFill="#b10606">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="ATTAQUE :" textFill="#b10606" />
+                  <Label style="-fx-font-weight: bold;" text="PRIX :" textFill="#599a18">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 3px; -fx-border-color: darkseagreen; -fx-border-radius: 5px;">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#typeBois" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ressources/tour_bois.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></ImageView>
+                  <Label alignment="CENTER" style="-fx-font-weight: bold;" text="TOUR DE BOIS" textFill="#4d2929">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="PV :" textFill="#b10606">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="ATTAQUE :" textFill="#b10606" />
+                  <Label style="-fx-font-weight: bold;" text="PRIX :" textFill="#599a18">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 3px; -fx-border-color: darkseagreen; -fx-border-radius: 5px;">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#typePaille" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ressources/tour_paille.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" style="-fx-font-weight: bold;" text="TOUR DE PAILLE" textFill="#83773a">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="PV :" textFill="#b10606">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label style="-fx-font-weight: bold;" text="ATTAQUE :" textFill="#b10606" />
+                  <Label style="-fx-font-weight: bold;" text="PRIX :" textFill="#599a18">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children></VBox>
+         </children></VBox>
    </left>
 </BorderPane>

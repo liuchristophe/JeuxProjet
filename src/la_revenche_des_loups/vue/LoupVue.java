@@ -33,7 +33,7 @@ public class LoupVue {
 		}
 		else {
 			imageview.setTranslateX(loup.getX()*12);		
-			imageview.setTranslateY(loup.getY()*12);		
+			imageview.setTranslateY((loup.getY()*12)-15);		
 		}
 	}
 	

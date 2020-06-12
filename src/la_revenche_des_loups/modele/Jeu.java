@@ -23,8 +23,8 @@ public class Jeu {
 	private HistoriqueAction historique;
 	private Bfs bfs;
 	
-	//Test Tir
 	private ArrayList<Tir> listeTirs;
+	private int monnaie;
 
 	public Jeu(Terrain t) {
 		this.terrain = t;
@@ -36,10 +36,14 @@ public class Jeu {
 		this.limiteTours = new SimpleIntegerProperty(5);
 		this.nombreTours = new SimpleIntegerProperty(0);
 		this.partieLance = false;
+<<<<<<< HEAD
 		this.bfs = new Bfs(this);
 		
 		//Test Tir
+=======
+>>>>>>> df99cd66e69950b08e02012fc35a9180593d9040
 		this.listeTirs = new ArrayList<Tir>();
+		this.monnaie = 1000;
 	}
 	
 	public Bfs getBfs() {
@@ -58,6 +62,17 @@ public class Jeu {
 		this.historique = historique;
 	}
 	
+	
+	//test payer tour
+	public void payerTour(int prix) {
+		if (prix <= this.monnaie) {
+			this.monnaie -= prix;
+		}
+	}
+	
+	public int getMonnaie() {
+		return this.monnaie;
+	}
 	
 	//Avoir un tableau pour voir s'il y a un obstacle
 	//Si tab[id] = 1 alors obstacle Sinon tab[id] = 0 pas d'obstacle
